@@ -63,9 +63,11 @@ $(document).ready(function () {
 
 
 $("#btnSubmit").click(function () {
-    var birthDay = new Date($("#ddlYear option:selected").val(), parseInt($("#ddlMonth option:selected").val()) - 1, $("#ddlDay option:selected").val())
+    var date = $('#BirthDay').combodate('getValue');
+   var dateArray=date.toString().split('-');
+   var birthDay = new Date(dateArray[2], dateArray[1]-1, dateArray[0])
     var date = SqliteDate(birthDay);
-
+   
     var patient =
       {
           tableName: 'MocaTestClients',

@@ -4614,3 +4614,7 @@ blockquote {
 position: relative;
 top: -0.5px;
 }
+.error
+{
+    border:solid 1px red;
+}

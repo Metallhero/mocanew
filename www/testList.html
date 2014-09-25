@@ -214,7 +214,7 @@
             $("#portlet-email").bPopup({
                 modalClose: false,
                 onOpen: function () { $("#chosentestid").val(testId); },
-                onClose: function () { $("#chosentestid").val(''); }
+                onClose: function () { $("#chosentestid").val(''); $("#txtEmail").val(''); $("#txtEmail").removeClass('error');}
             });
 
         }
@@ -239,28 +239,30 @@
         });
 
 
-        $(".btnSendEmail").click(function () {
+        $(".btnSendEmail").on("click",function () {
+            log('email click');
             var email = $("#txtEmail").val();
-            var testId = $("#chosenTestId").val();
+            var testId = $("#chosentestid").val();
             if (!email || !validateEmail(email)) {
                 $("#txtEmail").addClass('error');
                 return false;
             }
 
             $('body').append('<div id="preload"></div>');
-            $.ajax({
-                url: "/Test/SendEmail",
-                type: "POST",
-                data: { email: email, testId: testId },
-                success: function (data) {
-                    if (data) {
-                        $('#portlet-email').modal('hide');
-                        $('#ok-email').modal();
-                        $("#txtEmail").val('')
-                    }
-                    $("#preload").remove();
-                }
-            });
+            window.location = 'resultPdf.html?id=' + testId + '&email=' + email;
+            //$.ajax({
+            //    url: "/Test/SendEmail",
+            //    type: "POST",
+            //    data: { email: email, testId: testId },
+            //    success: function (data) {
+            //        if (data) {
+            //            $('#portlet-email').modal('hide');
+            //            $('#ok-email').modal();
+            //            $("#txtEmail").val('')
+            //        }
+            //        $("#preload").remove();
+            //    }
+            //});
         });
     </script>
 
