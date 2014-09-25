@@ -21,7 +21,7 @@ $(document).ready(function () {
         allowClear: false,
     });
 
-    $('#ddlSex').easyDropDown();
+    // $('#ddlSex').easyDropDown();
 });
 $(window).load(function () {
     $('#regPatient .select2-container').css({ 'width': '131px' });

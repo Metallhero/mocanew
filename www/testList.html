@@ -54,7 +54,7 @@
                         </span>
                         <i class="icon-angle-down"></i>
                     </a>
-                    <ul class="dropdown-menu"><li><a href="javascript:void(0)" >Start new test</a></li><li><a href="/Test/List">Show test results</a></li></ul>
+                    <ul class="dropdown-menu"><li><a href="index.html" >Start new test</a></li><li><a href="testList.html">Show test results</a></li></ul>
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
             </ul>
@@ -148,7 +148,7 @@
                         </div>
                         <div class="portlet-body">
                             <div class="row-fluid" style="text-align: center;margin-bottom: 20px;">
-                                <button type="button" class="btn purple" onclick="ShowConfirmPopup('Start new test', 'Are you sure ?', 'Index.html')">
+                                <button type="button" class="btn purple" onclick="ShowConfirmPopup('Start new test', 'Are you sure ?', 'index.html')">
                                     <i class="icon-arrow-left"></i>
                                     Start new test
                                 </button>
@@ -182,7 +182,7 @@
             </div>
             <div class="row-fluid" style="bottom: 70px;">
                 <div class="col-md-12">
-                    <button type="button" class="btn purple" onclick="window.history(-1)" id="btnBack"><i class="icon-chevron-left"></i></button>
+                    <button type="button" class="btn purple" onclick="window.history.back();return false;" id="btnBack"><i class="icon-chevron-left"></i></button>
                 </div>
             </div>
             <!-- END PAGE CONTENT-->
