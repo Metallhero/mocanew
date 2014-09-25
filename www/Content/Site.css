@@ -4610,8 +4610,7 @@ blockquote {
 {
    right:20px;
 }*/
-
-.bootstrap-switch-handle-on,.bootstrap-switch-handle-off{
-    position: relative;
-top: 2px;
+.bootstrap-switch.bootstrap-switch-animate .bootstrap-switch-container {
+position: relative;
+top: -0.5px;
 }

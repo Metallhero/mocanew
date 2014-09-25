@@ -152,9 +152,9 @@ function LoadImage() {
                 var className = 'visuoImg_norev';
                 if (DB.GetTestType() == MocaTestTypes["Trail"])//A1B2C3...
                 {
-                    className = 'visuoImg1_norev';
+                    className = 'visuoImg1';
                 }
-                container.html('<img id="visuoexec" class="' + className + '" src="' + imgData + '" alt="" />')
+                container.html('<img id="visuoexec" style="-ms-transform: rotate(180deg); -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); transform: rotate(180deg); " class="' + className + '" src="' + imgData + '" alt="" />')
             }
         });
     }

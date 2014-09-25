@@ -36,33 +36,9 @@
     <!--section Popup -->
     <div id="popups"></div>
     <!--section end -->
-    <div class="header navbar navbar-inverse ">
-        <div class="header-inner">
-            <a href="/" class="navbar-brand">
-                <span>e-MoCA version 8.1</span>
-            </a>
 
-            <a data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" href="javascript:;">
-                <img alt="" src="Content/img/sidebar-toggler.jpg">
-            </a>
-            <ul class="nav navbar-nav pull-right">
-                <!-- BEGIN USER LOGIN DROPDOWN -->
-                <li class="user">
-                    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" class="dropdown-toggle" href="#" style="padding-top:10px;padding-bottom:10px;">
-                        <span class="username">
-                            <!--Username-->
-                        </span>
-                        <i class="icon-angle-down"></i>
-                    </a>
-                    <ul class="dropdown-menu"><li><a href="/">Start new test</a></li><li><a href="/Test/List">Show test results</a></li></ul>
-                </li>
-                <!-- END USER LOGIN DROPDOWN -->
-            </ul>
-        </div>
 
-    </div>
-
-    <div class="content">
+    <div class="content" style="padding-top: 0 !important;">
         <div class="page-container">
             <!--Navigation Bar -->
             <div id="navigationBar"></div>
@@ -73,9 +49,7 @@
                 <div class="row-fluid">
                     <div class="col-md-12">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                        <h3 class="page-title">
-                            Clock
-                        </h3>
+                       
                         <!-- START HEADER NAV-->
                         <!-- END HEADER NAV-->
                         <!-- END PAGE TITLE & BREADCRUMB-->
@@ -101,7 +75,7 @@
                                                     <div class="col-md-4 text-center pull-left" style="margin-bottom:20px;">
                                                         Draw clock (ten past eleven)  <br /><br />
                                                     </div>
-                                                    <div class="col-md-6  text-right pull-right" style="left: 12px; position: relative;">
+                                                    <div class="col-md-8  text-right pull-right" style="left: 12px; position: relative;">
                                                        
                                                         <canvas id="visuoexec"></canvas>
                                                         
