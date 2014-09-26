@@ -36,7 +36,7 @@
         });
     </script>
 </head>
-<body class="login">
+<body class="login" style="background-color:white !important">
     <!--section Popup -->
     <div id="popups"></div>
     <!--section end -->
@@ -337,7 +337,7 @@
                             <div style="margin: 10px 0 10px 100px;">
                                 <span style="font-size:1.1em;">Repeat: I only know that John is the one to help today.</span> <label style="font-size: 15px;">[ <span id="test_6_1"></span> ]</label>
                                 <div style="margin: 0;">
-                                    <span style="font-size:1.1em;">The cat always hid under the couch when dogs were in the room.</span> <label style="font-size: 15px;">[ <span id="test_20_1"></span> ]</label>
+                                    <span style="font-size:1.1em;">The cat always hid under the couch when dogs were in the room.</span> <label style="font-size: 15px;">[ <span id="test_6_2"></span> ]</label>
                                 </div>
                             </div>
                         </td>
@@ -483,9 +483,9 @@
                             </div>
                         </div>
                         <!--<div class="" style="text-align: right;">
-                            <a href="#" style="    padding: 5px 10px; margin: 10px 0;   display: inline-block;    font-size: 16px;    text-decoration: none;    color: #fff; background: #000;
-    font-weight: bold;    text-transform: uppercase;" onclick="window.history.back();return false;">Back</a>
-                        </div>-->
+                                                <a href="#" style="    padding: 5px 10px; margin: 10px 0;   display: inline-block;    font-size: 16px;    text-decoration: none;    color: #fff; background: #000;
+                        font-weight: bold;    text-transform: uppercase;" onclick="window.history.back();return false;">Back</a>
+                                            </div>-->
                     </td>
                 </tr>
             </table>
@@ -535,8 +535,8 @@
                     key = 'vertical';
                 }
 
-               
-               
+
+
                 html2canvas(document.body, {
                     onrendered: function (can) {
                         var src = can.toDataURL("image/jpeg");
@@ -586,12 +586,12 @@
                                     }
                                 }).done(function (response) {
                                     var mess = '';
-                                  
+
                                     if (response[0].status != 'error') {
                                         mess = 'Ok';
                                     } else {
                                         mess = 'Error';
-                                    }  
+                                    }
                                     $('#preload').remove();
                                     $.session.set('SendMessageStatus', mess);
                                     window.history.back();
@@ -609,4 +609,5 @@
     </script>
     <!-- end section-->
 </body>
+
 </html>
