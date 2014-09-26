@@ -31,12 +31,12 @@ function FillMocaTypes() {
 }
 
 
-var allPages = ["TrailInstructions", "TrailExecution", "TrailScoring", /*"CubeInstructions",*/ "CubeExecution", "CubeScoring", /*"ClockInstructions",*/ "ClockExecution", "ClockScoring",
-        /*"NamingInstructions",*/"NamingExecution", "NamingScoring",/*"MemoryInstructions",*/"Memory1Execution", "Memory2Execution",
-       /*"DigitForwardInstructions",*/"DigitForwardExecution",/*"DigitBackwardInstructions",*/ "DigitBackwardExecution",/*"LetterAInstructions",*/"LetterAExecution",
-        /*"CalculationInstructions",*/"CalculationExecution",/*"RepetitionInstructions",*/"RepetitionExecution",/*"RepetitionExecution2",*/
-         /*"FluencyInstructions", */ "FluencyExecution", /*"AbstractionInstructions",*/ "AbstractionExecution",
-         /*"DelayedRecallInstructions",*/"DelayedRecallExecution",/*"OrientationInstructions",*/"OrientationExecution", "Comment"];
+var allPages = ["TrailInstructions", "TrailExecution", "TrailScoring", "CubeInstructions", "CubeExecution", "CubeScoring", "ClockInstructions", "ClockExecution", "ClockScoring",
+        "NamingInstructions", "NamingExecution", "NamingScoring", "MemoryInstructions", "Memory1Execution", "Memory2Execution",
+       "DigitForwardInstructions", "DigitForwardExecution", "DigitBackwardInstructions", "DigitBackwardExecution", "LetterAInstructions", "LetterAExecution",
+        "CalculationInstructions", "CalculationExecution", "RepetitionInstructions", "RepetitionExecution",
+         "FluencyInstructions", "FluencyExecution", "AbstractionInstructions", "AbstractionExecution",
+         "DelayedRecallInstructions", "DelayedRecallExecution", "OrientationInstructions", "OrientationExecution", "Comment"];
 function allPagesWithExt(index) {
     return allPages[index] + ".html";
 }
@@ -53,9 +53,9 @@ function GetCurrentPageIndex() {
     return index;
 }
 $(document).ready(function () {
- 
+
     FillMocaTypes();
-    if ($("#navigationBar").length>0) {
+    if ($("#navigationBar").length > 0) {
         $("#navigationBar").load("Partial/_NavigationBar.html");
     }
     if ($("#testComment")) {
@@ -197,24 +197,28 @@ function PreviousPage() {
 }
 
 function ShowConfirmPopup(title, body, onclickEvent) {
-    $.get("Partial/PopupConfirm.html",
-    function (data) {
-        $("#popups").append(data);
-        $("#popup-confirm").bPopup({
-            onOpen: function () {
-                $('#popup-title').text(title);
-                $('#popup-body').text(body);
-                if (onclickEvent.indexOf('.html') > -1)
-                    $('#popup-sbmt').attr('onclick', "window.location='" + onclickEvent + "'");
-                else
-                    $('#popup-sbmt').attr('onclick', onclickEvent);
+    //$.get("Partial/PopupConfirm.html",
+    //function (data) {
+    //    $("#popups").append(data);
+    //    $("#popup-confirm").bPopup({
+    //        onOpen: function () {
+    //            $('#popup-title').text(title);
+    //            $('#popup-body').text(body);
+    //            if (onclickEvent.indexOf('.html') > -1)
+    //                $('#popup-sbmt').attr('onclick', "window.location='" + onclickEvent + "'");
+    //            else
+    //                $('#popup-sbmt').attr('onclick', onclickEvent);
 
-            },
-            onClose: function () {
-                $("#popup-confirm").remove();
-            }
-        });
-    });
+    //        },
+    //        onClose: function () {
+    //            $("#popup-confirm").remove();
+    //        }
+    //    });
+    //});
+
+    if (onclickEvent.indexOf('.html') > -1)
+       window.location= onclickEvent;
+ 
 }
 function ShowAlertPopup(title) {
     $.get("Partial/PopupAlert.html",

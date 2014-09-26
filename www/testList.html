@@ -42,9 +42,9 @@
                 <span>e-MoCA version 8.1</span>
             </a>
 
-            <a data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" href="javascript:;">
+            <!--<a data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" href="javascript:;">
                 <img alt="" src="Content/img/sidebar-toggler.jpg">
-            </a>
+            </a>-->
             <ul class="nav navbar-nav pull-right">
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="user">
@@ -226,7 +226,7 @@
                     gridData.push(temItem);
                 }
                 $.each(gridData, function (k, v) {
-                    $('#gridTable').append('<tr><td>' + v.chartNumber + '</td><td>' + v.Admin + '</td><td>' + v.Client + '</td><td>' + v.testDate + '</td><td><a href="result.html?id=' + v.testID + '&comments=1">Results</a></td><td> <a href="#" onclick="sendEmail(' + v.testID + ');return false;">Results</a></td></tr>');
+                    $('#gridTable').append('<tr><td>' + v.chartNumber + '</td><td>' + v.Admin + '</td><td>' + v.Client + '</td><td>' + v.testDate + '</td><td><a href="result.html?id=' + v.testID + '">Results</a></td><td> <a href="#" onclick="sendEmail(' + v.testID + ');return false;">Results</a></td></tr>');
                     // <td><a href="chartTest.html?id=' + v.testID + '">Chart</a></td><td><a href="chartTest.html?id=' + v.testID + '#file">Chart</a> | <a href="web/viewer.html?id=' + v.testID + '&comments=1#file">With comments</a> | <a href="web/viewer.html?id=' + v.testID + '#file">Without comments</a></td>
                 });
                 TableAdvanced.init();

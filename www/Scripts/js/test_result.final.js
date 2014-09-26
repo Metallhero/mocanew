@@ -33,128 +33,128 @@ $(document).ready(function () {
     }
 
     var testId = getURLParameters(window.location.href).id;
-    var isComments = getURLParameters(window.location.href).comments;
+    var isComments = true; //getURLParameters(window.location.href).comments;
 
-    if (window.location.hash && window.location.hash.indexOf('#sendTo') != -1) {
-        if (!isComments) {
-            $('#BackButton').remove();
-        } else {
-            $('#BackButton a').remove();
-        }
-        setTimeout(function () {
-            $('#Wrap').removeClass('vertical_table');
-            var pdfParams = {
-                'horizontal': [[0, 5, 210, 260], [0, 5, 250, 170]],
-                'vertical': [[5, 5, 200, 260], [5, 5, 200, 190]],
-            }, key = 'horizontal';
-            if ($(window).width() < 900) {
-                key = 'vertical';
-            }
+    //if (window.location.hash && window.location.hash.indexOf('#sendTo') != -1) {
+    //    if (!isComments) {
+    //        $('#BackButton').remove();
+    //    } else {
+    //        $('#BackButton a').remove();
+    //    }
+    //    setTimeout(function () {
+    //        $('#Wrap').removeClass('vertical_table');
+    //        var pdfParams = {
+    //            'horizontal': [[0, 5, 210, 260], [0, 5, 250, 170]],
+    //            'vertical': [[5, 5, 200, 260], [5, 5, 200, 190]],
+    //        }, key = 'horizontal';
+    //        if ($(window).width() < 900) {
+    //            key = 'vertical';
+    //        }
 
-            $('#BackButton').hide();
-            $('#moca-table').show();
-            html2canvas(document.body, {
-                onrendered: function (can) {
-                    var src = can.toDataURL("image/jpeg");
-                    var doc = new jsPDF();
-                    doc.addImage(src, 'JPEG', pdfParams[key][0][0], pdfParams[key][0][1], pdfParams[key][0][2], pdfParams[key][0][3]);
-                    doc.addPage();
-                    $('#BackButton').show();
-                    $('#moca-table').hide();
-                    html2canvas(document.body, {
-                        onrendered: function (canCom) {
-                            var srcCom = canCom.toDataURL("image/jpeg");
-                            doc.addImage(srcCom, 'JPEG', pdfParams[key][1][0], pdfParams[key][1][1], pdfParams[key][1][2], pdfParams[key][1][3]);
-                            var out = doc.output('base');
-                            $('#BackButton').hide();
-                            $.ajax({
-                                type: "POST",
-                                url: "https://mandrillapp.com/api/1.0/messages/send.json",
-                                data: {
-                                    'key': 'PasmiTz0JPmqTNI87lOckQ',
-                                    'message': {
-                                        'from_email': 'mocamailer@gmail.com',
-                                        'to': [
-                                            {
-                                                'email': window.location.hash.split('=')[1],
-                                                'name': 'MoCA',
-                                                'type': 'to'
-                                            }
-                                        ],
-                                        'autotext': 'true',
-                                        "auto_html": 'true',
-                                        'subject': 'MoCA Test Result',
-                                        'html': '<p>Test result in attachments.</p>',
-                                        "attachments": [
-                                              {
-                                                  "name": $('#patient_name').text() + '_' + $('#test_date').text() + ".pdf",
-                                                  "type": "application/pdf",
-                                                  "binary": true,
-                                                  "content": out
-                                              }
-                                        ]
-                                    }
-                                }
-                            }).done(function (response) {
-                                var mess = '';
-                                if (response[0].status != 'error') {
-                                    mess = 'Ok';
-                                } else {
-                                    mess = 'Error';
-                                }
-                                $('#preload').remove();
-                                $.session.set('SendMessageStatus', mess);
-                                window.history.back();
-                            });
-                        }
-                    });
-                }
-            });
-        }, 1000);
-
-
-    } else if (window.location.hash && window.location.hash.indexOf('#file') != -1) {
-        $('#BackButton a').remove();
-        $('#BackButton').hide();
-        var pdfParams = {
-            'horizontal': [[-20, 5, 250, 260], [0, 5, 150, 80]],
-            'vertical': [[5, 5, 200, 260], [5, 5, 100, 100]],
-        }, key = 'horizontal';
-        if ($(window).width() < 900) {
-            key = 'vertical';
-        }
-
-        setTimeout(function () {
-            $('#BackButton').hide();
-            $('#moca-table').show();
-            html2canvas($('#moca-table'), {
-                onrendered: function (can) {
-
-                    //$('body').append($('<img>',{'src':can.toDataURL("image/png"),id:'tempimg'}));
+    //        $('#BackButton').hide();
+    //        $('#moca-table').show();
+    //        html2canvas(document.body, {
+    //            onrendered: function (can) {
+    //                var src = can.toDataURL("image/jpeg");
+    //                var doc = new jsPDF();
+    //                doc.addImage(src, 'JPEG', pdfParams[key][0][0], pdfParams[key][0][1], pdfParams[key][0][2], pdfParams[key][0][3]);
+    //                doc.addPage();
+    //                $('#BackButton').show();
+    //                $('#moca-table').hide();
+    //                html2canvas(document.body, {
+    //                    onrendered: function (canCom) {
+    //                        var srcCom = canCom.toDataURL("image/jpeg");
+    //                        doc.addImage(srcCom, 'JPEG', pdfParams[key][1][0], pdfParams[key][1][1], pdfParams[key][1][2], pdfParams[key][1][3]);
+    //                        var out = doc.output('base');
+    //                        $('#BackButton').hide();
+    //                        $.ajax({
+    //                            type: "POST",
+    //                            url: "https://mandrillapp.com/api/1.0/messages/send.json",
+    //                            data: {
+    //                                'key': 'PasmiTz0JPmqTNI87lOckQ',
+    //                                'message': {
+    //                                    'from_email': 'mocamailer@gmail.com',
+    //                                    'to': [
+    //                                        {
+    //                                            'email': window.location.hash.split('=')[1],
+    //                                            'name': 'MoCA',
+    //                                            'type': 'to'
+    //                                        }
+    //                                    ],
+    //                                    'autotext': 'true',
+    //                                    "auto_html": 'true',
+    //                                    'subject': 'MoCA Test Result',
+    //                                    'html': '<p>Test result in attachments.</p>',
+    //                                    "attachments": [
+    //                                          {
+    //                                              "name": $('#patient_name').text() + '_' + $('#test_date').text() + ".pdf",
+    //                                              "type": "application/pdf",
+    //                                              "binary": true,
+    //                                              "content": out
+    //                                          }
+    //                                    ]
+    //                                }
+    //                            }
+    //                        }).done(function (response) {
+    //                            var mess = '';
+    //                            if (response[0].status != 'error') {
+    //                                mess = 'Ok';
+    //                            } else {
+    //                                mess = 'Error';
+    //                            }
+    //                            $('#preload').remove();
+    //                            $.session.set('SendMessageStatus', mess);
+    //                            window.history.back();
+    //                        });
+    //                    }
+    //                });
+    //            }
+    //        });
+    //    }, 1000);
 
 
-                    // window.location = can.toDataURL("image/jpeg");
+    //} else if (window.location.hash && window.location.hash.indexOf('#file') != -1) {
+    //    $('#BackButton a').remove();
+    //    $('#BackButton').hide();
+    //    var pdfParams = {
+    //        'horizontal': [[-20, 5, 250, 260], [0, 5, 150, 80]],
+    //        'vertical': [[5, 5, 200, 260], [5, 5, 100, 100]],
+    //    }, key = 'horizontal';
+    //    if ($(window).width() < 900) {
+    //        key = 'vertical';
+    //    }
 
-                    // $('#moca-table').hide();
-                    var src = can.toDataURL("image/jpeg");
-                    var doc = new jsPDF('p', 'mm', [330, 240]);
+    //    setTimeout(function () {
+    //        $('#BackButton').hide();
+    //        $('#moca-table').show();
+    //        html2canvas($('#moca-table'), {
+    //            onrendered: function (can) {
 
-                    $('#tempimg').load(function () {
-                        console.log(doc);
-                        doc.addImage(src, 'JPEG', 0, 0);
-                        doc.save('fff.pdf');
-                    });
-                }
-            });
+    //                //$('body').append($('<img>',{'src':can.toDataURL("image/png"),id:'tempimg'}));
 
 
+    //                // window.location = can.toDataURL("image/jpeg");
+
+    //                // $('#moca-table').hide();
+    //                var src = can.toDataURL("image/jpeg");
+    //                var doc = new jsPDF('p', 'mm', [330, 240]);
+
+    //                $('#tempimg').load(function () {
+    //                    console.log(doc);
+    //                    doc.addImage(src, 'JPEG', 0, 0);
+    //                    doc.save('fff.pdf');
+    //                });
+    //            }
+    //        });
 
 
-        }, 1000);
-    } else {
-        $('#moca-table').show();
 
-    }
+
+    //    }, 1000);
+    //} else {
+    //    $('#moca-table').show();
+
+    //}
 
 
     function getCommentTitle(testTypeID) {
