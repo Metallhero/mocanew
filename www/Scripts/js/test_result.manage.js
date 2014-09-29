@@ -35,7 +35,7 @@ function ResetTest() {
 
 function LoadFirstAttempt() {
     log("LoadFirstAttempt");
-    if ($.session.get('timeTest')) {
+    if ($.session.get('timeTest') ) {
         $('#timeBlock').text($.session.get('timeTest') + ' s');
         $(".timeBlock").show();
     }
