@@ -4618,3 +4618,32 @@ top: -0.5px;
 {
     border:solid 1px red;
 }
+.page-content > .row-fluid:nth-child(2) {
+    min-height: 525px;
+max-height: 525px;
+    overflow: auto;
+}
+.page-content > .row-fluid:nth-child(2):after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.create_img.page-content > .row-fluid:nth-child(2) {
+    min-height: 0;
+    overflow: visible;
+}
+.create_img.page-content > .row-fluid:nth-child(1) {
+    min-height: 619px;
+    overflow: auto;
+}
+.page-content > .row-fluid:nth-child(1):after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+.buttomButtons {margin-top: 20px;}
