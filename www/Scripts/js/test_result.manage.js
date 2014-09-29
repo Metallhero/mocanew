@@ -27,7 +27,7 @@ function ResetTest() {
     DB.ResetTest(testId, testType, function (result) {
         log(result);
         if (result) {
-            $.session.set('timeTest', '0');
+            $.session.set('timeTest', '');
             window.location = window.location;
         }
     });
