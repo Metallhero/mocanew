@@ -1,6 +1,6 @@
 ﻿var DB = (function ($) {
     function dbase() {
-        var dbShell, $that = this;
+        var dbShell,databaseSync, $that = this;
         var GetInsertQueries = function (insertedData) {
             log('GetInsertQueries');
             log(insertedData);
@@ -18,7 +18,7 @@
 
                 var insertedQuery = "INSERT into " + insertedData.tableName + "(" + keys.join(',') + ")" + " values(" + values.join(',') + ")";
                 insertedQueries.push(insertedQuery);
-        
+
             });
             return insertedQueries;
         };
@@ -179,14 +179,13 @@
                     var totalMisScore = 0;
                     for (var i = 0; i < results.rows.length; i++) {
                         var resultValue = results.rows.item(i);
-                   
-                        var coef=3;
-                        if (resultValue.valueOptional > 5 &&resultValue.valueOptional <= 10 )
-                            coef=2;
-                        else if (resultValue.valueOptional >10)
-                            coef=1;
-                        if (resultValue.valueResult)
-                        {
+
+                        var coef = 3;
+                        if (resultValue.valueOptional > 5 && resultValue.valueOptional <= 10)
+                            coef = 2;
+                        else if (resultValue.valueOptional > 10)
+                            coef = 1;
+                        if (resultValue.valueResult) {
                             totalMisScore += coef;
                         }
                     }
@@ -200,13 +199,13 @@
             var callbackFun = callback;
             dbShell.transaction(function (tx, callback) {
                 tx.executeSql($that.SelectTestResultValuesByGroupIdAndTestIdQuery(testId, groupId), [], function (tx, results) {
-                    var testResults = []; 
+                    var testResults = [];
 
                     if (results.rows.length > 0) {
                         var groupName; var groupId;
                         for (var i = 0; i < results.rows.length; i++) {
                             var testResult = results.rows.item(i);
-                             
+
                             testResult.testResultValues = [];
                             if (i == 0) {
                                 groupName = testResult.GroupName;
@@ -215,9 +214,9 @@
                             testResults.push(testResult);
                         }
 
-                       
+
                         var temp = testResults[0];
-                       
+
                         temp.testResultValues.push({ valueOptional: temp.valueOptional, valueResult: temp.valueResult });
 
 
@@ -238,7 +237,7 @@
 
                         });
                         var res = { "groupName": groupName, "groupId": groupId, "testResult": resultArr };
-                       
+
                         callbackFun.apply(null, [res]);
                     }
                 });
@@ -246,10 +245,10 @@
         }
 
         this.GetTestType = function () {
-            var type=0;
+            var type = 0;
             $.each(MocaTestTypes, function (k, v) {
                 var ind = window.location.href.toLowerCase().indexOf(k.toLowerCase());
-                if (ind !=-1) {
+                if (ind != -1) {
                     type = v;
                     return false;
                 }
@@ -281,8 +280,7 @@
             return "SELECT MocaTestResultsValues.valueOptional, MocaTestResultsValues.valueResult, MocaTestResults.testTypeID  FROM MocaTestResults Inner Join MocaTestResultsValues ON MocaTestResults.resultID= MocaTestResultsValues.resultID Where MocaTestResults.testID=" + testId + " AND (MocaTestResults.testTypeID=5 OR MocaTestResults.testTypeID=16 OR MocaTestResults.testTypeID=17)";
         };
 
-        this.SelectNamingInputWord = function()
-        {
+        this.SelectNamingInputWord = function () {
             return "SELECT  Distinct(substr(MocaTestResultsValues.valueOptional,3)) as 'word',  substr(MocaTestResultsValues.valueOptional,0,2) as 'wordNumber' FROM MocaTestResults Inner Join MocaTestResultsValues ON MocaTestResults.resultID= MocaTestResultsValues.resultID Where  MocaTestResults.testTypeID=9  And word <> ''";
         }
 
@@ -425,7 +423,7 @@
             dbShell.transaction(function (tx) {
                 log('beginInsert');
                 var insertedQueries = GetInsertQueries(insertedData);
-               
+
                 $.each(insertedQueries, function (k, v) {
                     tx.executeSql(v, [], function (tx, results) {
                         var result = results || null;
@@ -460,21 +458,27 @@
             },
             this.dbErrorHandler, this.getEntries);
         };
+
         this.deleteData = function (query, callback) {
             dbShell.transaction(function (tx) {
                 tx.executeSql(query, [], function (tx, results) {
                     var result = results || null;
-                  
+
                     callback.apply(null, [result]);
                 });
             },
             this.dbErrorHandler, this.getEntries);
         };
+        
+       
         this.Ready = function (err) {
             console.log("phoneReady");
             var maxSize = 5 * 1024 * 1024;
             dbShell = window.openDatabase("MoCA", 2, "MoCA", maxSize);
             console.log("db was opened");
+
+ 
+
         };
         document.addEventListener("deviceready", this.Ready.call(this), false);
     };
