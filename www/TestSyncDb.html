@@ -64,7 +64,7 @@
 
     <div class="content">
  
-
+        <div id="syncDataResult"></div>
 
     </div>
 
@@ -97,7 +97,9 @@
         worker.onmessage = function (e) {
             if (e.data.complete == true) {
                 console.log(e.data.queryResult);
-              
+                var obj = jQuery.parseJSON(e.data.queryResult);
+                console.log(obj);
+                $("#syncDataResult").html(e.data.queryResult);
             }
         }
  

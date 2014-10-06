@@ -7,11 +7,11 @@ self.addEventListener('message', function (e) {
     //get Query
     var queryResult = doQuery(data.queryText);
     var result = JSON.stringify(queryResult);
-    console.log(result);
-    console.log("result2");
-    queryResult = doQuery("Select Count(*) From MocaComments Where testID = 17");
-    result = JSON.stringify(queryResult);
-    console.log(result);
+    //console.log(result);
+    //console.log("result2");
+    //queryResult = doQuery("Select Count(*) From MocaComments Where testID = 17");
+    //result = JSON.stringify(queryResult);
+    //console.log(result);
     postMessage({ queryResult: result, complete: true });
 
     function doQuery(sql) {
