@@ -23,14 +23,14 @@
     <script src="Scripts/select2/select2.min.js"></script>
     <!--=======-->
     <script src="Scripts/jquery.bpopup.min.js"></script>
-
     <!--@*Bootstrap switch*@-->
     <link href="Content/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" />
     <script src="Content/bootstrap-switch/bootstrap-switch.min.js"></script>
     <!--@*===============*@-->
     <script src="Scripts/phonegap-1.1.0.js"></script>
+    <script src="Scripts/js/site.manage.js"></script>
     <!--<script src="Scripts/js/db.manager.js"></script>
-    <script src="Scripts/js/site.manage.js"></script>-->
+    -->
 </head>
 <body class="login">
     <!--section Popup -->
@@ -41,7 +41,6 @@
             <a href="index.html" class="navbar-brand">
                 <span>e-MoCA version 8.1</span>
             </a>
-
             <a data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" href="javascript:;">
                 <img alt="" src="Content/img/sidebar-toggler.jpg">
             </a>
@@ -59,15 +58,11 @@
                 <!-- END USER LOGIN DROPDOWN -->
             </ul>
         </div>
-
     </div>
-
     <div class="content">
- 
+
         <div id="syncDataResult"></div>
-
     </div>
-
     <div class="footer">
         <div class="copyright"> e-MoCA © Copyright 2014. </div>
         <div class="footer-tools">
@@ -77,10 +72,8 @@
         </div>
     </div>
 
-
-
     <!--section Scripts -->
- 
+
 
     <script src="Scripts/js/openDBSync.worker.js"></script>
     <script type="text/javascript">
@@ -90,19 +83,27 @@
         //worker.addEventListener('message', function (e) {
         //     console.log(e);
         //}, false);
+        $(document).ready(function () {
+            var worker = new Worker('Scripts/js/openDBSync.worker.js');
+            var testTypesWithImg = [MocaTestTypes["Trail"], MocaTestTypes["Cube"], MocaTestTypes["Clock"]];
+            testTypesWithImg = JSON.stringify(testTypesWithImg);
+            worker.postMessage({ testId: 17, testTypesWithImg: testTypesWithImg });
 
-        var worker = new Worker('Scripts/js/openDBSync.worker.js');
-        worker.postMessage({ queryText: "Select * From MocaComments Where testID = 17" });
+            worker.onmessage = function (e) {
 
-        worker.onmessage = function (e) {
-            if (e.data.complete == true) {
-                console.log(e.data.queryResult);
-                var obj = jQuery.parseJSON(e.data.queryResult);
-                console.log(obj);
                 $("#syncDataResult").html(e.data.queryResult);
+                $.ajax({
+                    url: "http://localhost:11325/Test/PdfResultMobile",
+                    type: "POST",
+                    data: { model: e.data.queryResult },
+
+                    success: function (data) {
+
+                    }
+                });
+
             }
-        }
- 
+        });
         console.log("Синхронная ебала готова");
     </script>
     <!-- end section-->

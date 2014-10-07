@@ -320,7 +320,8 @@ $(document).ready(function () {
 
 
             DB.GetTestResultByGroup(testId, groupId, function (result2) {
-
+                console.log("GetTestResultByGroup");
+                console.log(result2);
                 SetSum(result2.groupId, result2.testResult);
                 if (i == result.rows.length) {
                     $('#summAll').text(total);
@@ -346,10 +347,10 @@ $(document).ready(function () {
                         if (testType == 5) { //DELAYED RECALL
                             log(resultValue);
                             var nextIndexInColumn = parseInt(resultValue.valueOptional) + 4;
-                            log(nextIndexInColumn);
+                            //log(nextIndexInColumn);
                             if ((resultValue.valueResult == null || resultValue.valueResult == 1) && nextIndexInColumn < testResult.testResultValues.length) {
                                 testResult.testResultValues[nextIndexInColumn].valueResult = null;
-                                log(nextIndexInColumn);
+                                //log(nextIndexInColumn);
                             }
                         }
                         else if (testType == 4 || testType == 9) {

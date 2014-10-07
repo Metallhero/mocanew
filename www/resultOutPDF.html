@@ -714,7 +714,7 @@
 
                     DB.GetTestResultByGroup(testId, groupId, function (result2) {
 
-
+                        console.log(result2);
                         SetSum(result2.groupId, result2.testResult);
                         if (i == result.rows.length) {
                             $('#summAll').text(total);
