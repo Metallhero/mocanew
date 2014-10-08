@@ -79,7 +79,7 @@ self.addEventListener('message', function (e) {
     MocaTest.testDate = totalComment.testDate;
     var totalCommentText = totalComment.commentResult;
     var totalCommentImage = totalComment.imageResult;
- 
+   
     var commentsQueryRes = ExecuteSql("Select * From MocaComments Where testID = " + testId);
     MocaTest.CommentList = [];
     for (var i = 0; i < commentsQueryRes.rows.length; i++) {
@@ -88,8 +88,10 @@ self.addEventListener('message', function (e) {
             MocaTest.CommentList.push({ CommentText: comment.comment, CommentImage: comment.caneva, TestType: comment.testTypeID });
         }
     }
-    MocaTest.CommentList.push({ CommentText: totalCommentText, CommentImage: totalCommentImage, TestType: 0 });
-
+    if (totalCommentText || totalCommentImage) {
+        MocaTest.CommentList.push({ CommentText: totalCommentText, CommentImage: totalCommentImage, TestType: 0 });
+    }
+    console.log(JSON.stringify(MocaTest.CommentList));
     //Final serialize
     var finalTestResult = JSON.stringify(MocaTest);
 
