@@ -91,7 +91,7 @@ self.addEventListener('message', function (e) {
     if (totalCommentText || totalCommentImage) {
         MocaTest.CommentList.push({ CommentText: totalCommentText, CommentImage: totalCommentImage, TestType: 0 });
     }
-    //console.log(JSON.stringify(MocaTest.CommentList));
+    
     //Final serialize
     var finalTestResult = JSON.stringify(MocaTest);
 
@@ -134,7 +134,7 @@ self.addEventListener('message', function (e) {
             }
 
             var res = { "groupName": groupName, "groupId": groupId, "testResult": tempResult };
-            //console.log(JSON.stringify(res));
+            
             return res;
         }
 
