@@ -12,7 +12,7 @@ self.addEventListener('message', function (e) {
     for (var i = 0; i < result.rows.length; i++) {
         var groupId = result.rows.item(i).ID;
         var testResultVal = GetTestResultByGroup(testId, groupId);
-        //console.log(testResultVal);
+
         if (testResultVal && testResultVal.testResult) {
             for (var y = 0; y < testResultVal.testResult.length; y++) {
                 var testResult = testResultVal.testResult[y];
@@ -35,6 +35,7 @@ self.addEventListener('message', function (e) {
                         ResultID: testResult.resultID,
                         TestType: testResult.testTypeID,
                         Score: testResult.score,
+                        Time: testResult.timeTest,
                         ResultValues: resultValues
                     }
                     var testTypesImg = JSON.parse(data.testTypesWithImg);
@@ -46,7 +47,7 @@ self.addEventListener('message', function (e) {
                         }
                     }
                     MocaTest.ResultList.push(resItem);
-                  
+
                 }
 
             }
@@ -56,7 +57,7 @@ self.addEventListener('message', function (e) {
     //Patient info
     var patientQueryRes = ExecuteSql("Select * From MocaTestClients Inner Join MocaTest ON MocaTestClients.clientID = MocaTest.clientID Where MocaTest.testID=" + testId);
     var patient = patientQueryRes.rows.item(0);
-    
+
     MocaTest.Patient.name = patient.name;
     MocaTest.Patient.chartNumber = patient.chartNumber;
     var timestamp = Date.parse(patient.dateOfBirth)
@@ -76,11 +77,23 @@ self.addEventListener('message', function (e) {
     var totalCommentQueryRes = ExecuteSql("Select * From MocaTest Where MocaTest.testID=" + testId);
     var totalComment = totalCommentQueryRes.rows.item(0);
     MocaTest.testDate = totalComment.testDate;
+    var totalCommentText = totalComment.commentResult;
+    var totalCommentImage = totalComment.imageResult;
+ 
+    var commentsQueryRes = ExecuteSql("Select * From MocaComments Where testID = " + testId);
+    MocaTest.CommentList = [];
+    for (var i = 0; i < commentsQueryRes.rows.length; i++) {
+        var comment = commentsQueryRes.rows.item(i);
+        if (comment.comment || comment.caneva) {
+            MocaTest.CommentList.push({ CommentText: comment.comment, CommentImage: comment.caneva, TestType: comment.testTypeID });
+        }
+    }
+    MocaTest.CommentList.push({ CommentText: totalCommentText, CommentImage: totalCommentImage, TestType: 0 });
 
-
+    //Final serialize
     var finalTestResult = JSON.stringify(MocaTest);
-    //console.log(finalTestResult);
-    postMessage({ queryResult: finalTestResult, complete: true });
+
+    postMessage({ queryResult: finalTestResult });
 
     function ExecuteSql(sql) {
         var rs;
@@ -90,16 +103,6 @@ self.addEventListener('message', function (e) {
         return rs;
     }
 
-    function doQuery(sql) {
-        wdb.transaction(function (tx) {
-            rs = tx.executeSql(sql, []);
-        });
-        var queryResults = { Rows: [] };
-        for (var i = 0; i < rs.rows.length; i++) {
-            queryResults.Rows.push(rs.rows.item(i));
-        }
-        return queryResults;
-    }
 
     function GetTestResultByGroup(testId, groupId) {
         var results = ExecuteSql(SelectTestResultValuesByGroupIdAndTestIdQuery(testId, groupId));
@@ -120,7 +123,6 @@ self.addEventListener('message', function (e) {
             for (var i = 0; i < result.length; i++) {
                 var testRes = result[i];
 
-                //console.log(JSON.stringify(testRes));
                 for (var j = 0; j < testRes.length; j++) {
                     if (j == 0) {
                         tempResult.push({ resultID: testRes[j].resultID, testTypeID: testRes[j].testTypeID, score: testRes[j].score, timeTest: testRes[j].timeTest, testResultValues: [] });
@@ -130,7 +132,7 @@ self.addEventListener('message', function (e) {
             }
 
             var res = { "groupName": groupName, "groupId": groupId, "testResult": tempResult };
-            console.log(JSON.stringify(res));
+            //console.log(JSON.stringify(res));
             return res;
         }
 

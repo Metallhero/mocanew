@@ -42,9 +42,6 @@
                 <span>e-MoCA version 8.1</span>
             </a>
 
-            <!--<a data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" href="javascript:;">
-                <img alt="" src="Content/img/sidebar-toggler.jpg">
-            </a>-->
             <ul class="nav navbar-nav pull-right">
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="user">
@@ -54,7 +51,7 @@
                         </span>
                         <i class="icon-angle-down"></i>
                     </a>
-                    <ul class="dropdown-menu"><li><a href="index.html" >Start new test</a></li><li><a href="testList.html">Show test results</a></li></ul>
+                    <ul class="dropdown-menu"><li><a href="index.html">Start new test</a></li><li><a href="testList.html">Show test results</a></li></ul>
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
             </ul>
@@ -214,7 +211,7 @@
             $("#portlet-email").bPopup({
                 modalClose: false,
                 onOpen: function () { $("#chosentestid").val(testId); },
-                onClose: function () { $("#chosentestid").val(''); $("#txtEmail").val(''); $("#txtEmail").removeClass('error');}
+                onClose: function () { $("#chosentestid").val(''); $("#txtEmail").val(''); $("#txtEmail").removeClass('error'); }
             });
 
         }
@@ -239,7 +236,7 @@
         });
 
 
-        $(".btnSendEmail").on("click",function () {
+        $(".btnSendEmail").on("click", function () {
             log('email click');
             var email = $("#txtEmail").val();
             var testId = $("#chosentestid").val();
@@ -248,21 +245,48 @@
                 return false;
             }
 
-            $('body').append('<div id="preload"></div>');
-            window.location = 'resultPdf.html?id=' + testId + '&email=' + email;
-            //$.ajax({
-            //    url: "/Test/SendEmail",
-            //    type: "POST",
-            //    data: { email: email, testId: testId },
-            //    success: function (data) {
-            //        if (data) {
-            //            $('#portlet-email').modal('hide');
-            //            $('#ok-email').modal();
-            //            $("#txtEmail").val('')
-            //        }
-            //        $("#preload").remove();
-            //    }
-            //});
+            $('body').append('<div style="display:none" id="preload"></div>');
+            $("#preload").bPopup({ modalClose: false });
+            var worker = new Worker('Scripts/js/pdfResult.worker.js');
+            var testTypesWithImg = [MocaTestTypes["Trail"], MocaTestTypes["Cube"], MocaTestTypes["Clock"]];
+            testTypesWithImg = JSON.stringify(testTypesWithImg);
+            worker.postMessage({ testId: testId, testTypesWithImg: testTypesWithImg });
+
+            worker.onmessage = function (e) {
+
+                $("#syncDataResult").html(e.data.queryResult);
+                $.ajax({
+                    url: serverUrl + "/Test/PdfResultMobile",
+                    type: "POST",
+                    data: { model: e.data.queryResult, email: email },
+
+                    success: function (data) {
+                        if (data) {
+                            $("#preload").bPopup().close();
+                            $("#preload").remove();
+                            $("#portlet-email").bPopup().close();
+                            ShowAlertPopup("Email was sent successfully");
+                        }
+                    }
+                });
+
+            }
+
+
+            //window.location = 'resultPdf.html?id=' + testId + '&email=' + email;
+            ////$.ajax({
+            ////    url: "/Test/SendEmail",
+            ////    type: "POST",
+            ////    data: { email: email, testId: testId },
+            ////    success: function (data) {
+            ////        if (data) {
+            ////            $('#portlet-email').modal('hide');
+            ////            $('#ok-email').modal();
+            ////            $("#txtEmail").val('')
+            ////        }
+            ////        $("#preload").remove();
+            ////    }
+            ////});
         });
     </script>
 
