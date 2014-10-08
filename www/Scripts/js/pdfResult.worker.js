@@ -91,7 +91,7 @@ self.addEventListener('message', function (e) {
     if (totalCommentText || totalCommentImage) {
         MocaTest.CommentList.push({ CommentText: totalCommentText, CommentImage: totalCommentImage, TestType: 0 });
     }
-    console.log(JSON.stringify(MocaTest.CommentList));
+    //console.log(JSON.stringify(MocaTest.CommentList));
     //Final serialize
     var finalTestResult = JSON.stringify(MocaTest);
 
