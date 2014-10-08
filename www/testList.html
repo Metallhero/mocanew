@@ -254,7 +254,7 @@
 
             worker.onmessage = function (e) {
 
-                $("#syncDataResult").html(e.data.queryResult);
+             
                 $.ajax({
                     url: serverUrl + "/Test/PdfResultMobile",
                     type: "POST",
