@@ -261,11 +261,15 @@
                     data: { model: e.data.queryResult, email: email },
                     dataType: 'json',
                     success: function (data) {
+                        $("#preload").bPopup().close();
+                        $("#preload").remove();
+                        $("#portlet-email").bPopup().close();
                         if (data) {
-                            $("#preload").bPopup().close();
-                            $("#preload").remove();
-                            $("#portlet-email").bPopup().close();
                             ShowAlertPopup("Email was sent successfully");
+                        }
+                        else
+                        {
+                            ShowAlertPopup("Error");
                         }
                     }
                 });
