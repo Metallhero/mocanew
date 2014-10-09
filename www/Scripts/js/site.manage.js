@@ -1,5 +1,5 @@
-﻿var serverUrl =  "http://10.47.100.56:3223";
-//"http://localhost:11325";
+﻿var serverUrl = "http://10.47.100.56:3223";
+//"http://localhost:11325" ;
 
 function SqliteDate(date) {
     now = date;

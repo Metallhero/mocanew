@@ -60,8 +60,8 @@ self.addEventListener('message', function (e) {
 
     MocaTest.Patient.name = patient.name;
     MocaTest.Patient.chartNumber = patient.chartNumber;
-    var timestamp = Date.parse(patient.dateOfBirth)
-    if (!isNaN(timestamp)) {
+   
+    if (isValidDate(patient.dateOfBirth)) {
         MocaTest.Patient.dateOfBirth = patient.dateOfBirth;
     }
     MocaTest.Patient.education = patient.education;
@@ -155,6 +155,11 @@ Array.prototype.contains = function (obj) {
         }
     }
     return false;
+}
+
+function isValidDate(dateString) {
+    var re = /^\d{4}-(0[1-9]|1[0-2])-([0-2]\d|3[01]) (0\d|1[01]):[0-5]\d:[0-5]\d$/;
+    return re.test(dateString);
 }
 
 function groupBy(array, f) {
