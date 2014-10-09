@@ -254,12 +254,12 @@
 
             worker.onmessage = function (e) {
 
-             
+                console.log(e.data.queryResult);
                 $.ajax({
                     url: serverUrl + "/Test/PdfResultMobile",
                     type: "POST",
                     data: { model: e.data.queryResult, email: email },
-
+                    dataType: 'json',
                     success: function (data) {
                         if (data) {
                             $("#preload").bPopup().close();
