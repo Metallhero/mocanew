@@ -245,6 +245,11 @@
                 return false;
             }
 
+            if (!navigator.onLine)
+            {
+                ShowAlertPopup("Check internet connection!");
+                return;
+            }
             $('body').append('<div style="display:none" id="preload"></div>');
             $("#preload").bPopup({ modalClose: false });
             var worker = new Worker('Scripts/js/pdfResult.worker.js');
@@ -271,6 +276,11 @@
                         {
                             ShowAlertPopup("Error");
                         }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        ShowAlertPopup("Server is not responding!");
+                        $("#preload").bPopup().close();
+                        $("#preload").remove();
                     }
                 });
 
