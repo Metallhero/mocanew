@@ -267,6 +267,7 @@ function SaveTest() {
     var ResultValues = [];
     if (DB.GetTestType() == MocaTestTypes["Fluency"]) //11 words
     {
+        time = 60;
         var val = { valueResult: parseInt($("#score").text()), valueOptional: $("#wordsCounter").val() };
         ResultValues.push(val);
     }

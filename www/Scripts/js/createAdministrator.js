@@ -6,7 +6,7 @@
                 var v = data.rows.item(i);
 
                 var option = $('<option>', {
-                    text: v.name + ' | ' + v.occupation,
+                    text: v.name.replace("***"," ") + ' | ' + v.occupation,
                     value: v.userID
                 });
                 $('#ddlAdministrators').append(option);
@@ -20,9 +20,11 @@
 });
 $("#btnSubmit").click(function () {
 
-    var name = $("#txtName").val();
+    var fname = $("#txtFirstName").val();
+    var sname = $("#txtSecondName").val();
+    var name = fname + "***" + sname;
     var occupation = $("#txtOccupation").val();
-    if (occupation && name) {
+    if (occupation && fname && sname) {
         var user =
         {
             tableName: 'MocaTestUsers',
@@ -37,14 +39,23 @@ $("#btnSubmit").click(function () {
         });
     } else {
         var text = '';
-        if (!name) {
-            text = 'The field "Name" is required';
-            $('#txtName').closest('.input-icon').css({ 'border': '1px solid red' });
-            if (!$('#txtName').closest('.input-icon').next().hasClass('pError')) {
-                $('#txtName').closest('.input-icon').after('<p style="color:red;margin-top: 5px;" class="pError">' + text + '</p>');
+        if (!fname) {
+            text = 'The field "First name" is required';
+            $('#txtFirstName').closest('.input-icon').css({ 'border': '1px solid red' });
+            if (!$('#txtFirstName').closest('.input-icon').next().hasClass('pError')) {
+                $('#txtFirstName').closest('.input-icon').after('<p style="color:red;margin-top: 5px;" class="pError">' + text + '</p>');
             }
         } else {
-            $('#txtName').closest('.input-icon').css({ 'border': 'none' }).nextAll('.pError').remove();
+            $('#txtFirstName').closest('.input-icon').css({ 'border': 'none' }).nextAll('.pError').remove();
+        }
+        if (!sname) {
+            text = 'The field "Second name" is required';
+            $('#txtSecondName').closest('.input-icon').css({ 'border': '1px solid red' });
+            if (!$('#txtSecondName').closest('.input-icon').next().hasClass('pError')) {
+                $('#txtSecondName').closest('.input-icon').after('<p style="color:red;margin-top: 5px;" class="pError">' + text + '</p>');
+            }
+        } else {
+            $('#txtSecondName').closest('.input-icon').css({ 'border': 'none' }).nextAll('.pError').remove();
         }
         if (!occupation) {
             text = 'The field "Occupation" is required';

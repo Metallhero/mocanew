@@ -299,7 +299,7 @@ $(document).ready(function () {
 
     };
     DB.GetClientInfo(testId, function (result) {
-        $('#patient_name').text(result.Client.name);
+        $('#patient_name').text(result.Client.name.replace("***", " "));
         $('#patient_chartNumber').text(result.Client.chartNumber);
         $('#patient_dateOfBirth').text(result.Client.dateOfBirth.split(' ')[0]);
         $('#patient_education').text(result.Client.education);
@@ -381,7 +381,7 @@ $(document).ready(function () {
     });
 
     DB.GetMISTotal(testId, function (result) {
-        $('#summMIS').text(result);
+        $('.summMIS').text(result);
     });
     DB.selectData("Select * From MocaTest Where testID = " + testId, function (result) {
         if (result.rows.length > 0) {
@@ -392,7 +392,7 @@ $(document).ready(function () {
 
             DB.selectData("Select * From MocaTestUsers Where userID = " + userID, function (doctor) {
                 var doc = doctor.rows.item(0);
-                $("#MDname").text(doc.name);
+                $("#MDname").text(doc.name.replace("***", " "));
             });
         }
     });

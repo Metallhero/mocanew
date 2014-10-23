@@ -48,7 +48,7 @@ $(document).ready(function () {
         for (var i = 0; i < data.rows.length; i++) {
             var v = data.rows.item(i);
             var option = $('<option>', {
-                text: v.name + ' | ' + v.physican,
+                text: v.name.replace("***"," ") + ' | ' + v.physican,
                 value: v.clientID
             });
             $('#ddlPatients').append(option);
@@ -72,7 +72,7 @@ $("#btnSubmit").click(function () {
       {
           tableName: 'MocaTestClients',
           data: [{
-              name: $("#txtName").val(),
+              name: $("#txtFirstName").val() + "***"  + $("#txtSecondName").val(),
               dateOfBirth: date, // wcfDate,
               gender: $("#ddlSex").find("option:selected").val(),
               physican: $("#txtPhysican").val(),
@@ -92,7 +92,8 @@ $("#btnSubmit").click(function () {
         });
     } else {
 
-        ValidateFields($('#txtName'), 'The field "Name" is required', out.name);
+        ValidateFields($('#txtFirstName'), 'The field "First name" is required', $("#txtFirstName").val());
+        ValidateFields($('#txtSecondName'), 'The field "Second name" is required', $("#txtSecondName").val());
         ValidateFields($('#txtEducation'), 'The field "Education" is required', out.education);
         ValidateFields($('#txtChartNumber'), 'The field "Chart Number" is required', out.chartNumber);
         ValidateFields($('#txtPhysican'), 'The field "Physician" is required', out.physican);
