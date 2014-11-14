@@ -34,12 +34,19 @@ function FillMocaTypes() {
 }
 
 
-var allPages = ["TrailInstructions", "TrailExecution", "TrailScoring", "CubeInstructions", "CubeExecution", "CubeScoring", "ClockInstructions", "ClockExecution", "ClockScoring",
-        "NamingInstructions", "NamingExecution", "NamingScoring", "MemoryInstructions", "Memory1Execution", "Memory2Execution",
-       "DigitForwardInstructions", "DigitForwardExecution", "DigitBackwardInstructions", "DigitBackwardExecution", "LetterAInstructions", "LetterAExecution",
-        "CalculationInstructions", "CalculationExecution", "RepetitionInstructions", "RepetitionExecution",
+var allPages = ["TrailInstructions", "TrailExecution", "TrailScoring", "CubeExecution", "CubeScoring", "ClockInstructions", "ClockExecution", "ClockScoring",
+         "NamingExecution", "NamingScoring", "Memory1Execution", "Memory2Execution",
+        "DigitForwardExecution", "DigitBackwardExecution", "LetterAExecution",
+         "CalculationExecution", "RepetitionExecution",
          "FluencyInstructions", "FluencyExecution", "AbstractionInstructions", "AbstractionExecution",
-         "DelayedRecallInstructions", "DelayedRecallExecution", "OrientationInstructions", "OrientationExecution", "Comment"];
+          "DelayedRecallExecution", "OrientationExecution", "Comment"];
+
+    //["TrailInstructions", "TrailExecution", "TrailScoring", "CubeInstructions", "CubeExecution", "CubeScoring", "ClockInstructions", "ClockExecution", "ClockScoring",
+    //    "NamingInstructions", "NamingExecution", "NamingScoring", "MemoryInstructions", "Memory1Execution", "Memory2Execution",
+    //   "DigitForwardInstructions", "DigitForwardExecution", "DigitBackwardInstructions", "DigitBackwardExecution", "LetterAInstructions", "LetterAExecution",
+    //    "CalculationInstructions", "CalculationExecution", "RepetitionInstructions", "RepetitionExecution",
+    //     "FluencyInstructions", "FluencyExecution", "AbstractionInstructions", "AbstractionExecution",
+    //     "DelayedRecallInstructions", "DelayedRecallExecution", "OrientationInstructions", "OrientationExecution", "Comment"];
 function allPagesWithExt(index) {
     return allPages[index] + ".html";
 }
