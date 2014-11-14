@@ -23,7 +23,6 @@
     <script src="Scripts/select2/select2.min.js"></script>
     <!--=======-->
     <script src="Scripts/jquery.bpopup.min.js"></script>
-
     <!--@*Bootstrap switch*@-->
     <link href="Content/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" />
     <script src="Content/bootstrap-switch/bootstrap-switch.min.js"></script>
@@ -41,7 +40,6 @@
             <a href="index.html" class="navbar-brand">
                 <span>e-MoCA version 8.1</span>
             </a>
-
             <a data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" href="javascript:;">
                 <img alt="" src="Content/img/sidebar-toggler.jpg">
             </a>
@@ -59,17 +57,13 @@
                 <!-- END USER LOGIN DROPDOWN -->
             </ul>
         </div>
-
     </div>
-
     <div class="content">
-
-        <div class="page-container"> 
+        <div class="page-container">
             <!--Navigation Bar -->
             <div id="navigationBar"></div>
             <!-- -->
             <div class="page-content">
-
 
                 <div class="row-fluid">
                     <div class="col-md-12">
@@ -78,7 +72,7 @@
                             Delayed recall
                         </h3>
                         <!-- START HEADER NAV-->
-                    
+
                     </div>
                 </div>
                 <!-- END PAGE HEADER-->
@@ -107,21 +101,23 @@
                                                     <span id="timeBlock" class="badge">0</span>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <!--  end ScoreTime    -->
-
                                         <div class="clearfix"></div><br />
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <!-- Instructions -->
-                                                <p>Spontaneous recall (without cues)</p>
-                                                <p>Make a check mark ( √ ) for each of the words correctly recalled spontaneously without any cues, in the allocated space.</p>
+                                                The examiner gives the following instruction:
+
+                                                <blockquote>
+                                                    “I read some words to you earlier, which I asked you to remember. Tell me as many of those words as you can remember.”
+                                                </blockquote>
+
+                                                <!--<p>Spontaneous recall (without cues)
+                                                 Make a check mark ( √ ) for each of the words correctly recalled spontaneously without any cues, in the allocated space.</p>-->
                                             </div>
                                         </div>
-
                                         <div class="form-group last">
-
                                             <div class="">
                                                 <div class="">
                                                     <table class="table" style="text-align: center;">
@@ -163,25 +159,25 @@
                                                                 <td>a colour</td>
                                                             </tr>
                                                             <tr id="row_2">
-                                                                
+
                                                                 <td style="border-top:none">
-                                                                   
+
                                                                     <input type="checkbox" class="toggle col_1" id="cbx6" />
                                                                 </td>
                                                                 <td style="border-top: none">
-                                                                    
+
                                                                     <input type="checkbox" class="toggle col_2" id="cbx7" />
                                                                 </td>
                                                                 <td style="border-top: none">
-                                                                     
+
                                                                     <input type="checkbox" class="toggle col_3" id="cbx8" />
                                                                 </td>
                                                                 <td style="border-top: none">
-                                                                     
+
                                                                     <input type="checkbox" class="toggle col_4" id="cbx9" />
                                                                 </td>
                                                                 <td style="border-top: none">
-                                                                 
+
                                                                     <input type="checkbox" class="toggle col_5" id="cbx10" />
                                                                 </td>
                                                             </tr>
@@ -233,7 +229,6 @@
                                     <div data-rail-visible="1">
                                         <div class="row">
                                             <div class="col-md-12">
-
                                                 <p>Prompt the subject with the <b>semantic category cue</b> provided below for any word not recalled. </p>
                                                 <p>FACE: part of the body</p>
                                                 <p>VELVET: type of fabric</p>
@@ -241,7 +236,6 @@
                                                 <p>DAISY: type of flower</p>
                                                 <p>RED: a colour</p>
                                                 <p>Make a check mark ( √ ) in the allocated space if the subject remembered the word with the help of a category cue.</p>
-
                                                 <p>Prompt the subject with the <b>multiple choice cue</b> provided below for any word not recalled. </p>
                                                 <p>FACE: nose, face, hand</p>
                                                 <p>VELVET: denim, cotton, velvet</p>
@@ -256,7 +250,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="row-fluid clearfix buttomButtons">
@@ -265,7 +258,6 @@
                             <button type="button" class="btn purple pull-left" onclick="PreviousPage()" id="btnBack">
                                 <i class="icon-chevron-left"></i>
                             </button>
-
                             <button type="button" class="btn purple pull-left" onclick="NextPage()" id="btnFoward">
                                 <i class="icon-chevron-right"></i>
                             </button>
@@ -282,12 +274,10 @@
                 </div>
                 <!-- END PAGE CONTENT-->
             </div>
-    
+
             <!-- END PAGE -->
         </div>
-
     </div>
-
     <div class="footer">
         <div class="copyright"> e-MoCA © Copyright 2014. </div>
         <div class="footer-tools">
@@ -296,8 +286,6 @@
             </span>
         </div>
     </div>
-
-
 
     <!--section Scripts -->
     <script src="Scripts/js/test_result.manage.js"></script>

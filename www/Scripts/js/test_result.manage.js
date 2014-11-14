@@ -35,7 +35,7 @@ function ResetTest() {
 
 function LoadFirstAttempt() {
     log("LoadFirstAttempt");
-    if ($.session.get('timeTest') ) {
+    if ($.session.get('timeTest')) {
         $('#timeBlock').text($.session.get('timeTest') + ' s');
         $(".timeBlock").show();
     }
@@ -92,7 +92,7 @@ function LoadPreviousResult(data) {
             if (mocaResult.testTypeID == MocaTestTypes["Naming"]) {
                 $("#naming_0" + itemIndex).val(value.valueOptional.split("|")[1]); //naming
             }
-            if (value.valueResult && $("#cbx" + itemIndex).not(':checked')) {  
+            if (value.valueResult && $("#cbx" + itemIndex).not(':checked')) {
                 $("#cbx" + itemIndex).bootstrapSwitch('state', true, true);
             }
         }
@@ -226,7 +226,7 @@ function Recalculate() {
 }
 
 
-
+var audio = new Audio('audio/bud.mp3');
 function StartTimer() {
     var start = 0;
     var timer = setInterval(function () {
@@ -237,9 +237,10 @@ function StartTimer() {
         } else {
             time = 'PLEASE STOP';
             clearInterval(timer);
-            var audio = new Audio('audio/bud.mp3');
+
             audio.play();
 
+            ShowAlertPopup("PLEASE STOP!", "audio.pause();$('#popup-alert').bPopup().close();");
         }
 
         $('#up_Timer').html('<span id="up_Timer"><i class="icon-bell"></i> <span id="timerTime">' + time + '</span></span>');
@@ -247,7 +248,7 @@ function StartTimer() {
         start++;
     }, 1000);
 }
-
+ 
 function SaveTest() {
 
     ///time

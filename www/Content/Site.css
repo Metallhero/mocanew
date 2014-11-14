@@ -4529,6 +4529,7 @@ canvas {
 #tools {
     position: absolute;
     top: 346px;
+    -webkit-transform: rotate(-180deg);
 }
 
 .col-md-6 > #tools {

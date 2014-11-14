@@ -207,24 +207,24 @@ function PreviousPage() {
 }
 
 function ShowConfirmPopup(title, body, onclickEvent) {
-    //$.get("Partial/PopupConfirm.html",
-    //function (data) {
-    //    $("#popups").append(data);
-    //    $("#popup-confirm").bPopup({
-    //        onOpen: function () {
-    //            $('#popup-title').text(title);
-    //            $('#popup-body').text(body);
-    //            if (onclickEvent.indexOf('.html') > -1)
-    //                $('#popup-sbmt').attr('onclick', "window.location='" + onclickEvent + "'");
-    //            else
-    //                $('#popup-sbmt').attr('onclick', onclickEvent);
+    $.get("Partial/PopupConfirm.html",
+    function (data) {
+        $("#popups").append(data);
+        $("#popup-confirm").bPopup({
+            onOpen: function () {
+                $('#popup-title').text(title);
+                $('#popup-body').text(body);
+                if (onclickEvent.indexOf('.html') > -1)
+                    $('#popup-sbmt').attr('onclick', "window.location='" + onclickEvent + "'");
+                else
+                    $('#popup-sbmt').attr('onclick', onclickEvent);
 
-    //        },
-    //        onClose: function () {
-    //            $("#popup-confirm").remove();
-    //        }
-    //    });
-    //});
+            },
+            onClose: function () {
+                $("#popup-confirm").remove();
+            }
+        });
+    });
 
     if (onclickEvent.indexOf('.html') > -1)
         window.location = onclickEvent;
@@ -246,13 +246,21 @@ function ShowConfirmPopup(title, body, onclickEvent) {
         });
     }
 }
-function ShowAlertPopup(title) {
+function ShowAlertPopup(title, onclickEvent) {
+  
     $.get("Partial/PopupAlert.html",
     function (data) {
         $("#popups").append(data);
         $("#popup-alert").bPopup({
+            modalClose: false,
             onOpen: function () {
                 $('#popup-title').text(title);
+                if (onclickEvent)
+                {
+                    var btn = $("#popup-alert").find(":submit");
+                
+                    $(btn).attr("onclick", onclickEvent);
+                }
             },
             onClose: function () {
                 $("#popup-alert").remove();
