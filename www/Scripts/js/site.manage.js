@@ -226,25 +226,25 @@ function ShowConfirmPopup(title, body, onclickEvent) {
         });
     });
 
-    if (onclickEvent.indexOf('.html') > -1)
-        window.location = onclickEvent;
-    else {
-        $.get("Partial/PopupConfirm.html",
-        function (data) {
-            $("#popups").append(data);
-            $("#popup-confirm").bPopup({
-                onOpen: function () {
-                    $('#popup-title').text(title);
-                    $('#popup-body').text(body);
-                    $('#popup-sbmt').attr('onclick', onclickEvent);
+    //if (onclickEvent.indexOf('.html') > -1)
+    //    window.location = onclickEvent;
+    //else {
+    //    $.get("Partial/PopupConfirm.html",
+    //    function (data) {
+    //        $("#popups").append(data);
+    //        $("#popup-confirm").bPopup({
+    //            onOpen: function () {
+    //                $('#popup-title').text(title);
+    //                $('#popup-body').text(body);
+    //                $('#popup-sbmt').attr('onclick', onclickEvent);
 
-                },
-                onClose: function () {
-                    $("#popup-confirm").remove();
-                }
-            });
-        });
-    }
+    //            },
+    //            onClose: function () {
+    //                $("#popup-confirm").remove();
+    //            }
+    //        });
+    //    });
+    //}
 }
 function ShowAlertPopup(title, onclickEvent) {
   
