@@ -49,7 +49,7 @@ $("#btnSubmit").click(function () {
             $('#txtFirstName').closest('.input-icon').css({ 'border': 'none' }).nextAll('.pError').remove();
         }
         if (!sname) {
-            text = 'The field "Second name" is required';
+            text = 'The field "Last name" is required';
             $('#txtSecondName').closest('.input-icon').css({ 'border': '1px solid red' });
             if (!$('#txtSecondName').closest('.input-icon').next().hasClass('pError')) {
                 $('#txtSecondName').closest('.input-icon').after('<p style="color:red;margin-top: 5px;" class="pError">' + text + '</p>');

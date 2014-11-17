@@ -93,7 +93,7 @@ $("#btnSubmit").click(function () {
     } else {
 
         ValidateFields($('#txtFirstName'), 'The field "First name" is required', $("#txtFirstName").val());
-        ValidateFields($('#txtSecondName'), 'The field "Second name" is required', $("#txtSecondName").val());
+        ValidateFields($('#txtSecondName'), 'The field "Last name" is required', $("#txtSecondName").val());
         ValidateFields($('#txtEducation'), 'The field "Education" is required', out.education);
         ValidateFields($('#txtChartNumber'), 'The field "Chart Number" is required', out.chartNumber);
         ValidateFields($('#txtPhysican'), 'The field "Physician" is required', out.physican);
