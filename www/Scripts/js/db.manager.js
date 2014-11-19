@@ -326,9 +326,11 @@
                           "CREATE TABLE IF NOT EXISTS MocaTestType(testTypeID INTEGER PRIMARY KEY,testName TEXT,maxScore INTEGER,maxTime INTEGER)",
                           "CREATE TABLE IF NOT EXISTS MocaTestType_MocaGroup(GroupId INTEGER,TestTypeId INTEGER)",
                           "CREATE TABLE IF NOT EXISTS MocaTestUsers(userID INTEGER PRIMARY KEY,name TEXT,occupation TEXT,username TEXT,password TEXT)",
-                          "CREATE TABLE IF NOT EXISTS MocaImage (ID INTEGER PRIMARY KEY, Data TEXT, testID INTEGER, testTypeID INTEGER)"
+                          "CREATE TABLE IF NOT EXISTS MocaImage (ID INTEGER PRIMARY KEY, Data TEXT, testID INTEGER, testTypeID INTEGER)",
+                          "CREATE TABLE IF NOT EXISTS MocaResources (ID INTEGER PRIMARY KEY, Name TEXT, Value TEXT, Language TEXT, UpdateDate NUMERIC)"
                     ];
                     $.each(tables, function (k, v) {
+                        console.log(k);
                         tx.executeSql(v);
                     });
                     ////////////////////

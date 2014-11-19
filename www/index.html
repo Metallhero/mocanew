@@ -54,7 +54,7 @@
                         </span>
                         <i class="icon-angle-down"></i>
                     </a>
-                    <ul class="dropdown-menu"><li><a href="index.html">Start new test</a></li><li><a href="testList.html">Show test results</a></li></ul>
+                    <ul class="dropdown-menu"><li><a href="index.html" data-resource='{"name":"StartNewTest","attribute":"html"}'><!--Start new test--></a></li><li><a href="testList.html" data-resource='{"name":"ShowTestResults","attribute":"html"}'><!--Show test results--></a></li></ul>
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
             </ul>
@@ -64,7 +64,7 @@
 
     <div class="content">
         <div class="login-form ">
-            <h3 class="form-title">Administered by</h3>
+            <h3 class="form-title" data-resource='{"name":"AdministeredBy","attribute":"html"}'><!--Administered by--></h3>
             <div class="alert alert-error hide">
                 <button class="close" data-dismiss="alert"></button>
                 <span>Enter your name and your occupation.</span>
@@ -108,7 +108,7 @@
             </div>
              
             <div class="row-fluid" style="margin-top: 20px;text-align: right;">
-                <button class="btn blue" onclick="ShowConfirmPopup('Show test results', 'Are you sure ?', 'testList.html')"  >
+                <button class="btn blue" onclick="        ShowConfirmPopup('Show test results', 'Are you sure ?', 'testList.html')"  >
                     <i class="icon-arrow-right"></i>
                     Show test results
                 </button>
@@ -133,8 +133,17 @@
     <script src="Scripts/js/createAdministrator.js"></script>
     <script src="Scripts/js/resource.manager.js"></script>
     <script type="text/javascript">
-       //alert(Resource.Value(5));
-
+        $('body').append('<div id="preload"></div>');
+      
+        $(document).ready(function () {
+            //Resource.Update();
+            Resource.Init(function () {
+                Resource.LocolizePage();
+            });
+           
+           
+          
+        });
     </script>
     <!-- end section-->
 </body>
