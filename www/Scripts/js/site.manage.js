@@ -137,8 +137,22 @@ $(document).ready(function () {
         allowClear: true
     });
     ////////////////////////
-
+    $(window).on("orientationchange",function(event){
+      getOrient();
+    });
+    getOrient();
 });
+
+function getOrient() {
+  var o = window.orientation;
+  if(o == 0){
+      $('body').addClass('vertical');
+  }else{
+      $('body').removeClass('vertical');
+  }
+}
+
+
 $(document).on('click', '.expand, .collapse', function (e) {
     var el = jQuery(this).closest(".portlet").children(".portlet-body");
     if ($(this).hasClass("collapse")) {

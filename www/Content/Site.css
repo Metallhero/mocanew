@@ -4621,7 +4621,12 @@ top: -0.5px;
 }
 .page-content > .row-fluid:nth-child(2) {
     min-height: 525px;
-max-height: 525px;
+    max-height: 525px;
+    overflow: auto;
+}
+.vertical .page-content > .row-fluid:nth-child(2) {
+    min-height: 765px;
+    max-height: 765px;
     overflow: auto;
 }
 .page-content > .row-fluid:nth-child(2):after {
@@ -4638,6 +4643,11 @@ max-height: 525px;
 }
 .create_img.page-content > .row-fluid:nth-child(1) {
     min-height: 619px;
+    overflow: auto;
+}
+.vertical .create_img.page-content > .row-fluid:nth-child(1) {
+    min-height: 850px;
+    max-height: 850px;
     overflow: auto;
 }
 .page-content > .row-fluid:nth-child(1):after {

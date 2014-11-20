@@ -155,8 +155,47 @@
                                             <div class="col-md-12" style="text-align:center">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        Record the subject's response in box below<br />
-                                                        <textarea style="resize:none; height:400px;width:100%;font-size:18px" id="TB_Note" placeholder="Record the subject's response here"></textarea>
+                                                       <!--  Record the subject's response in box below<br />
+                                                        <textarea style="resize:none; height:400px;width:100%;font-size:18px" id="TB_Note" placeholder="Record the subject's response here"></textarea> -->
+                                                        <div class="portlet box purple">
+                                                            <div class="portlet-title">
+                                                                <div class="caption">Record the subject's response in box below</div>
+                                                                <div class="tools"><!--a class="expand" href="javascript:;"></a--></div>
+                                                            </div>
+                                                            <div class="portlet-body">
+                                                                <div class="scroller" style="height:520px" data-rail-visible="1">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#tab_1_1" data-toggle="tab"><i class="icon-italic"></i></a></li>
+                                                                                <li class=""><a href="#tab_1_2" data-toggle="tab"><i class="icon-edit"></i></a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="tab_1_1">
+                                                                                    <textarea class="form-control" id="TB_Note" style="height:300px" cols="6" rows="6" name=""></textarea>
+                                                                                </div>
+                                                                                <div class="tab-pane" id="tab_1_2">
+                                                                                    <canvas id="cvs_note" class="form-note"></canvas>
+                                                                                    <div class="row" id="" style="position:static;">
+                                                                                        <div class="col-md-6 margin-top-10 text-left">
+                                                                                            <a href="#" onclick='$("#cvs_note").data("jqScribble").update({ brush: BasicBrush, brushSize: 2 }); return false;' class="icon-btn">
+                                                                                                <i class="icon-pencil"></i>
+                                                                                                <div>Pencil</div>
+                                                                                            </a>
+                                                                                            <a href="#" onclick='$("#cvs_note").data("jqScribble").update({ brush: Eraser, brushSize: 40 }); return false;' class="icon-btn">
+                                                                                                <i class="icon-eraser"></i>
+                                                                                                <div>Eraser</div>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                
+                                                            </div>
+                                                        </div>
                                                         <div class="clearfix"></div>
                                                     </div>
                                                 </div>
@@ -256,7 +295,22 @@
 
 
     <!--section Scripts -->
+    <script src="Scripts/jqscribble/jquery.jqscribble.js"></script>
+    <script src="Scripts/jqscribble/jqscribble.extrabrushes.js"></script>
     <script src="Scripts/js/test_result.manage.js"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $("#cvs_note").jqScribble();
+            $("#cvs_note").data("jqScribble").update({
+                brushSize: 2,
+                width: $(".tab-content").width(),
+                height: 350,
+                backgroundColor: 'rgba(255,255,255,0)'
+            });
+        });
+        
+    </script>
     <!-- end section-->
 </body>
 </html>
