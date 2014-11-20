@@ -23,7 +23,6 @@
     <script src="Scripts/select2/select2.min.js"></script>
     <!--=======-->
     <script src="Scripts/jquery.bpopup.min.js"></script>
-
     <!--@*Bootstrap switch*@-->
     <link href="Content/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" />
     <script src="Content/bootstrap-switch/bootstrap-switch.min.js"></script>
@@ -35,14 +34,13 @@
 <body class="login">
     <!--section Popup -->
     <div id="popups"></div>
-   
+
     <!--  end section -->
     <div class="header navbar navbar-inverse ">
         <div class="header-inner">
             <a href="index.html" class="navbar-brand">
                 <span>e-MoCA version 8.1</span>
             </a>
-
             <a data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" href="javascript:;">
                 <img alt="" src="Content/img/sidebar-toggler.jpg">
             </a>
@@ -55,122 +53,110 @@
                         </span>
                         <i class="icon-angle-down"></i>
                     </a>
-                    <ul class="dropdown-menu"><li><a href="index.html">Start new test</a></li><li><a href="testList.html">Show test results</a></li></ul>
+                    <ul class="dropdown-menu"><li><a data-resource='{"name":"StartNewTest","attribute":"html"}' href="index.html"><!--Start new test--></a></li><li><a data-resource='{"name":"ShowTestResults","attribute":"html"}' href="testList.html"><!--Show test results--></a></li></ul>
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
             </ul>
         </div>
-
     </div>
-
     <div class="content">
         <div class="login-form ">
-            <h3 class="form-title">Patient information</h3>
-            <div class="alert alert-error hide">
-                <button class="close" data-dismiss="alert"></button>
-                <span>Enter patient information.</span>
-            </div>
-            SELECT AN EXISTING PATIENT
-         
+            <h3 data-resource='{"name":"PatientInformation","attribute":"html"}' class="form-title"><!--Patient information--></h3>
+
+            <span data-resource='{"name":"SelectExistingPatient","attribute":"html"}'><!--AN EXISTING PATIENT--></span>
+
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">SELECT AN EXISTING PATIENT</label>
+
                 <div class="input-icon">
                     <i class="icon-user"></i>
-                    <select id="ddlPatients" class="form-control select2me" ></select>
+                    <select id="ddlPatients" class="form-control select2me"></select>
                 </div>
             </div>
             <div class="form-actions">
                 <button id="btnSubmitDll" class="btn purple pull-right submit">
-                    <i class="icon-arrow-right"></i> Continue
+                    <i class="icon-arrow-right"></i> <span data-resource='{"name":"Continue","attribute":"html"}'><!--Continue--></span>
                 </button>
             </div>
-            
-            <h3>OR</h3>
-            CREATE A NEW PATIENT
+
+            <h3 style="text-transform:uppercase" data-resource='{"name":"Or","attribute":"html"}'><!--OR--></h3>
+            <span data-resource='{"name":"CreateNewPatient","attribute":"html"}'><!--CREATE A NEW PATIENT--></span>
             <div>
                 <div class="form-group">
-
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">First name</label>
+                   
                     <div class="input-icon">
                         <i class="icon-user-md"></i>
-                        <input id="txtFirstName" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="First name" name="FirstName" />
+                        <input id="txtFirstName" class="form-control placeholder-no-fix" type="text" autocomplete="off" data-resource='{"name":"FirstName","attribute":"placeholder"}' name="FirstName" />
                     </div>
-                    <label class="control-label visible-ie8 visible-ie9">Last name</label>
+          
                     <div class="input-icon">
                         <i class="icon-user-md"></i>
-                        <input id="txtSecondName" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Last name" name="SecondName" />
+                        <input id="txtSecondName" class="form-control placeholder-no-fix" type="text" autocomplete="off" data-resource='{"name":"LastName","attribute":"placeholder"}'  name="SecondName" />
                     </div>
-                    
-                </div>
-                DATE OF BIRTH
-                <div class="form-group">
 
-                    <label class="control-label visible-ie8 visible-ie9">Birthday</label>
+                </div>
+                <span data-resource='{"name":"DateOfBirth","attribute":"html"}'><!--DATE OF BIRTH--></span>
+                <div class="form-group">
+                  
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="icon-calendar"></i>
                         </span>
                         <input type="text" id="BirthDay" data-format="DD-MM-YYYY" data-template="DD MMMM YYYY" value="09-01-2013" name="BirthDay" style="width:150px;">
                     </div>
-
                 </div>
                 <div class="form-group">
-
-                    <label class="control-label visible-ie8 visible-ie9">Gender</label>
+               
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="icon-male"></i> <i class="icon-female"></i>
                         </span>
                         <select id="ddlSex" class="form-control select2" name="Gender" data-placeholder="Sex">
-                            <option value="0">Female</option>
-                            <option value="1">Male</option>
+                            <option data-resource='{"name":"Female","attribute":"html"}' value="0"><!--Female--></option>
+                            <option data-resource='{"name":"Male","attribute":"html"}' value="1"><!--Male--></option>
                         </select>
                     </div>
-
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Education</label>
+     
                     <div class="input-icon">
                         <i class="icon-certificate"></i>
-                        <input id="txtEducation" class="form-control placeholder-no-fix integer" type="number" autocomplete="off" placeholder="Education" name="Education"  />
+                        <input id="txtEducation" class="form-control placeholder-no-fix integer" type="number" autocomplete="off" data-resource='{"name":"Education","attribute":"placeholder"}'   name="Education" />
                     </div>
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Chart Number</label>
+                   
                     <div class="input-icon">
                         <i class="icon-asterisk"></i>
-                        <input id="txtChartNumber" class="form-control placeholder-no-fix integer" type="number" autocomplete="off" placeholder="Chart Number" name="chartnumber" />
+                        <input id="txtChartNumber" class="form-control placeholder-no-fix integer" type="number" autocomplete="off" data-resource='{"name":"ChartNumber","attribute":"placeholder"}' name="chartnumber" />
                     </div>
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">Physicanr</label>
+ 
                     <div class="input-icon">
                         <i class="icon-user-md"></i>
-                        <input id="txtPhysican" class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Physician" name="physican" />
-
+                        <input id="txtPhysican" class="form-control placeholder-no-fix" type="text" data-resource='{"name":"Physician","attribute":"placeholder"}' autocomplete="off"   name="physican" />
                     </div>
-               
+
                 </div>
                 <div class="form-actions">
                     <button id="btnSubmit" class="btn purple pull-right submit">
-                        <i class="icon-arrow-right"></i> Continue
+                        <i class="icon-arrow-right"></i> <span data-resource='{"name":"Continue","attribute":"html"}'><!--Continue--></span>
                     </button>
                 </div>
             </div>
-            
+
             <div class="" style="margin-top: 20px;text-align: right;">
                 <button type="button" class="btn blue" onclick="ShowConfirmPopup('Show test results', 'Are you sure ?', 'testList.html')">
                     <i class="icon-arrow-right"></i>
-                    Show test results
+                    <span data-resource='{"name":"ShowTestResults","attribute":"html"}'><!--Show test results--></span>
                 </button>
             </div>
         </div>
     </div>
-
     <div class="footer">
         <div class="copyright"> e-MoCA © Copyright 2014. </div>
         <div class="footer-tools">
@@ -180,23 +166,29 @@
         </div>
     </div>
 
-
     <style type="text/css" media="screen">
-        #s2id_autogen2 {width: 33% !important;}
-        #s2id_autogen4 {width: 32% !important;}
-        #s2id_autogen6 {width: 33% !important;}
+        #s2id_autogen2 {
+            width: 33% !important;
+        }
+
+        #s2id_autogen4 {
+            width: 32% !important;
+        }
+
+        #s2id_autogen6 {
+            width: 33% !important;
+        }
     </style>
     <!--section Scripts -->
     <link href="Content/login.css" rel="stylesheet" />
-
     <link href="Content/jquery.easydropdown..css" rel="stylesheet" />
     <script src="Scripts/jquery.easydropdown.js"></script>
     <script src="Scripts/combodate/combodate.js"></script>
     <script src="Scripts/combodate/moment.js"></script>
-   
 
     <script src="Scripts/js/createPatient.js"></script>
-
+    <script src="Scripts/js/resource.manager.js"></script>
+ 
     <!-- end section-->
 </body>
 </html>
