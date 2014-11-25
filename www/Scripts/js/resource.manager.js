@@ -130,5 +130,7 @@ $(document).ready(function () {
 
     console.log('LocolizePage');
     //Resource.Update(function () { });
+    setTimeout(function () {
         Resource.LocolizePage();
+    }, 200);
 });
