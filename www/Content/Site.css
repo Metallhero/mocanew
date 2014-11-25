@@ -1783,7 +1783,9 @@ Custom icon buttons
         -moz-box-shadow: none !important;
         box-shadow: none !important;
     }
-
+canvas {
+    max-width: 100%;
+}
 .icon-btn div {
     font-family: 'Open Sans', sans-serif;
     margin-top: 5px;
