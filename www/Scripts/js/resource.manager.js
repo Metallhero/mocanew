@@ -128,9 +128,15 @@ Resource = {
 $(document).ready(function () {
     console.log("ready");
 
-    console.log('LocolizePage');
+   
     //Resource.Update(function () { });
+    if ($("#preload").length==0)
+    {
+         $('body').append('<div id="preload"></div>');
+    }
     setTimeout(function () {
+        console.log('LocolizePage');
         Resource.LocolizePage();
+        $("#preload").remove();
     }, 200);
 });
