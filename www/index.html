@@ -52,7 +52,7 @@
                         </span>
                         <i class="icon-angle-down"></i>
                     </a>
-                    <ul class="dropdown-menu"><li><a href="index.html" data-resource='{"name":"StartNewTest","attribute":"html"}'><!--Start new test--></a></li><li><a href="testList.html" data-resource='{"name":"ShowTestResults","attribute":"html"}'><!--Show test results--></a></li></ul>
+                    <ul class="dropdown-menu"><li><a href="index.html" data-resource='{"name":"StartNewTest","attribute":"text"}'><!--Start new test--></a></li><li><a href="testList.html" data-resource='{"name":"ShowTestResults","attribute":"html"}'><!--Show test results--></a></li></ul>
                 </li>
                 <!-- END USER LOGIN DROPDOWN -->
             </ul>
@@ -106,7 +106,7 @@
             <div class="row-fluid" style="margin-top: 20px;text-align: right;">
                 <button class="btn blue" onclick="        ShowConfirmPopup('Show test results', 'Are you sure ?', 'testList.html')">
                     <i class="icon-arrow-right"></i>
-                    Show test results
+                    <span data-resource='{"name":"ShowTestResults","attribute":"html"}'><!--Show test results--></span>
                 </button>
             </div>
         </div>

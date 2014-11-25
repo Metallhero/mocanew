@@ -28,6 +28,8 @@ Resource = {
                 switch (data.attribute) {
                     case "html":
                         $(this).html(resValue);
+                    case "text":
+                        $(this).html(resValue);
                     case "placeholder":
                         $(this).attr("placeholder", resValue);
                 }
