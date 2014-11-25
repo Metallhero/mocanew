@@ -96,7 +96,7 @@ Resource = {
                 if (data) {
                     data = DataUpdateDate(data);
 
-                    DB.deleteData("DELETE FROM MocaResources", function () {
+                    DB.deleteData("DELETE FROM MocaResources", function (rres) {
                         var resourceInsData =
                         {
                             tableName: 'MocaResources',
@@ -104,13 +104,13 @@ Resource = {
                         };
 
                         //console.log(JSON.stringify(resourceInsData)); //Add this log to MocaRes.txt for update local Resources
-                        DB.insertData(resourceInsData, function (res) {
+                        DB.insertData(resourceInsData, function (res2) {
                             $.session.set('MocaResources', JSON.stringify(data));
                             console.log('updateApply');
                             callback.apply(null);
                         });
                     });
-
+                    setTimeout(function () { $('#preload').remove(); ShowAlertPopup('Update complete!', 'window.location=window.location') }, 1000);
                 }
                 else {
                     callback.apply(null);
@@ -118,6 +118,7 @@ Resource = {
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
+                $("#preload").remove();
                 ShowAlertPopup("Server is not responding!");
             }
         });
