@@ -1,7 +1,9 @@
 ﻿
 Resource = {
     Init: function (callback) {
+       
         if (!$.session.get('MocaResources')) {
+            console.log("InitIf");
             $('body').append('<div id="preload"></div>');
             DB.selectData("Select * From MocaResources", function (results) {
                 if (results.rows.length > 0) {
@@ -44,6 +46,7 @@ Resource = {
         if (!$.session.get('MocaResources')) {
             console.log("sessionInit");
             Resource.Init(function () {
+                console.log("sessionInitFunc");
                 locolizePage();
             });
         }
@@ -71,6 +74,7 @@ Resource = {
         }
     },
     Update: function (callback) {
+        $('body').append('<div id="preload"></div>');
         var DataUpdateDate = function (data) {
             console.log("UpdateDateFun");
             for (var i = 0; i < data.length; i++) {
@@ -91,7 +95,7 @@ Resource = {
             success: function (data) {
                 if (data) {
                     data = DataUpdateDate(data);
-              
+
                     DB.deleteData("DELETE FROM MocaResources", function () {
                         var resourceInsData =
                         {
@@ -103,7 +107,6 @@ Resource = {
                         DB.insertData(resourceInsData, function (res) {
                             $.session.set('MocaResources', JSON.stringify(data));
                             console.log('updateApply');
-                            window.location = window.location;
                             callback.apply(null);
                         });
                     });
@@ -127,6 +130,5 @@ $(document).ready(function () {
 
     console.log('LocolizePage');
     //Resource.Update(function () { });
-    Resource.LocolizePage();
-
+        Resource.LocolizePage();
 });
