@@ -12,38 +12,21 @@ Resource = {
                         resourceObj.push(results.rows.item(i));
                     }
                     $.session.set('MocaResources', JSON.stringify(resourceObj));
-                    $("#preload").remove();
                     callback.apply(null);
                 }
                 else
                 {
                     console.log("resFromFile");
                     $.getJSON("Resources/MocaResources.txt", function (insertedData) {
-                      
-                        //var insertedData = JSON.parse(insertQueryResources);
                         DB.insertData
                         DB.insertData(insertedData, function () {
                             console.log("getJSONCallBack");
                             var resourceObj = [];
-                            //for (var i = 0; i < results.rows.length; i++) {
-                            //    resourceObj.push(results.rows.item(i));
-                            //}
                             $.session.set('MocaResources', JSON.stringify(insertedData.data));
                             callback.apply(null);
-                             //window.location = window.location;
                         });
                     });
-                    //jQuery.get('Resources/MocaResources.txt', function (insertQueryResources) {
-                    //    insertQueryResources = JSON.parse(insertQueryResources);
-                    //    DB.insertData(insertQueryResources, function () {
-                    //        var resourceObj = [];
-                    //        for (var i = 0; i < results.rows.length; i++) {
-                    //            resourceObj.push(results.rows.item(i));
-                    //        }
-                    //        $.session.set('MocaResources', JSON.stringify(resourceObj));
-                    //        window.location = window.location;
-                    //    });
-                    //});
+                 
                 }
                 
                 $("#preload").remove();
@@ -164,12 +147,9 @@ $(document).ready(function () {
         if ($("#preload").length == 0) {
             $('body').append('<div id="preload"></div>');
         }
-        var delay = 200;
-        setTimeout(function () {
+ 
             console.log('LocolizePage');
             Resource.LocolizePage();
-
-            
-        }, delay);
+ 
     //}
 });

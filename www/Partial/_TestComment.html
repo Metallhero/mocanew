@@ -1,6 +1,6 @@
 ﻿<div class="portlet">
     <div class="portlet-title">
-        <div class="caption" data-resource='{"name":"Comment","attribute":"html"}'><!--Comment--></div>
+        <div class="caption" id="commentCaption" ><!--Comment--></div>  <!--data-resource='{"name":"Comment","attribute":"html"}'-->
         <div class="tools"><a class="expand" href="javascript:;"></a></div>
     </div>
     <div class="portlet-body">
@@ -32,5 +32,9 @@
          width: 285,
          height: 285,
          backgroundColor: 'rgba(255,255,255,0)'
+     });
+     $(document).ready(function () {
+         $("#commentCaption").text(Resource.Value("Comment"));
+
      });
  </script>
