@@ -135,9 +135,13 @@ $(document).ready(function () {
     {
          $('body').append('<div id="preload"></div>');
     }
+    var delay = 200;
+  
+    if (!$.session.get('MocaResources'))
+          delay = 600;
     setTimeout(function () {
         console.log('LocolizePage');
         Resource.LocolizePage();
         $("#preload").remove();
-    }, 200);
+    }, delay);
 });

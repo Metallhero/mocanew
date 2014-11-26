@@ -417,6 +417,9 @@
                     });
                     jQuery.get('/Resources/MocaResources.txt', function (insertQueryResources) {
                         insertQueryResources = JSON.parse(insertQueryResources);
+                        insertedQueries = GetInsertQueries(insertQueryResources);
+                        console.log("ResInsQ");
+                         console.log(insertedQueries);
                         DB.insertData(insertQueryResources, function (res) { });
                     });
 
