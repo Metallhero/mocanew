@@ -17,7 +17,7 @@ Resource = {
                 else
                 {
                     console.log("resFromFile");
-                    jQuery.get('/Resources/MocaResources.txt', function (insertQueryResources) {
+                    jQuery.get('Resources/MocaResources.txt', function (insertQueryResources) {
                         insertQueryResources = JSON.parse(insertQueryResources);
                         DB.insertData(insertQueryResources, function () {
                             var resourceObj = [];
