@@ -103,14 +103,14 @@ Resource = {
                             data: data
                         };
 
-                        //console.log(JSON.stringify(resourceInsData)); //Add this log to MocaRes.txt for update local Resources
+                        console.log(JSON.stringify(resourceInsData)); //Add this log to MocaRes.txt for update local Resources
                         DB.insertData(resourceInsData, function (res2) {
                             $.session.set('MocaResources', JSON.stringify(data));
                             console.log('updateApply');
                             callback.apply(null);
                         });
                     });
-                    setTimeout(function () { $('#preload').remove(); ShowAlertPopup('Update complete!', 'window.location=window.location') }, 1000);
+                    setTimeout(function () { $('#preload').remove(); ShowAlertPopup(Resource.Value('UpdateComplete'), 'window.location=window.location') }, 1000);
                 }
                 else {
                     callback.apply(null);

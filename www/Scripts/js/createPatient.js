@@ -21,6 +21,15 @@ $(document).ready(function () {
         allowClear: false,
     });
 
+    $(".select2S").select2({
+        placeholder: "Select",
+        allowClear: true
+    });
+
+    setTimeout(function () {
+        $(".select2S").select2('val', 0);
+    }, 205);
+
     // $('#ddlSex').easyDropDown();
 });
 $(window).load(function () {
@@ -48,7 +57,7 @@ $(document).ready(function () {
         for (var i = 0; i < data.rows.length; i++) {
             var v = data.rows.item(i);
             var option = $('<option>', {
-                text: v.name.replace("***"," ") + ' | ' + v.physican,
+                text: v.name.replace("***", " ") + ' | ' + v.physican,
                 value: v.clientID
             });
             $('#ddlPatients').append(option);
@@ -64,15 +73,15 @@ $(document).ready(function () {
 
 $("#btnSubmit").click(function () {
     var date = $('#BirthDay').combodate('getValue');
-   var dateArray=date.toString().split('-');
-   var birthDay = new Date(dateArray[2], dateArray[1]-1, dateArray[0])
+    var dateArray = date.toString().split('-');
+    var birthDay = new Date(dateArray[2], dateArray[1] - 1, dateArray[0])
     var date = SqliteDate(birthDay);
-   
+
     var patient =
       {
           tableName: 'MocaTestClients',
           data: [{
-              name: $("#txtFirstName").val() + "***"  + $("#txtSecondName").val(),
+              name: $("#txtFirstName").val() + "***" + $("#txtSecondName").val(),
               dateOfBirth: date, // wcfDate,
               gender: $("#ddlSex").find("option:selected").val(),
               physican: $("#txtPhysican").val(),
@@ -84,7 +93,7 @@ $("#btnSubmit").click(function () {
     var text = '';
 
     var out = patient.data[0];
-    if (out.name && out.physican && out.education && out.chartNumber && !$('.invalidDate').length>0) {
+    if (out.name && out.physican && out.education && out.chartNumber && !$('.invalidDate').length > 0) {
         DB.insertData(patient, function (data) {
             log(data);
             $.session.set('clientId', data.insertId);
@@ -97,7 +106,7 @@ $("#btnSubmit").click(function () {
         ValidateFields($('#txtEducation'), 'The field "Education" is required', out.education);
         ValidateFields($('#txtChartNumber'), 'The field "Chart Number" is required', out.chartNumber);
         ValidateFields($('#txtPhysican'), 'The field "Physician" is required', out.physican);
- 
+
     }
     return false;
 });
