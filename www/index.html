@@ -59,6 +59,7 @@
         </div>
     </div>
     <div class="content">
+        <div id="resItem"></div>
         <div class="login-form ">
             <h3 class="form-title" data-resource='{"name":"AdministeredBy","attribute":"html"}'><!--Administered by--></h3>
             <div class="alert alert-error hide">
@@ -129,9 +130,13 @@
     <script src="Scripts/js/createAdministrator.js"></script>
     <script src="Scripts/js/resource.manager.js"></script>
     <script type="text/javascript">
-        //Resource.Update();
-        //DB.Resources(function () { });
         $.session.remove('MocaResources');
+        $(document).ready(function () {
+ 
+            //Resource.Update();
+            //DB.Resources(function () { });
+       
+        });
     </script>
     <!-- end section-->
 </body>

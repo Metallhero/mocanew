@@ -1,7 +1,7 @@
 ﻿
 Resource = {
     Init: function (callback) {
-       
+
         if (!$.session.get('MocaResources')) {
             console.log("InitIf");
             $('body').append('<div id="preload"></div>');
@@ -12,7 +12,22 @@ Resource = {
                         resourceObj.push(results.rows.item(i));
                     }
                     $.session.set('MocaResources', JSON.stringify(resourceObj));
-
+                    $("#preload").remove();
+                }
+                else
+                {
+                    console.log("resFromFile");
+                    jQuery.get('/Resources/MocaResources.txt', function (insertQueryResources) {
+                        insertQueryResources = JSON.parse(insertQueryResources);
+                        DB.insertData(insertQueryResources, function () {
+                            var resourceObj = [];
+                            for (var i = 0; i < results.rows.length; i++) {
+                                resourceObj.push(results.rows.item(i));
+                            }
+                            $.session.set('MocaResources', JSON.stringify(resourceObj));
+                            window.location = window.location;
+                        });
+                    });
                 }
                 callback.apply(null);
                 $("#preload").remove();
@@ -128,21 +143,17 @@ Resource = {
 };
 $(document).ready(function () {
     console.log("ready");
+    console.log($.session.get('MocaResources'));
+    //if ($.session.get('MocaResources')) {
+        if ($("#preload").length == 0) {
+            $('body').append('<div id="preload"></div>');
+        }
+        var delay = 200;
+        setTimeout(function () {
+            console.log('LocolizePage');
+            Resource.LocolizePage();
 
-   
-    //Resource.Update(function () { });
-    if ($("#preload").length==0)
-    {
-         $('body').append('<div id="preload"></div>');
-    }
-    var delay = 200;
-  
-    if (!$.session.get('MocaResources'))
-          delay = 1000;
-    setTimeout(function () {
-        console.log('LocolizePage');
-        Resource.LocolizePage();
-       
-        $("#preload").remove();
-    }, delay);
+            
+        }, delay);
+    //}
 });

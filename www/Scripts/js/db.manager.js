@@ -330,7 +330,6 @@
                           "CREATE TABLE IF NOT EXISTS MocaResources (ID INTEGER PRIMARY KEY, Name TEXT, Value TEXT, Language TEXT, UpdateDate NUMERIC)"
                     ];
                     $.each(tables, function (k, v) {
-                        console.log(k);
                         tx.executeSql(v);
                     });
                     ////////////////////
@@ -359,6 +358,7 @@
                         ]
                     };
                     var insertedQueries = GetInsertQueries(insertedData);
+                   
                     log("InsertDefaultTableTestType");
                     $.each(insertedQueries, function (k, v) {
                         tx.executeSql(v, [], function (tx, results) {
@@ -380,6 +380,7 @@
                     };
                     insertedQueries = GetInsertQueries(insertedData);
                     log("InsertDefaultTableGroup");
+                    
                     $.each(insertedQueries, function (k, v) {
                         tx.executeSql(v, [], function (tx, results) {
                             var result = results || null;
@@ -410,18 +411,23 @@
                     };
                     insertedQueries = GetInsertQueries(insertedData);
                     log("InsertDefaultTableGroup");
+                   
                     $.each(insertedQueries, function (k, v) {
                         tx.executeSql(v, [], function (tx, results) {
                             var result = results || null;
                         });
                     });
-                    jQuery.get('/Resources/MocaResources.txt', function (insertQueryResources) {
-                        insertQueryResources = JSON.parse(insertQueryResources);
-                        insertedQueries = GetInsertQueries(insertQueryResources);
-                        console.log("ResInsQ");
-                         console.log(insertedQueries);
-                        DB.insertData(insertQueryResources, function (res) { });
-                    });
+                    //jQuery.get('/Resources/MocaResources.txt', function (insertQueryResources) {
+                    //    insertQueryResources = JSON.parse(insertQueryResources);
+                    //    insertedQueries = GetInsertQueries(insertQueryResources);
+                    //    $.each(insertedQueries, function (k, v) {
+                   
+                    //        tx.executeSql(v, [], function (tx, results) {
+                    //            var result = results || null;
+                    //        });
+                    //    });
+                    //    //DB.insertData(insertQueryResources, function (res) { });
+                    //});
 
                 });
             }, this.dbErrorHandler, callback);
