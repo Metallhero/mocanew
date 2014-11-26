@@ -13,23 +13,39 @@ Resource = {
                     }
                     $.session.set('MocaResources', JSON.stringify(resourceObj));
                     $("#preload").remove();
+                    callback.apply(null);
                 }
                 else
                 {
                     console.log("resFromFile");
-                    jQuery.get('Resources/MocaResources.txt', function (insertQueryResources) {
-                        insertQueryResources = JSON.parse(insertQueryResources);
-                        DB.insertData(insertQueryResources, function () {
+                    $.getJSON("Resources/MocaResources.txt", function (insertedData) {
+                      
+                        //var insertedData = JSON.parse(insertQueryResources);
+                        DB.insertData
+                        DB.insertData(insertedData, function () {
+                            console.log("getJSONCallBack");
                             var resourceObj = [];
-                            for (var i = 0; i < results.rows.length; i++) {
-                                resourceObj.push(results.rows.item(i));
-                            }
-                            $.session.set('MocaResources', JSON.stringify(resourceObj));
-                            window.location = window.location;
+                            //for (var i = 0; i < results.rows.length; i++) {
+                            //    resourceObj.push(results.rows.item(i));
+                            //}
+                            $.session.set('MocaResources', JSON.stringify(insertedData.data));
+                            callback.apply(null);
+                             //window.location = window.location;
                         });
                     });
+                    //jQuery.get('Resources/MocaResources.txt', function (insertQueryResources) {
+                    //    insertQueryResources = JSON.parse(insertQueryResources);
+                    //    DB.insertData(insertQueryResources, function () {
+                    //        var resourceObj = [];
+                    //        for (var i = 0; i < results.rows.length; i++) {
+                    //            resourceObj.push(results.rows.item(i));
+                    //        }
+                    //        $.session.set('MocaResources', JSON.stringify(resourceObj));
+                    //        window.location = window.location;
+                    //    });
+                    //});
                 }
-                callback.apply(null);
+                
                 $("#preload").remove();
             });
         }

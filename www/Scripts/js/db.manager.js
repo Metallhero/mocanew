@@ -358,7 +358,7 @@
                         ]
                     };
                     var insertedQueries = GetInsertQueries(insertedData);
-                   
+
                     log("InsertDefaultTableTestType");
                     $.each(insertedQueries, function (k, v) {
                         tx.executeSql(v, [], function (tx, results) {
@@ -380,7 +380,7 @@
                     };
                     insertedQueries = GetInsertQueries(insertedData);
                     log("InsertDefaultTableGroup");
-                    
+
                     $.each(insertedQueries, function (k, v) {
                         tx.executeSql(v, [], function (tx, results) {
                             var result = results || null;
@@ -411,7 +411,7 @@
                     };
                     insertedQueries = GetInsertQueries(insertedData);
                     log("InsertDefaultTableGroup");
-                   
+
                     $.each(insertedQueries, function (k, v) {
                         tx.executeSql(v, [], function (tx, results) {
                             var result = results || null;
@@ -421,7 +421,7 @@
                     //    insertQueryResources = JSON.parse(insertQueryResources);
                     //    insertedQueries = GetInsertQueries(insertQueryResources);
                     //    $.each(insertedQueries, function (k, v) {
-                   
+
                     //        tx.executeSql(v, [], function (tx, results) {
                     //            var result = results || null;
                     //        });
@@ -433,17 +433,22 @@
             }, this.dbErrorHandler, callback);
 
         };
- 
+
 
         this.insertData = function (insertedData, callback) {
             dbShell.transaction(function (tx) {
                 log('beginInsert');
                 var insertedQueries = GetInsertQueries(insertedData);
-
+                var t = insertedQueries.length;
+            
                 $.each(insertedQueries, function (k, v) {
                     tx.executeSql(v, [], function (tx, results) {
+                        t--;
                         var result = results || null;
-                        callback.apply(null, [result]);
+                       
+                        if (t == 0) {
+                            callback.apply(null, [result]);
+                        }
                     });
                 });
             },
