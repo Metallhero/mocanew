@@ -138,7 +138,7 @@ $(document).ready(function () {
     var delay = 200;
   
     if (!$.session.get('MocaResources'))
-          delay = 600;
+          delay = 1000;
     setTimeout(function () {
         console.log('LocolizePage');
         Resource.LocolizePage();
