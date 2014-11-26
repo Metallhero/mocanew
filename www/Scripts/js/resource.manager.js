@@ -142,6 +142,7 @@ $(document).ready(function () {
     setTimeout(function () {
         console.log('LocolizePage');
         Resource.LocolizePage();
+       
         $("#preload").remove();
     }, delay);
 });

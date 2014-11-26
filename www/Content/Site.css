@@ -4508,9 +4508,9 @@ canvas {
 /*.row-fluid > .row-fluid.clearfix {
     position: absolute; width: 100%; bottom: 15px;
 }*/
-/*.select2DT {
+.select2DT {
     width: 32% !important;
-}*/
+}
 
 .invalidDate .select2-container {
     border: 1px solid red;
