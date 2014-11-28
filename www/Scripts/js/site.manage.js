@@ -36,7 +36,7 @@ function FillMocaTypes() {
 
 var allPages = ["TrailInstructions", "TrailExecution", "TrailScoring", "CubeExecution", "CubeScoring", "ClockInstructions", "ClockExecution", "ClockScoring",
          "NamingExecution", "NamingScoring", "Memory1Execution", "Memory2Execution",
-        "DigitForwardExecution", "DigitBackwardExecution", "LetterAExecution",
+        "DigitForwardExecution",  "LetterAExecution",
          "CalculationExecution", "RepetitionExecution",
          "FluencyInstructions", "FluencyExecution", "AbstractionInstructions", "AbstractionExecution",
           "DelayedRecallExecution", "OrientationExecution", "Comment"];

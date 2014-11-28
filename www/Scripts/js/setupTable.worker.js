@@ -2,8 +2,8 @@
 self.addEventListener('message', function (e) {
     var data = e.data;
 
-    var maxSize = 5 * 1024 * 1024;
-    dbShell = window.openDatabase("MoCA", 2, "MoCA", maxSize);
+    var maxSize = 25 * 1024 * 1024;
+    var wdb = openDatabaseSync("MoCA", 1, "MoCA", maxSize);
 
  
     ////get Query

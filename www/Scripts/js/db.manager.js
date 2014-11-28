@@ -417,17 +417,7 @@
                             var result = results || null;
                         });
                     });
-                    //jQuery.get('/Resources/MocaResources.txt', function (insertQueryResources) {
-                    //    insertQueryResources = JSON.parse(insertQueryResources);
-                    //    insertedQueries = GetInsertQueries(insertQueryResources);
-                    //    $.each(insertedQueries, function (k, v) {
-
-                    //        tx.executeSql(v, [], function (tx, results) {
-                    //            var result = results || null;
-                    //        });
-                    //    });
-                    //    //DB.insertData(insertQueryResources, function (res) { });
-                    //});
+ 
 
                 });
             }, this.dbErrorHandler, callback);

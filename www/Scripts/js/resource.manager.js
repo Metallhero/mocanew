@@ -18,7 +18,7 @@ Resource = {
                 {
                     console.log("resFromFile");
                     $.getJSON("Resources/MocaResources.txt", function (insertedData) {
-                        DB.insertData
+                        
                         DB.insertData(insertedData, function () {
                             console.log("getJSONCallBack");
                             var resourceObj = [];
@@ -109,7 +109,7 @@ Resource = {
             success: function (data) {
                 if (data) {
                     data = DataUpdateDate(data);
-
+                
                     DB.deleteData("DELETE FROM MocaResources", function (rres) {
                         var resourceInsData =
                         {
