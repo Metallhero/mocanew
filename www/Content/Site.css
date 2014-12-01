@@ -4660,3 +4660,8 @@ top: -0.5px;
     visibility: hidden;
 }
 .buttomButtons {margin-top: 20px;}
+
+.blq_mrgn_zero blockquote
+{
+    margin:0px;
+}

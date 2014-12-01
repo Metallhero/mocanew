@@ -108,8 +108,8 @@ div.selector {
 div.checker {
   position: relative; }
   div.checker, div.checker span, div.checker input {
-    width: 19px;
-    height: 19px; }
+    width: 21px;
+    height: 21px; }
   div.checker span {
     display: -moz-inline-box;
     display: inline-block;
