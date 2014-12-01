@@ -4665,3 +4665,16 @@ top: -0.5px;
 {
     margin:0px;
 }
+.blq_mrgn_zero p
+{
+    margin:0px;
+}
+.tableDR tr td
+{
+    padding:6px !important;
+}
+.DRText blockquote
+{
+   font-size:16px;
+   padding:2px 20px !important;
+}
