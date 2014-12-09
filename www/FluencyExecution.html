@@ -69,7 +69,7 @@
             <!-- -->
             <div class="page-content">
                 <div class="row-fluid">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                         <h3 class="page-title" data-resource='{"name":"FluencyTitle","attribute":"html"}'>
                             <!--Fluency-->
@@ -78,6 +78,20 @@
                         <!-- END HEADER NAV-->
                         <!-- END PAGE TITLE & BREADCRUMB-->
                     </div>
+                    <!--ScoreTime Block-->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="scoreBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Score","attribute":"html"}'><!--Score:--></span>
+                                <span id="score" class="badge">0</span>
+                            </div>
+                            <div class="timeBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
+                                <span id="timeBlock" class="badge">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  end ScoreTime    -->
                 </div>
                 <!-- END PAGE HEADER-->
                 <div class="row-fluid clearfix">
@@ -97,23 +111,9 @@
 
                                         <div class="form-group last clearfix">
                                             <div class="col-md-4">
-                                                <!--ScoreTime Block-->
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="scoreBlock col-md-1" style="margin-left:20px">
-                                                            <span data-resource='{"name":"Score","attribute":"html"}'><!--Score:--></span>
-                                                            <span id="score" class="badge">0</span>
-                                                        </div>
-                                                        <div class="timeBlock col-md-1" style="margin-left:20px">
-                                                            <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
-                                                            <span id="timeBlock" class="badge">0</span>
-                                                        </div>
-                                                    </div>
+                                              
 
-                                                </div>
-                                                <!--  end ScoreTime    -->
-
-                                                <div class="clearfix"></div><br />
+                                                <div class="clearfix"></div>  
                                                 <p data-resource='{"name":"FluencyExeсutionText","attribute":"html"}'>
                                                     <!--Fluency / Name maximum number of words in one minute that begin with the letter F-->
                                                 </p>
