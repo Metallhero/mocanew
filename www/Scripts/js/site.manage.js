@@ -63,7 +63,7 @@ function GetCurrentPageIndex() {
     return index;
 }
 $(document).ready(function () {
-
+    $('.scoreTimeBlock').prev().css('float', 'left')
     FillMocaTypes();
     if ($("#navigationBar").length > 0) {
         $("#navigationBar").load("Partial/_NavigationBar.html");
