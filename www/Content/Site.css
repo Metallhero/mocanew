@@ -4682,8 +4682,16 @@ blockquote {
 .tableDR tr td {
     padding: 6px !important;
 }
-
- 
+ /*ScoreTime*/
+ .scoreTimeBlock
+ {
+     float:right;
+ }
+ .scoreTimeBlock .col-md-1
+ {
+     float:left;
+     margin-right:20px;
+ }
 
 .DRText blockquote {
     font-size: 16px;
