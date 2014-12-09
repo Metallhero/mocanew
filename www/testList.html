@@ -233,6 +233,7 @@
             }
             $('body').append('<div style="display:none" id="preload"></div>');
             $("#preload").bPopup({ modalClose: false });
+      
             var worker = new Worker('Scripts/js/pdfResult.worker.js');
             var testTypesWithImg = [MocaTestTypes["Trail"], MocaTestTypes["Cube"], MocaTestTypes["Clock"]];
             testTypesWithImg = JSON.stringify(testTypesWithImg);
