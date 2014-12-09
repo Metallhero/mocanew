@@ -349,7 +349,7 @@ function SaveTest() {
     log(testResultData);
     DB.AddTestResult(testResultData, function (results) {
         //Save Comments
-        var testWithComments = [13, 14, 15, 9, 7];
+        var testWithComments = [15, 7];  //[13, 14, 15, 9, 7];
         if (testWithComments.indexOf(testType) != -1) {
             SaveComments(testId, testType);
         }
