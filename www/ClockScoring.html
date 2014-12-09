@@ -69,15 +69,27 @@
             <!-- -->
             <div class="page-content">
                 <div class="row-fluid">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                         <h3 class="page-title" data-resource='{"name":"ClockTitle","attribute":"html"}'>
                             <!--Clock-->
                         </h3>
                         <!-- START HEADER NAV-->
-                        <!-- END HEADER NAV-->
-                        <!-- END PAGE TITLE & BREADCRUMB-->
                     </div>
+                    <!--ScoreTime Block-->
+                    <div class="col-md-6 scoreTimeBlock">
+                        <div class="row">
+                            <div class="scoreBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Score","attribute":"html"}'><!--Score:--></span>
+                                <span id="score" class="badge">0</span>
+                            </div>
+                            <div class="timeBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
+                                <span id="timeBlock" class="badge">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  end ScoreTime    -->
                 </div>
                 <!-- END PAGE HEADER-->
                 <div class="row-fluid clearfix">
@@ -95,21 +107,7 @@
                                 <div class="form-horizontal ">
                                     <div class="form-body">
                                         <div class="form-group last">
-                                            <!--ScoreTime Block-->
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="scoreBlock col-md-1" style="margin-left:20px">
-                                                        <span data-resource='{"name":"Score","attribute":"html"}'><!--Score:--></span>
-                                                        <span id="score" class="badge">0</span>
-                                                    </div>
-                                                    <div class="timeBlock col-md-1" style="margin-left:20px">
-                                                        <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
-                                                        <span id="timeBlock" class="badge">0</span>
-                                                    </div>
-                                                </div>
 
-                                            </div>
-                                            <!--  end ScoreTime    -->
                                             <div class="row">
                                                 <div class="col-md-12  text-center">
 
@@ -127,7 +125,7 @@
                                                 <span data-resource='{"name":"Numbers","attribute":"html"}'><!--Numbers--></span>  <br /><br /> <input type="checkbox" id="cbx2" class="toggle" />
                                             </div>
                                             <div class="col-md-4 text-left pull-left" style="padding: 0px; text-align: center; margin-top: 20px; width: 33%;">
-                                               <span data-resource='{"name":"Hands","attribute":"html"}'><!--Hands--></span>  <br /><br /> <input type="checkbox" id="cbx3" class="toggle" />
+                                                <span data-resource='{"name":"Hands","attribute":"html"}'><!--Hands--></span>  <br /><br /> <input type="checkbox" id="cbx3" class="toggle" />
                                             </div>
                                         </div>
                                     </div>
@@ -146,35 +144,36 @@
                                 <div class="tools"><a class="expand collapse" href="javascript:;"></a></div>
                             </div>
                             <div class="portlet-body" style="display:block">
-                                <div  >
+                                <div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <p data-resource ='{"name":"ClockScoringText","attribute":"html"}'> <!--One point is allocated for each of the following three criteria:</pdata-resource>
-                                            <ul>
-                                                <li>
-                                                    Contour (1 pt.): the clock face must be a circle with only minor distortion acceptable (e.g.,
-                                                    slight imperfection on closing the circle);
-                                                </li>
-                                                <li>
-                                                    Numbers (1 pt.): all clock numbers must be present with no additional numbers; numbers
-                                                    must be in the correct order and placed in the approximate quadrants on the clock face; Roman
-                                                    numerals are acceptable; numbers can be placed outside the circle contour;
-                                                </li>
-                                                <li>
-                                                    Hands (1 pt.): there must be two hands jointly indicating the correct time; the hour hand must
-                                                    be clearly shorter than the minute hand; hands must be centred within the clock face with their
-                                                    junction close to the clock centre.
-                                                </li>
-                                            </ul>
-                                            <p>A point is not assigned for a given element if any of the above-criteria are not met.</p>
-                                            <p>
-                                                All numbers must either be placed inside or outside the clock circle. If the subject places some numbers inside the clock circle and some outside the clock circle, he does not receive a point for Numbers.
-                                            </p><p>
-                                                The numbers must be present on the clock for the subject to obtain a point for Hands. If the hands seem to placed correctly but there are no numbers on the clock, the subject does not obtain a point for Hands.
-                                            </p><p>
-                                                The clock contour must be drawn. If the numbers are arranged in a circular manner but the contour is not drawn the contour is scored as incorrect.
-                                            </p><p>
-                                                Different shaped contours are accepted (example: square contours). However, the numbers have to be arranged in a circular manner.-->
+                                            <p data-resource='{"name":"ClockScoringText","attribute":"html"}'>
+                                                <!--One point is allocated for each of the following three criteria:</pdata-resource>
+                                                <ul>
+                                                    <li>
+                                                        Contour (1 pt.): the clock face must be a circle with only minor distortion acceptable (e.g.,
+                                                        slight imperfection on closing the circle);
+                                                    </li>
+                                                    <li>
+                                                        Numbers (1 pt.): all clock numbers must be present with no additional numbers; numbers
+                                                        must be in the correct order and placed in the approximate quadrants on the clock face; Roman
+                                                        numerals are acceptable; numbers can be placed outside the circle contour;
+                                                    </li>
+                                                    <li>
+                                                        Hands (1 pt.): there must be two hands jointly indicating the correct time; the hour hand must
+                                                        be clearly shorter than the minute hand; hands must be centred within the clock face with their
+                                                        junction close to the clock centre.
+                                                    </li>
+                                                </ul>
+                                                <p>A point is not assigned for a given element if any of the above-criteria are not met.</p>
+                                                <p>
+                                                    All numbers must either be placed inside or outside the clock circle. If the subject places some numbers inside the clock circle and some outside the clock circle, he does not receive a point for Numbers.
+                                                </p><p>
+                                                    The numbers must be present on the clock for the subject to obtain a point for Hands. If the hands seem to placed correctly but there are no numbers on the clock, the subject does not obtain a point for Hands.
+                                                </p><p>
+                                                    The clock contour must be drawn. If the numbers are arranged in a circular manner but the contour is not drawn the contour is scored as incorrect.
+                                                </p><p>
+                                                    Different shaped contours are accepted (example: square contours). However, the numbers have to be arranged in a circular manner.-->
                                             </p>
                                         </div>
                                     </div>
@@ -182,7 +181,7 @@
                             </div>
                         </div>
                         <!-- Comment Block -->
-                        <div id="testComment"></div>
+                        <!--<div id="testComment"></div>-->
                         <!-- end Comment -->
                     </div>
                 </div>

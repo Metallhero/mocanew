@@ -70,7 +70,7 @@
             <div class="page-content">
 
                 <div class="row-fluid">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                         <h3 class="page-title" data-resource='{"name":"MemoryTitle","attribute":"html"}'>
                             <!--Memory-->
@@ -79,6 +79,16 @@
                         <!-- END HEADER NAV-->
                         <!-- END PAGE TITLE & BREADCRUMB-->
                     </div>
+                    <!--ScoreTime Block-->
+                    <div class="col-md-6 scoreTimeBlock" >
+                        <div class="row" style="float:right">
+                            <div class="timeBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
+                                <span id="timeBlock" class="badge">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  end ScoreTime    -->
                 </div>
                 <!-- END PAGE HEADER-->
                 <div class="row-fluid">
@@ -95,17 +105,7 @@
                                 <div class="form-horizontal ">
                                     <div class="form-body">
                                         <div class="">
-                                            <!--ScoreTime Block-->
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="timeBlock col-md-1" style="margin-left:20px">
-                                                        <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
-                                                        <span id="timeBlock" class="badge">0</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!--  end ScoreTime    -->
+                                            
                                             <div style="padding-top:10px" class="row-fluid">
                                                 <!-- Instructions -->
                                                 <span data-resource='{"name":"Memory1Text","attribute":"html"}'>

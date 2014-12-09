@@ -14,11 +14,10 @@ Resource = {
                     $.session.set('MocaResources', JSON.stringify(resourceObj));
                     callback.apply(null);
                 }
-                else
-                {
+                else {
                     console.log("resFromFile");
                     $.getJSON("Resources/MocaResources.txt", function (insertedData) {
-                        
+
                         DB.insertData(insertedData, function () {
                             console.log("getJSONCallBack");
                             var resourceObj = [];
@@ -26,9 +25,9 @@ Resource = {
                             callback.apply(null);
                         });
                     });
-                 
+
                 }
-                
+
                 $("#preload").remove();
             });
         }
@@ -98,6 +97,7 @@ Resource = {
             return data;
         };
         if (!navigator.onLine) {
+            $("#preload").remove();
             ShowAlertPopup("Check internet connection!");
             return;
         }
@@ -109,7 +109,7 @@ Resource = {
             success: function (data) {
                 if (data) {
                     data = DataUpdateDate(data);
-                
+
                     DB.deleteData("DELETE FROM MocaResources", function (rres) {
                         var resourceInsData =
                         {
@@ -117,14 +117,17 @@ Resource = {
                             data: data
                         };
 
-                        console.log(JSON.stringify(resourceInsData)); //Add this log to MocaRes.txt for update local Resources
+                          console.log(JSON.stringify(resourceInsData)); //Add this log to MocaRes.txt for update local Resources
                         DB.insertData(resourceInsData, function (res2) {
-                            $.session.set('MocaResources', JSON.stringify(data));
+                            $.session.set('MocaResources', JSON.stringify(resourceInsData.data));
+                            console.log('res');
+                           
                             console.log('updateApply');
                             callback.apply(null);
+                            $('#preload').remove(); ShowAlertPopup(Resource.Value('UpdateComplete'), 'window.location=window.location');
                         });
                     });
-                    setTimeout(function () { $('#preload').remove(); ShowAlertPopup(Resource.Value('UpdateComplete'), 'window.location=window.location') }, 1000);
+                    //setTimeout(function () { $('#preload').remove(); ShowAlertPopup(Resource.Value('UpdateComplete'), 'window.location=window.location') }, 1000);
                 }
                 else {
                     callback.apply(null);
@@ -142,14 +145,14 @@ Resource = {
 };
 $(document).ready(function () {
     console.log("ready");
+    console.log("get session");
     console.log($.session.get('MocaResources'));
     //if ($.session.get('MocaResources')) {
-        if ($("#preload").length == 0) {
-            $('body').append('<div id="preload"></div>');
-        }
- 
-            console.log('LocolizePage');
-            Resource.LocolizePage();
- 
+    if ($("#preload").length == 0) {
+        $('body').append('<div id="preload"></div>');
+    }
+    console.log('LocolizePage');
+    Resource.LocolizePage();
+
     //}
 });

@@ -75,13 +75,29 @@
             <!-- -->
             <div class="page-content">
                 <div class="row-fluid">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                         <h3 data-resource='{"name":"Trail","attribute":"html"}' class="page-title">
                             <!--Trail-->
                         </h3>
                         <!-- START HEADER NAV-->
+                       
                     </div>
+                    <!--ScoreTime Block-->
+                    <div class="col-md-6 scoreTimeBlock">
+                        <div class="row">
+                            <div class="scoreBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Score","attribute":"html"}'><!--Score:--></span>
+                                <span id="score" class="badge">0</span>
+                            </div>
+                            <div class="timeBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
+                                <span id="timeBlock" class="badge">0</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--  end ScoreTime    -->
                 </div>
                 <!-- END PAGE HEADER-->
                 <div class="row-fluid">
@@ -99,21 +115,7 @@
                                     <div class="form-body">
 
                                         <div class="">
-                                            <!--ScoreTime Block-->
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="scoreBlock col-md-1" style="margin-left:20px">
-                                                        <span data-resource='{"name":"Score","attribute":"html"}'><!--Score:--></span>
-                                                        <span id="score" class="badge">0</span>
-                                                    </div>
-                                                    <div class="timeBlock col-md-1" style="margin-left:20px">
-                                                        <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
-                                                        <span id="timeBlock" class="badge">0</span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!--  end ScoreTime    -->
+                          
                                             <div class="row">
                                                 <div class="col-md-12  text-center">
                                                     <canvas id="visuoexec" class="visuoImg1"></canvas>
@@ -148,7 +150,7 @@
                             </div>
                         </div>
                         <!-- Comment Block -->
-                        <div id="testComment"></div>
+                        <!--<div id="testComment"></div>-->
                         <!-- end Comment -->
                     </div>
                 </div>

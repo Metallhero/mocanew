@@ -69,7 +69,7 @@
             <!-- -->
             <div class="page-content">
                 <div class="row-fluid">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                         <h3 class="page-title" data-resource='{"name":"CubeScoringTitle","attribute":"html"}'>
                             <!--Cube-->
@@ -78,6 +78,20 @@
                         <!-- END HEADER NAV-->
                         <!-- END PAGE TITLE & BREADCRUMB-->
                     </div>
+                    <!--ScoreTime Block-->
+                    <div class="col-md-6 scoreTimeBlock">
+                        <div class="row">
+                            <div class="scoreBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Score","attribute":"html"}'><!--Score:--></span>
+                                <span id="score" class="badge">0</span>
+                            </div>
+                            <div class="timeBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
+                                <span id="timeBlock" class="badge">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  end ScoreTime    -->
                 </div>
                 <!-- END PAGE HEADER-->
                 <div class="row-fluid">
@@ -95,21 +109,7 @@
                                     <div class="form-body">
                                         <div class="form-group last">
                                             <div class="col-md-12">
-                                                <!--ScoreTime Block-->
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="scoreBlock col-md-1" style="margin-left:20px">
-                                                            <span data-resource='{"name":"Score","attribute":"html"}'><!--Score:--></span>
-                                                            <span id="score" class="badge">0</span>
-                                                        </div>
-                                                        <div class="timeBlock col-md-1" style="margin-left:20px">
-                                                            <span data-resource='{"name":"Time","attribute":"html"}'><!--Time:--></span>
-                                                            <span id="timeBlock" class="badge">0</span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <!--  end ScoreTime    -->
+                                                
                                                 <img class="img-responsive inst_img" alt="Cube" src="Content/img/visuo-2.png" style="float: left; margin-top: 10px;">
                                                 <div class="row">
                                                     <div class="col-md-12  text-center">
@@ -157,7 +157,7 @@
                             </div>
                         </div>
                         <!-- Comment Block -->
-                        <div id="testComment"></div>
+                        <!--<div id="testComment"></div>-->
                         <!-- end Comment -->
                     </div>
                 </div>

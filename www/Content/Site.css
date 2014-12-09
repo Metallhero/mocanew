@@ -1783,9 +1783,11 @@ Custom icon buttons
         -moz-box-shadow: none !important;
         box-shadow: none !important;
     }
+
 canvas {
     max-width: 100%;
 }
+
 .icon-btn div {
     font-family: 'Open Sans', sans-serif;
     margin-top: 5px;
@@ -4483,7 +4485,6 @@ canvas {
     width: 100%;
     height: 100%;
     top: 0;
-    
     /*margin-left: -64px;*/
     /*margin-top: -62px;*/
     z-index: 2147483647;
@@ -4592,9 +4593,9 @@ blockquote {
 .disabledBtn {
     opacity: 0.5;
 }
-.timeBlock
-{
-    display:none;
+
+.timeBlock {
+    display: none;
 }
 /*.buttomButtons
 {
@@ -4614,23 +4615,26 @@ blockquote {
    right:20px;
 }*/
 .bootstrap-switch.bootstrap-switch-animate .bootstrap-switch-container {
-position: relative;
-top: -0.5px;
+    position: relative;
+    top: -0.5px;
 }
-.error
-{
-    border:solid 1px red;
+
+.error {
+    border: solid 1px red;
 }
+
 .page-content > .row-fluid:nth-child(2) {
     min-height: 525px;
     max-height: 525px;
     overflow: auto;
 }
+
 .vertical .page-content > .row-fluid:nth-child(2) {
     min-height: 765px;
     max-height: 765px;
     overflow: auto;
 }
+
 .page-content > .row-fluid:nth-child(2):after {
     content: "";
     display: block;
@@ -4643,15 +4647,18 @@ top: -0.5px;
     min-height: 0;
     overflow: visible;
 }
+
 .create_img.page-content > .row-fluid:nth-child(1) {
     min-height: 619px;
     overflow: auto;
 }
+
 .vertical .create_img.page-content > .row-fluid:nth-child(1) {
     min-height: 850px;
     max-height: 850px;
     overflow: auto;
 }
+
 .page-content > .row-fluid:nth-child(1):after {
     content: "";
     display: block;
@@ -4659,22 +4666,26 @@ top: -0.5px;
     height: 0;
     visibility: hidden;
 }
-.buttomButtons {margin-top: 20px;}
 
-.blq_mrgn_zero blockquote
-{
-    margin:0px;
+.buttomButtons {
+    margin-top: 20px;
 }
-.blq_mrgn_zero p
-{
-    margin:0px;
+
+.blq_mrgn_zero blockquote {
+    margin: 0px;
 }
-.tableDR tr td
-{
-    padding:6px !important;
+
+.blq_mrgn_zero p {
+    margin: 0px;
 }
-.DRText blockquote
-{
-   font-size:16px;
-   padding:2px 20px !important;
+
+.tableDR tr td {
+    padding: 6px !important;
+}
+
+ 
+
+.DRText blockquote {
+    font-size: 16px;
+    padding: 2px 20px !important;
 }

@@ -23,7 +23,6 @@
     <script src="Scripts/select2/select2.min.js"></script>
     <!--=======-->
     <script src="Scripts/jquery.bpopup.min.js"></script>
-
     <!--@*Bootstrap switch*@-->
     <link href="Content/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" />
     <script src="Content/bootstrap-switch/bootstrap-switch.min.js"></script>
@@ -41,7 +40,6 @@
             <a href="index.html" class="navbar-brand">
                 <span>e-MoCA version 8.1</span>
             </a>
-
             <a data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" href="javascript:;">
                 <img alt="" src="Content/img/sidebar-toggler.jpg">
             </a>
@@ -59,24 +57,34 @@
                 <!-- END USER LOGIN DROPDOWN -->
             </ul>
         </div>
-
     </div>
-
     <div class="content">
         <div class="page-container">
             <!--Navigation Bar -->
             <div id="navigationBar"></div>
             <!-- -->
             <div class="page-content">
-
                 <div class="row-fluid">
-                    <div class="col-md-12">
-
+                    <div class="col-md-6">
                         <h3 class="page-title" data-resource='{"name":"OrientationTitle","attribute":"html"}'>
                             <!--Orientation-->
                         </h3>
+                    </div>
+                    <!--ScoreTime Block-->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="scoreBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Score","attribute":"html"}'></span>
+                                <span id="score" class="badge">0</span>
+                            </div>
+                            <div class="timeBlock col-md-1" style="margin-left:20px">
+                                <span data-resource='{"name":"Time","attribute":"html"}'></span>
+                                <span id="timeBlock" class="badge">0</span>
+                            </div>
+                        </div>
 
                     </div>
+                    <!--  end ScoreTime    -->
                 </div>
                 <!-- END PAGE HEADER-->
                 <div class="row-fluid clearfix">
@@ -91,24 +99,9 @@
                             <div class="portlet-body form">
                                 <!-- BEGIN FORM-->
                                 <div class="form-horizontal ">
-                                    <div class="form-body"> 
-                                        <!--ScoreTime Block-->
-                                        <!-- <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="scoreBlock col-md-1" style="margin-left:20px">
-                                                    <span data-resource='{"name":"Score","attribute":"html"}'></span>
-                                                    <span id="score" class="badge">0</span>
-                                                </div>
-                                                <div class="timeBlock col-md-1" style="margin-left:20px">
-                                                    <span data-resource='{"name":"Time","attribute":"html"}'></span>
-                                                    <span id="timeBlock" class="badge">0</span>
-                                                </div>
-                                            </div>
+                                    <div class="form-body">
 
-                                        </div> -->
-                                        <!--  end ScoreTime    -->
                                         <div class="clearfix"></div>
-
                                         <div class="row-fluid">
                                             <div class="col-md-12">
                                                 <p data-resource='{"name":"OrientationText1","attribute":"html"}'><!--Please put a check mark for each correct item.--></p>
@@ -116,7 +109,6 @@
                                             <div class="col-md-12">
                                                 <blockquote style="font-size: 16px;" data-resource='{"name":"OrientationText2","attribute":"html"}'><!--“Tell me the date today”--></blockquote>
                                             </div>
-
                                         </div>
                                         <div class="row-fluid">
                                             <div class="col-md-12">
@@ -125,7 +117,6 @@
                                             <div class="col-md-12">
                                                 <blockquote style="font-size: 16px;" data-resource='{"name":"OrientationText4","attribute":"html"}'><!--“Tell me the [year, month, exact date, and day of the week].”--></blockquote>
                                             </div>
-
                                         </div>
                                         <div class="row-fluid">
                                             <div class="col-md-12">
@@ -134,7 +125,6 @@
                                             <div class="col-md-12">
                                                 <blockquote style="font-size: 16px;" data-resource='{"name":"OrientationText6","attribute":"html"}'><!--“Now, tell me the name of this place, and which city it is in.”--></blockquote>
                                             </div>
-
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="row-fluid">
@@ -153,12 +143,11 @@
                                                                 <td data-resource='{"name":"Day","attribute":"html"}'><!--Day--></td>
                                                             </tr>
                                                             <tr>
-
                                                                 <td style="text-align: center;">
                                                                     <input type="checkbox" class="toggle" id="cbx2" />
                                                                 </td>
                                                                 <td style="border-right: 1px solid #ccc;" data-resource='{"name":"Month","attribute":"html"}'><!--Month--></td>
-                                                                 <td style="text-align: center;">
+                                                                <td style="text-align: center;">
                                                                     <input type="checkbox" class="toggle" id="cbx5" />
                                                                 </td>
                                                                 <td data-resource='{"name":"Place","attribute":"html"}'><!--Place--></td>
@@ -186,7 +175,6 @@
                     </div>
                     <!-- END PORTLET-->
                     <div class="col-md-4">
-
                         <div class="portlet">
                             <div class="portlet-title">
                                 <div class="caption" data-resource='{"name":"Scoring","attribute":"html"}'><!--Scoring:--></div>
@@ -207,7 +195,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="row-fluid clearfix buttomButtons">
@@ -216,7 +203,6 @@
                             <button type="button" class="btn purple pull-left" onclick="PreviousPage()" id="btnBack">
                                 <i class="icon-chevron-left"></i>
                             </button>
-
                             <button type="button" class="btn purple pull-left" onclick="NextPage()" id="btnFoward">
                                 <i class="icon-chevron-right"></i>
                             </button>
@@ -233,13 +219,11 @@
                 </div>
                 <!-- END PAGE CONTENT-->
             </div>
-       
+
             <!-- END PAGE -->
         </div>
 
-
     </div>
-
     <div class="footer">
         <div class="copyright"> e-MoCA © Copyright 2014. </div>
         <div class="footer-tools">
@@ -248,8 +232,6 @@
             </span>
         </div>
     </div>
-
-
 
     <!--section Scripts -->
     <script src="Scripts/js/test_result.manage.js"></script>
