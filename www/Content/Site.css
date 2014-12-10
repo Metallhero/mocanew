@@ -4692,8 +4692,11 @@ blockquote {
      float:left;
      margin-right:20px;
  }
+
  .vertical .scoreTimeBlock {margin-top:10px;}
+
 .DRText blockquote {
     font-size: 16px;
     padding: 2px 20px !important;
 }
+
