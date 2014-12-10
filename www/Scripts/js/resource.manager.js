@@ -146,7 +146,7 @@ Resource = {
 $(document).ready(function () {
     console.log("ready");
     console.log("get session");
-    console.log($.session.get('MocaResources'));
+ 
     //if ($.session.get('MocaResources')) {
     if ($("#preload").length == 0) {
         $('body').append('<div id="preload"></div>');
