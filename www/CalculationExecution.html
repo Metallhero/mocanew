@@ -113,35 +113,57 @@
                                             <div class="col-md-8">
                                                 <div class="table">
                                                     <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <td>Serial 100-7</td>
+                                                                <td>Correct</td>
+                                                                <td>Not correct</td>
+                                                            </tr>
+                                                        </thead>
                                                         <tr>
                                                             <td>
-                                                                <input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx93" />
+                                                                <input type="checkbox" id="cbx1" class="toggle" />
+                                                                <!--<input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx93" />-->
                                                             </td>
-                                                            <td>e.g. 93</td>
+                                                            <td>e.g. <span class="egSp" id="spn_93">93</span></td>
+                                                            <td><a href="javascript:void(0)" class="up_eg"><i class="icon-arrow-up"></i></a><a class="down_eg" href="javascript:void(0)"><i class="icon-arrow-down"></i></a></td>
+
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx86" />
+                                                                <input type="checkbox" id="cbx2" class="toggle" />
+                                                                <!--<input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx86" />-->
                                                             </td>
-                                                            <td>e.g. 86</td>
+                                                            <td>e.g. <span class="egSp" id="spn_86">86</span></td>
+                                                            <td><a href="javascript:void(0)" class="up_eg"><i class="icon-arrow-up"></i></a><a class="down_eg" href="javascript:void(0)"><i class="icon-arrow-down"></i></a></td>
+
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx79" />
+                                                                <input type="checkbox" id="cbx3" class="toggle" />
+                                                                <!--<input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx79" />-->
                                                             </td>
-                                                            <td>e.g. 79</td>
+                                                            <td>e.g. <span class="egSp" id="spn_79">79</span></td>
+                                                            <td><a href="javascript:void(0)" class="up_eg"><i class="icon-arrow-up"></i></a><a class="down_eg" href="javascript:void(0)"><i class="icon-arrow-down"></i></a></td>
+
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx72" />
+                                                                <input type="checkbox" id="cbx4" class="toggle" />
+                                                                <!--<input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx72" />-->
                                                             </td>
-                                                            <td>e.g. 72</td>
+                                                            <td>e.g. <span class="egSp" id="spn_72">72</span></td>
+                                                            <td><a href="javascript:void(0)" class="up_eg"><i class="icon-arrow-up"></i></a><a class="down_eg" href="javascript:void(0)"><i class="icon-arrow-down"></i></a></td>
+
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx65" />
+                                                                <input type="checkbox" id="cbx5" class="toggle" />
+                                                                <!--<input type="number" class="form-control numeric integer" style="width: 100px;" id="cbx65" />-->
                                                             </td>
-                                                            <td>e.g. 65</td>
+                                                            <td>e.g. <span class="egSp" id="spn_65">65</span></td>
+                                                            <td><a href="javascript:void(0)" class="up_eg"><i class="icon-arrow-up"></i></a><a class="down_eg" href="javascript:void(0)"><i class="icon-arrow-down"></i></a></td>
+
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -215,6 +237,34 @@
     <!--section Scripts -->
     <script src="Scripts/js/test_result.manage.js"></script>
     <script src="Scripts/js/resource.manager.js"></script>
+    <script type="text/javascript">
+        $(".up_eg,.down_eg").click(function () {
+            var elem = $(this).closest('tr').find('.egSp');
+            var egValue = parseInt($(elem).text());
+            if ($(this).hasClass("down_eg")) {
+                $(elem).text((--egValue));
+            }
+            else {
+                $(elem).text((++egValue));
+            }
+            var nextEgSPId = (parseInt($(elem).closest('tr').find('.egSp').attr('id').split('_')[1]) - 7);
+            console.log(nextEgSPId);
+            $(".egSp").each(function () {
+                var thisId = parseInt($(this).attr('id').split('_')[1]);
+                var prevId = (thisId + 7)
+                if (thisId == nextEgSPId) {
+                    var prevValue = parseInt($('#spn_' + prevId).text());
+                    console.log(prevValue);
+                    $(this).text(prevValue - 7);
+                    nextEgSPId -= 7;
+
+                }
+                $(elem).closest('tr').find('.resOpt').val($(elem).text());
+            });
+
+        });
+    </script>
+    
     <!-- end section-->
 </body>
 </html>

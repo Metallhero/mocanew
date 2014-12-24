@@ -78,7 +78,8 @@ function LoadPreviousResult(data) {
     else if (mocaResult.testTypeID == MocaTestTypes["Calculation"]) {//100,93,86 test
         $.each(mocaResultValues, function (index, value) {
             var chkBoxIndex = 93 - parseInt(index) * 7;
-            $("#cbx" + chkBoxIndex).val(value.valueOptional.split("|")[1]);
+            console.log(value.valueOptional);
+            $("#spn_" + chkBoxIndex).text(value.valueOptional.split("|")[1]);
         });
     }
 
@@ -193,30 +194,48 @@ function Recalculate() {
     }
     else if (DB.GetTestType() == MocaTestTypes["Calculation"]) { //100,93,
         var count = 0;
-        $('.numeric').each(function () {
-            var inputIndex = $(this).attr('id').replace("cbx", "");
-            var compareValues = 93;
-            if (inputIndex != 93) {
-                var prevIndex = parseInt(inputIndex) + 7;
-                compareValues = parseInt($("#cbx" + prevIndex).val()) - 7;
-            }
-            if ($(this).val() == compareValues) {
+        var count = 0;
+        $('.toggle').each(function () {
+            if ($(this).is(':checked')) {
                 count++;
             }
-
         });
+        var score = 0;
+        console.log(count);
         if (count >= 4 && count <= 5) {
-            $("#score").text(3);
+            score = 3;
         }
         else if (count >= 2 && count <= 3) {
-            $("#score").text(2);
+            score = 2;
         }
         else if (count == 1) {
-            $("#score").text(1);
+            score = 1;
         }
-        else if (count == 0) {
-            $("#score").text(0);
-        }
+        $("#score").text(score);
+        //$('.numeric').each(function () {
+        //    var inputIndex = $(this).attr('id').replace("cbx", "");
+        //    var compareValues = 93;
+        //    if (inputIndex != 93) {
+        //        var prevIndex = parseInt(inputIndex) + 7;
+        //        compareValues = parseInt($("#cbx" + prevIndex).val()) - 7;
+        //    }
+        //    if ($(this).val() == compareValues) {
+        //        count++;
+        //    }
+
+        //});
+        //if (count >= 4 && count <= 5) {
+        //    $("#score").text(3);
+        //}
+        //else if (count >= 2 && count <= 3) {
+        //    $("#score").text(2);
+        //}
+        //else if (count == 1) {
+        //    $("#score").text(1);
+        //}
+        //else if (count == 0) {
+        //    $("#score").text(0);
+        //}
     }
     else {
         var count = 0;
@@ -290,25 +309,40 @@ function SaveTest() {
     }
     else if (DB.GetTestType() == MocaTestTypes["Calculation"])//100,93...
     {
-        var index = 1;
-        $('.numeric').each(function () {
-            var inputIndex = $(this).attr('id').replace("cbx", "");
-            var compareValues = 93;
-            if (inputIndex != 93) {
-                var prevIndex = parseInt(inputIndex) + 7;
-                compareValues = parseInt($("#cbx" + prevIndex).val()) - 7;
-            }
 
-            if ($(this).val() == compareValues) {
-                var val = { valueResult: 1, valueOptional: index + "|" + $(this).val() };
-                ResultValues.push(val);
-            }
-            else {
-                var val = { valueResult: 0, valueOptional: index + "|" + $(this).val() };
-                ResultValues.push(val);
-            }
-            index++;
+        $('.toggle').each(function () {
+            var cbIndex = $(this).attr("id").replace("cbx", "");
+            var val = {};
+     
+            val = { valueResult: $(this).is(':checked') ? 1 : 0, valueOptional: cbIndex + "|" + $(this).closest('tr').find('.egSp').text() };
+        
+                //var valRes = $(this).is(':checked') ? 1 : 0;
+                //if ($(this).is(':checked') && $(this).is(':disabled')) {
+                //    valRes = 0;
+                //}
+                //val = { valueResult: valRes, valueOptional: cbIndex };
+         
+            ResultValues.push(val);
         });
+        //var index = 1;
+        //$('.numeric').each(function () {
+        //    var inputIndex = $(this).attr('id').replace("cbx", "");
+        //    var compareValues = 93;
+        //    if (inputIndex != 93) {
+        //        var prevIndex = parseInt(inputIndex) + 7;
+        //        compareValues = parseInt($("#cbx" + prevIndex).val()) - 7;
+        //    }
+
+        //    if ($(this).val() == compareValues) {
+        //        var val = { valueResult: 1, valueOptional: index + "|" + $(this).val() };
+        //        ResultValues.push(val);
+        //    }
+        //    else {
+        //        var val = { valueResult: 0, valueOptional: index + "|" + $(this).val() };
+        //        ResultValues.push(val);
+        //    }
+        //    index++;
+        //});
 
     }
     else {

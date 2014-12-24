@@ -4700,3 +4700,13 @@ blockquote {
     padding: 2px 20px !important;
 }
 
+ .up_eg, .down_eg
+ {
+     padding-left:12px;
+ }
+ .up_eg i, .down_eg i
+ {
+    
+    text-decoration: none;
+     font-size:20px;
+ }
