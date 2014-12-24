@@ -39,15 +39,15 @@
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 .bootstrap-switch.bootstrap-switch-mini {
-  min-width: 71px;
+  min-width: 70px;
 }
 .bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-on,
 .bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-handle-off,
 .bootstrap-switch.bootstrap-switch-mini .bootstrap-switch-label {
   padding-bottom: 4px;
   padding-top: 4px;
-  font-size: 12px;
-  line-height: 9px;
+  font-size: 16px;
+  line-height: 12px;
 }
 .bootstrap-switch.bootstrap-switch-small {
   min-width: 79px;
@@ -142,7 +142,7 @@
 .bootstrap-switch .bootstrap-switch-handle-off {
   text-align: center;
   z-index: 1;
-  width: 33.333333333%;
+  width: 33.333334%;
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
