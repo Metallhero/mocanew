@@ -145,7 +145,7 @@ $(document).ready(function () {
 
 function getOrient() {
   var o = window.orientation;
-  if(o == 0){
+  if(o == 0 || o == 180){
       $('body').addClass('vertical');
   }else{
       $('body').removeClass('vertical');
