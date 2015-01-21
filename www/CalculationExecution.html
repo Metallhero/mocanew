@@ -70,6 +70,7 @@
                             <!--Calculation-->
                         </h3>
                     </div>
+
                     <!--ScoreTime Block-->
                     <div class="col-md-6 scoreTimeBlock">
                         <div class="row">
@@ -96,6 +97,7 @@
                                 </div>
                             </div>
                             <div class="portlet-body form">
+                                <div id="errorText"></div>
                                 <!-- BEGIN FORM-->
                                 <div class="form-horizontal ">
                                     <div class="form-body">
@@ -126,7 +128,7 @@
                                                                         <option value="96">96</option>
                                                                         <option value="95">95</option>
                                                                         <option value="94">94</option>
-                                                                        <option value="93">93</option>
+                                                                        <option selected="selected" value="93">93</option>
                                                                         <option value="92">92</option>
                                                                         <option value="91">91</option>
                                                                         <option value="90">90</option>
@@ -276,8 +278,13 @@
         });
 
         $(document).ready(function () {
-         
-            $('#testSelect').iPhonePicker({ width: '80px', imgRoot: '/Scripts/jquery.iphonepicker/images' });
+
+            try {
+                $('#testSelect').iPhonePicker({ width: '80px', imgRoot: '/Scripts/jquery.iphonepicker/images' });
+            }
+            catch (e) {
+                console.log(e);
+            }
         });
     </script>
 
