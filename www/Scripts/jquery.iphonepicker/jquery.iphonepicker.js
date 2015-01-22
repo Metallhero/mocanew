@@ -100,7 +100,6 @@ var ITEM_OFFSET = parseInt(37);
             data.options = options;
 
             data.options.imgRoot = (data.options.imgRoot + '/').replace('\\', '/').replace('//', '/');
-            alert(data.options.imgRoot)
             target.css({
                 'display': 'none'
             });
