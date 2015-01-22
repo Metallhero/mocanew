@@ -99,7 +99,7 @@ var ITEM_OFFSET = parseInt(37);
             data.target = target;
             data.options = options;
 
-            data.options.imgRoot = 'http://'+window.location.host+(data.options.imgRoot + '/').replace('\\', '/').replace('//', '/');
+            data.options.imgRoot = (data.options.imgRoot + '/').replace('\\', '/').replace('//', '/');
             alert(data.options.imgRoot)
             target.css({
                 'display': 'none'
