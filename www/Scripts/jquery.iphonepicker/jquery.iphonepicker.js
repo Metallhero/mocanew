@@ -119,7 +119,7 @@ var ITEM_OFFSET = parseInt(37);
         },
 
         addNiftyControl: function (data) {
-			
+            
             var targetId = data.target[0].id;
             var targetObj = $('#'+targetId);
             var mainId = 'uipv_main_' + targetId;
@@ -135,12 +135,12 @@ var ITEM_OFFSET = parseInt(37);
             $('<div/>', {id: 'uipv_bar_'+targetId}).appendTo('#'+mainId);
 
             var controlWidth = (data.options.width == '') 
-				? o.stripSizePostFix($('#'+targetId).css('width')) + 12 // Apparently 12 is substracted from the original width. Don't know why?!
-				: o.stripSizePostFix(data.options.width);
+                ? o.stripSizePostFix($('#'+targetId).css('width')) + 12 // Apparently 12 is substracted from the original width. Don't know why?!
+                : o.stripSizePostFix(data.options.width);
             if (!(controlWidth >= 20 && controlWidth <= 2000)) {
                 controlWidth = 80; // Default value
             } 
-            var classAttr = $('#'+targetId + "_").attr('class');//added
+            var classAttr = $('#'+targetId).attr('class');
             if (classAttr && classAttr != '') {
                 $('#'+mainId).attr('class', classAttr);
             }
@@ -148,8 +148,7 @@ var ITEM_OFFSET = parseInt(37);
                 'width': controlWidth + 'px',
                 'height': '160px',
                 'position': 'relative',
-                'float': 'left'//,
-                //'margin': '3px' //added
+                'float': 'left'
             });
             $('#'+contentId).css({
                 'width': controlWidth-8 + 'px',
@@ -274,10 +273,10 @@ var ITEM_OFFSET = parseInt(37);
             o.setStyle(element, 'user-select', bool ? '' : 'none');
             o.setStyle(element, '-moz-user-select', bool ? '' : 'none');
             o.setStyle(element, '-khtml-user-select', bool ? '' : 'none');
-		
+        
             // IE:
             element.onselectstart = bool ? null : function() { return false; };
-		
+        
             // IE and Opera:
             element.setAttribute('unselectable', bool ? '' : 'on', 0);
         }
@@ -287,7 +286,7 @@ var ITEM_OFFSET = parseInt(37);
 
 
 (function (w, m, $, o) {
-
+    
     // adds overscroll from a jQuery object
     o = $.fn.iPhonePickerOverscroll = function (options) {
         options = options || {};
@@ -388,9 +387,9 @@ var ITEM_OFFSET = parseInt(37);
                 target.data(o.removerKey, o.remover(target));
 
                 target.bind(o.events.wheel, o.data, o.wheel)
-					.bind(o.events.start, o.data, o.start)
-					.bind(o.events.end, o.data, o.stop)
-					.bind(o.events.ignored, false);
+                    .bind(o.events.start, o.data, o.start)
+                    .bind(o.events.end, o.data, o.stop)
+                    .bind(o.events.ignored, false);
 
                 // disable proprietary drag handlers
                 if (options.showThumbs) {
@@ -425,10 +424,10 @@ var ITEM_OFFSET = parseInt(37);
                     overflow: 'auto',
                     cursor: 'default'
                 }).unbind(o.events.wheel, o.wheel)
-				.unbind(o.events.start, o.data, o.start)
-				.unbind(o.events.end, o.data, o.stop)
-				.unbind(o.events.ignored, false)
-				.unbind(o.events.click, o.data, o.click);
+                .unbind(o.events.start, o.data, o.start)
+                .unbind(o.events.end, o.data, o.stop)
+                .unbind(o.events.ignored, false)
+                .unbind(o.events.click, o.data, o.click);
                 if (o.data.thumbs) {
                     if (o.data.thumbs.horizontal) {
                         o.data.thumbs.horizontal.remove();
@@ -461,7 +460,7 @@ var ITEM_OFFSET = parseInt(37);
                     if (eventData.thumbs.horizontal) {
                         eventData.thumbs.horizontal.fadeTo("fast", 0);
                     }
-				
+                
                     var index = o.selectedIndex(eventData.target[0]);
                     o.scrollToIndex(eventData, index);
                 }
@@ -485,12 +484,10 @@ var ITEM_OFFSET = parseInt(37);
             // Get selected item index
             var index = (data.options.reset) ? data.options.selectedIndex : o.selectedIndex(data.target[0]);
             // Set selected item in targeted object
-            console.log("select#" + data.options.parentId + " option");
-            jQuery("select#" + data.options.parentId).find('option').removeAttr("selected");
-            jQuery("select#" + data.options.parentId + " option:eq(" + index + ")").prop('selected', true);
-			
+            jQuery("select#"+data.options.parentId+" option[selected]").removeAttr("selected");
+            jQuery("select#"+data.options.parentId+" option[index=" + index + "]").attr("selected", "selected");
+            
             if (!data.options.reset) {
-                console.log('change');
                 // Trigger onchange event manually
                 $('#'+data.options.parentId).trigger(jQuery.Event('change'));
             }
@@ -503,8 +500,8 @@ var ITEM_OFFSET = parseInt(37);
 
         // sets a position object
         setPosition: function (event, position, index) {
-            position.x = event.originalEvent.pageX;
-            position.y = event.originalEvent.pageY;
+            position.x = event.pageX;
+            position.y = event.pageY;
             position.time = o.time();
             position.index = index;
             return position;
@@ -515,12 +512,12 @@ var ITEM_OFFSET = parseInt(37);
 
             o.clearInterval(event.data.target);
 
-            if (event.originalEvent.wheelDelta) {
-                delta = event.originalEvent.wheelDelta / (w.opera ? -120 : 120);
+            if (event.wheelDelta) {
+                delta = event.wheelDelta / (w.opera ? - 120 : 120);
             }
 
-            if (event.originalEvent.detail) {
-                delta = -event.originalEvent.detail / 3;
+            if (event.detail) {
+                delta = -event.detail / 3;
             }
 
             if (!event.data.wheelCapture) {
@@ -585,9 +582,7 @@ var ITEM_OFFSET = parseInt(37);
 
             o.clearInterval(event.data.target);
 
-            var yPos = event.originalEvent.pageY - $(obj).offset().top;
-
- 
+            var yPos = event.pageY - $(obj).offset().top;
 
             if (yPos < 60 || yPos > 105) {
 
@@ -604,8 +599,6 @@ var ITEM_OFFSET = parseInt(37);
                     event.data.position = o.setPosition(event, {});
                     event.data.capture = o.setPosition(event, {}, 2);
                     event.data.capture.y += (upClick) ? -6 : 8;
-                    
-                     
 
                     o.drift(obj, event, function (data) {
                         data.target.data('dragging', false);
@@ -622,7 +615,7 @@ var ITEM_OFFSET = parseInt(37);
             o.clearInterval(event.data.target);
 
             event.data.startTarget = $(event.target);
-
+            
             if (!event.data.startTarget.is(event.data.options.cancelOn)) {
                 o.normalizeEvent(event);
                 event.data.target.bind(o.events.drag, event.data, o.drag).stop(true, true).data('dragging', false).data('dragged', false);
@@ -639,19 +632,18 @@ var ITEM_OFFSET = parseInt(37);
             o.normalizeEvent(event);
 
             event.data.target.data('dragged', true);
-
+            
             if (!event.data.target.data('dragging')) {
                 o.toggleThumbs(event.data, true);
             }
 
             if (event.data.options.direction !== 'vertical') {
-                this.scrollLeft -= (event.originalEvent.pageX - event.data.position.x);
+                this.scrollLeft -= (event.pageX - event.data.position.x);
             }
-
             if (event.data.options.direction !== 'horizontal') {
-                this.scrollTop -= (event.originalEvent.pageY - event.data.position.y);
+                this.scrollTop -= (event.pageY - event.data.position.y);
             }
-
+                
             o.moveThumbs(event, this.scrollLeft, this.scrollTop);
 
             o.setPosition(event, event.data.position);
@@ -662,12 +654,14 @@ var ITEM_OFFSET = parseInt(37);
             }
 
         },
-
+        isTouchDevice: function(){
+            return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
+        },
         normalizeEvent: function (event) {
-            if (o.checkIosDevice()) {
+            if (o.isTouchDevice()) {
                 var iosEvent = event.originalEvent.changedTouches[0];
-                event.originalEvent.pageX = iosEvent.pageX;
-                event.originalEvent.pageY = iosEvent.pageY;
+                event.pageX = iosEvent.pageX;
+                event.pageY = iosEvent.pageY;
             }
         },
 
@@ -691,7 +685,6 @@ var ITEM_OFFSET = parseInt(37);
 
         // ends the drag operation and unbinds the mouse move handler
         stop: function (event, dx, dy, d) {
-
             if (event.data.position) {
 
                 event.data.target.unbind(o.events.drag, o.drag);
@@ -703,6 +696,7 @@ var ITEM_OFFSET = parseInt(37);
                         data.target.data('dragging', false);
                         o.toggleThumbs(data, false);
                         var index = o.selectedIndex(event.data.target[0]);
+                        
                         o.scrollToIndex(event.data, index);
                     });
                 } else if (event.data.target.data('dragged')) {
@@ -749,13 +743,13 @@ var ITEM_OFFSET = parseInt(37);
 
             o.normalizeEvent(event);
 
-            var dx = event.data.options.scrollDelta * (event.originalEvent.pageX - event.data.capture.x),
-                dy = event.data.options.scrollDelta * (event.originalEvent.pageY - event.data.capture.y),
-				scrollLeft = target.scrollLeft,
-				scrollTop = target.scrollTop,
-				xMod = dx / o.constants.driftSequences,
-				yMod = dy / o.constants.driftSequences,
-				decay = o.constants.driftDecay;
+            var dx = event.data.options.scrollDelta * (event.pageX - event.data.capture.x),
+                dy = event.data.options.scrollDelta * (event.pageY - event.data.capture.y),
+                scrollLeft = target.scrollLeft,
+                scrollTop = target.scrollTop,
+                xMod = dx / o.constants.driftSequences,
+                yMod = dy / o.constants.driftSequences,
+                decay = o.constants.driftDecay;
 
             if (event.data.options.direction !== 'vertical') {
                 scrollLeft -= dx;
@@ -770,8 +764,8 @@ var ITEM_OFFSET = parseInt(37);
             o.setInterval(target, w.setInterval(function () {
 
                 var done = true,
-					min = 1,
-					max = -1;
+                    min = 1,
+                    max = -1;
 
                 if (yMod > min && target.scrollTop > scrollTop || yMod < max && target.scrollTop < scrollTop) {
                     done = false;
@@ -869,25 +863,25 @@ var ITEM_OFFSET = parseInt(37);
 * @id jQuery.scrollTo
 * @id jQuery.fn.scrollTo
 * @param {String, Number, DOMElement, jQuery, Object} target Where to scroll the matched elements.
-*	  The different options for target are:
-*		- A number position (will be applied to all axes).
-*		- A string position ('44', '100px', '+=90', etc ) will be applied to all axes
-*		- A jQuery/DOM element ( logically, child of the element to scroll )
-*		- A string selector, that will be relative to the element to scroll ( 'li:eq(2)', etc )
-*		- A hash { top:x, left:y }, x and y can be any kind of number/string like above.
-*		- A percentage of the container's dimension/s, for example: 50% to go to the middle.
-*		- The string 'max' for go-to-end. 
+*     The different options for target are:
+*       - A number position (will be applied to all axes).
+*       - A string position ('44', '100px', '+=90', etc ) will be applied to all axes
+*       - A jQuery/DOM element ( logically, child of the element to scroll )
+*       - A string selector, that will be relative to the element to scroll ( 'li:eq(2)', etc )
+*       - A hash { top:x, left:y }, x and y can be any kind of number/string like above.
+*       - A percentage of the container's dimension/s, for example: 50% to go to the middle.
+*       - The string 'max' for go-to-end. 
 * @param {Number} duration The OVERALL length of the animation, this argument can be the settings object instead.
 * @param {Object,Function} settings Optional set of settings or the onAfter callback.
-*	 @option {String} axis Which axis must be scrolled, use 'x', 'y', 'xy' or 'yx'.
-*	 @option {Number} duration The OVERALL length of the animation.
-*	 @option {String} easing The easing method for the animation.
-*	 @option {Boolean} margin If true, the margin of the target element will be deducted from the final position.
-*	 @option {Object, Number} offset Add/deduct from the end position. One number for both axes or { top:x, left:y }.
-*	 @option {Object, Number} over Add/deduct the height/width multiplied by 'over', can be { top:x, left:y } when using both axes.
-*	 @option {Boolean} queue If true, and both axis are given, the 2nd axis will only be animated after the first one ends.
-*	 @option {Function} onAfter Function to be called after the scrolling ends. 
-*	 @option {Function} onAfterFirst If queuing is activated, this function will be called after the first scrolling ends.
+*    @option {String} axis Which axis must be scrolled, use 'x', 'y', 'xy' or 'yx'.
+*    @option {Number} duration The OVERALL length of the animation.
+*    @option {String} easing The easing method for the animation.
+*    @option {Boolean} margin If true, the margin of the target element will be deducted from the final position.
+*    @option {Object, Number} offset Add/deduct from the end position. One number for both axes or { top:x, left:y }.
+*    @option {Object, Number} over Add/deduct the height/width multiplied by 'over', can be { top:x, left:y } when using both axes.
+*    @option {Boolean} queue If true, and both axis are given, the 2nd axis will only be animated after the first one ends.
+*    @option {Function} onAfter Function to be called after the scrolling ends. 
+*    @option {Function} onAfterFirst If queuing is activated, this function will be called after the first scrolling ends.
 * @return {jQuery} Returns the same jQuery object, for chaining.
 *
 * @desc Scroll to a fixed position
@@ -901,9 +895,9 @@ var ITEM_OFFSET = parseInt(37);
 *
 * @ Scroll to a DOM element (same for jQuery object)
 * @example var second_child = document.getElementById('container').firstChild.nextSibling;
-*			$('#container').scrollTo( second_child, { duration:500, axis:'x', onAfter:function(){
-*				alert('scrolled!!');																   
-*			}});
+*           $('#container').scrollTo( second_child, { duration:500, axis:'x', onAfter:function(){
+*               alert('scrolled!!');                                                                   
+*           }});
 *
 * @desc Scroll on both axes, to different values
 * @example $('div').scrollTo( { top: 300, left:'+=200' }, { axis:'xy', offset:-20 } );
@@ -930,7 +924,7 @@ var ITEM_OFFSET = parseInt(37);
     $.fn._scrollable = function () {
         return this.map(function () {
             var elem = this,
-				isWin = !elem.nodeName || $.inArray(elem.nodeName.toLowerCase(), ['iframe', '#document', 'html', 'body']) != -1;
+                isWin = !elem.nodeName || $.inArray(elem.nodeName.toLowerCase(), ['iframe', '#document', 'html', 'body']) != -1;
 
             if (!isWin)
                 return elem;
@@ -938,8 +932,8 @@ var ITEM_OFFSET = parseInt(37);
             var doc = (elem.contentWindow || elem).document || elem.ownerDocument || elem;
 
             return $.browser.safari || doc.compatMode == 'BackCompat' ?
-				doc.body :
-				doc.documentElement;
+                doc.body :
+                doc.documentElement;
         });
     };
 
@@ -961,16 +955,16 @@ var ITEM_OFFSET = parseInt(37);
         settings.queue = settings.queue && settings.axis.length > 1;
 
         if (settings.queue)
-            // Let's keep the overall duration
+        // Let's keep the overall duration
             duration /= 2;
         settings.offset = both(settings.offset);
         settings.over = both(settings.over);
 
         return this._scrollable().each(function () {
             var elem = this,
-				$elem = $(elem),
-				targ = target, toff, attr = {},
-				win = $elem.is('html,body');
+                $elem = $(elem),
+                targ = target, toff, attr = {},
+                win = $elem.is('html,body');
 
             switch (typeof targ) {
                 // A number will pass the regex 
@@ -986,15 +980,15 @@ var ITEM_OFFSET = parseInt(37);
                 case 'object':
                     // DOMElement / jQuery
                     if (targ.is || targ.style)
-                        // Get the real position of the target 
+                    // Get the real position of the target 
                         toff = (targ = $(targ)).offset();
             }
             $.each(settings.axis.split(''), function (i, axis) {
                 var Pos = axis == 'x' ? 'Left' : 'Top',
-					pos = Pos.toLowerCase(),
-					key = 'scroll' + Pos,
-					old = elem[key],
-					max = $scrollTo.max(elem, axis);
+                    pos = Pos.toLowerCase(),
+                    key = 'scroll' + Pos,
+                    old = elem[key],
+                    max = $scrollTo.max(elem, axis);
 
                 if (toff) {// jQuery / DOMElement
                     attr[key] = toff[pos] + (win ? 0 : old - $elem.offset()[pos]);
@@ -1008,26 +1002,26 @@ var ITEM_OFFSET = parseInt(37);
                     attr[key] += settings.offset[pos] || 0;
 
                     if (settings.over[pos])
-                        // Scroll to a fraction of its width/height
+                    // Scroll to a fraction of its width/height
                         attr[key] += targ[axis == 'x' ? 'width' : 'height']() * settings.over[pos];
                 } else {
                     var val = targ[pos];
                     // Handle percentage values
                     attr[key] = val.slice && val.slice(-1) == '%' ?
-						parseFloat(val) / 100 * max
-						: val;
+                        parseFloat(val) / 100 * max
+                        : val;
                 }
 
                 // Number or 'number'
                 if (/^\d+$/.test(attr[key]))
-                    // Check the limits
+                // Check the limits
                     attr[key] = attr[key] <= 0 ? 0 : Math.min(attr[key], max);
 
                 // Queueing axes
                 if (!i && settings.queue) {
                     // Don't waste time animating, if there's no need.
                     if (old != attr[key])
-                        // Intermediate animation
+                    // Intermediate animation
                         animate(settings.onAfterFirst);
                     // Don't animate this axis again in the next iteration.
                     delete attr[key];
@@ -1049,17 +1043,17 @@ var ITEM_OFFSET = parseInt(37);
     // It only fails (not too badly) on IE, quirks mode.
     $scrollTo.max = function (elem, axis) {
         var Dim = axis == 'x' ? 'Width' : 'Height',
-			scroll = 'scroll' + Dim;
+            scroll = 'scroll' + Dim;
 
         if (!$(elem).is('html,body'))
             return elem[scroll] - $(elem)[Dim.toLowerCase()]();
 
         var size = 'client' + Dim,
-			html = elem.ownerDocument.documentElement,
-			body = elem.ownerDocument.body;
+            html = elem.ownerDocument.documentElement,
+            body = elem.ownerDocument.body;
 
         return Math.max(html[scroll], body[scroll])
-			 - Math.min(html[size], body[size]);
+             - Math.min(html[size], body[size]);
 
     };
 
