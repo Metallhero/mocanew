@@ -4713,7 +4713,7 @@ blockquote {
  
 
 .scrollDiv {
-    border: 4px solid red; border-radius: 10px !important;margin-right: 20px;
+    border: 4px solid red; border-radius: 10px !important;margin: 10px;
 }
 .scrollDiv.gray{
     border: 4px solid #b0b0b0; 
