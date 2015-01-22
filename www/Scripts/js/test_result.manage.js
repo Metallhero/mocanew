@@ -39,11 +39,24 @@ function LoadFirstAttempt() {
         $('#timeBlock').text($.session.get('timeTest') + ' s');
         $(".timeBlock").show();
     }
-    else
+    else {
         $(".timeBlock").remove();
+    }
+    var testType = DB.GetTestType();
+    if (testType == MocaTestTypes["Calculation"]) {
+
+        $(".ddlCalc").each(function (k, v) {
+            var ind = $(this).attr('id').split('_')[1];
+            var searchedVal = 93 - (7 * parseInt(ind));
+            console.log(searchedVal);
+            $(this).find("option[value='" + searchedVal + "']").prop('selected', true);
+        });
+
+        $('.ddlCalc').iPhonePickerRefresh();
+    }
     Recalculate();
     LoadImage();
-    var testType = DB.GetTestType();
+
     if (testType == 7) {
         StartTimer();
     }
@@ -77,10 +90,13 @@ function LoadPreviousResult(data) {
     }
     else if (mocaResult.testTypeID == MocaTestTypes["Calculation"]) {//100,93,86 test
         $.each(mocaResultValues, function (index, value) {
-            var chkBoxIndex = 93 - parseInt(index) * 7;
-            console.log(value.valueOptional);
-            $("#spn_" + chkBoxIndex).text(value.valueOptional.split("|")[1]);
+  
+            console.log(value.valueOptional); console.log(value.valueResult);
+            $("#ddlCalc_" + value.valueOptional.split("|")[0]).find("option[value='" + value.valueOptional.split("|")[1] + "']").prop('selected', true);
+           
+            //$("#spn_" + chkBoxIndex).text(value.valueOptional.split("|")[1]);
         });
+        $('.ddlCalc').iPhonePickerRefresh();
     }
 
     $.each(mocaResultValues, function (index, value) {
@@ -193,49 +209,30 @@ function Recalculate() {
         $("#score").text(count);
     }
     else if (DB.GetTestType() == MocaTestTypes["Calculation"]) { //100,93,
-        var count = 0;
-        var count = 0;
-        $('.toggle').each(function () {
-            if ($(this).is(':checked')) {
-                count++;
+
+        var prevValue = 100;
+        var rightCount = 0;
+        $('.ddlCalc').each(function (k, v) {
+            var currValue = parseInt($(this).val());
+            $(this).closest(".scrollDiv").find(".hdnVO").val(currValue);
+            if (k > 0) {
+                var prevIndex = k - 1;
+                prevValue = parseInt($("#ddlCalc_" + prevIndex).val());
+            }
+
+            if ((currValue + 7) != prevValue) {
+                $(this).closest('.scrollDiv').removeClass('gray');
+                $("#hdnVO_" + k).val(0);
+            }
+            else {
+                $(this).closest('.scrollDiv').addClass('gray');
+                $("#hdnVO_" + k).val(1);
+                rightCount++;
             }
         });
-        var score = 0;
-        console.log(count);
-        if (count >= 4 && count <= 5) {
-            score = 3;
-        }
-        else if (count >= 2 && count <= 3) {
-            score = 2;
-        }
-        else if (count == 1) {
-            score = 1;
-        }
+        var score = rightCount > 3 ? 3 : (rightCount >= 2 ? 2 : (rightCount > 0 ? 1 : 0));
         $("#score").text(score);
-        //$('.numeric').each(function () {
-        //    var inputIndex = $(this).attr('id').replace("cbx", "");
-        //    var compareValues = 93;
-        //    if (inputIndex != 93) {
-        //        var prevIndex = parseInt(inputIndex) + 7;
-        //        compareValues = parseInt($("#cbx" + prevIndex).val()) - 7;
-        //    }
-        //    if ($(this).val() == compareValues) {
-        //        count++;
-        //    }
 
-        //});
-        //if (count >= 4 && count <= 5) {
-        //    $("#score").text(3);
-        //}
-        //else if (count >= 2 && count <= 3) {
-        //    $("#score").text(2);
-        //}
-        //else if (count == 1) {
-        //    $("#score").text(1);
-        //}
-        //else if (count == 0) {
-        //    $("#score").text(0);
-        //}
     }
     else {
         var count = 0;
@@ -310,18 +307,18 @@ function SaveTest() {
     else if (DB.GetTestType() == MocaTestTypes["Calculation"])//100,93...
     {
 
-        $('.toggle').each(function () {
-            var cbIndex = $(this).attr("id").replace("cbx", "");
+        $('.hdnVO').each(function () {
+            var cbIndex = $(this).attr("id").split("_")[1];
             var val = {};
-     
-            val = { valueResult: $(this).is(':checked') ? 1 : 0, valueOptional: cbIndex + "|" + $(this).closest('tr').find('.egSp').text() };
-        
-                //var valRes = $(this).is(':checked') ? 1 : 0;
-                //if ($(this).is(':checked') && $(this).is(':disabled')) {
-                //    valRes = 0;
-                //}
-                //val = { valueResult: valRes, valueOptional: cbIndex };
-         
+            
+            val = { valueResult: $(this).val(), valueOptional: cbIndex + "|" + $("#ddlCalc_" + cbIndex).val() };
+
+            //var valRes = $(this).is(':checked') ? 1 : 0;
+            //if ($(this).is(':checked') && $(this).is(':disabled')) {
+            //    valRes = 0;
+            //}
+            //val = { valueResult: valRes, valueOptional: cbIndex };
+
             ResultValues.push(val);
         });
         //var index = 1;
@@ -443,6 +440,33 @@ function SaveComments(testId, testType) {
 
 
 $(function () {
+
+    $(".ddlCalc").on("change", function () {
+        console.log("CHANGE!!!");
+
+        var val_change = $(this).val();
+        var currIndex = parseInt($(this).attr('id').split('_')[1]);
+
+        $('.ddlCalc').each(function (k, v) {
+
+            if (k > currIndex) {
+                //    console.log(k);
+                $("#ddlCalc_" + k).find('option:selected').removeAttr("selected");
+                var searchedVal = val_change - 7;
+                console.log(searchedVal);
+                if (val_change <= 7)
+                    searchedVal = 1;
+                $("#ddlCalc_" + k + " option[value='" + searchedVal + "']").prop('selected', true);
+                val_change -= 7;
+            }
+        });
+
+        //calculateScore();
+        $('.ddlCalc').iPhonePickerRefresh();
+        Recalculate();
+
+    });
+
 
     $("input:checkbox.cb,  .numeric").change(function () {
         Recalculate();

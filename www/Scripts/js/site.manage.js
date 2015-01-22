@@ -82,7 +82,6 @@ $(document).ready(function () {
                 $(this).next().slideUp();
                 $(this).find('.arrow').removeClass('open');
             }
-
             return false;
         }
     });
