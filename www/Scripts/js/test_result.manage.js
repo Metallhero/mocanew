@@ -89,11 +89,12 @@ function LoadPreviousResult(data) {
         $("#wordsCounter").val(mocaResultValues[0].valueOptional);
     }
     else if (mocaResult.testTypeID == MocaTestTypes["Calculation"]) {//100,93,86 test
+        $("#isChangeColor").val(1);
         $.each(mocaResultValues, function (index, value) {
-  
+
             console.log(value.valueOptional); console.log(value.valueResult);
             $("#ddlCalc_" + value.valueOptional.split("|")[0]).find("option[value='" + value.valueOptional.split("|")[1] + "']").prop('selected', true);
-           
+
             //$("#spn_" + chkBoxIndex).text(value.valueOptional.split("|")[1]);
         });
         $('.ddlCalc').iPhonePickerRefresh();
@@ -181,6 +182,20 @@ function LoadImage() {
     }
 }
 
+function ChangeBorderColorCalculation(isRightValue, elem) {
+    var isNeedToChange = parseInt($("#isChangeColor").val());
+    if (isNeedToChange) {
+        if (isRightValue) {
+            $(elem).closest('.scrollDiv').removeClass('red');
+            $(elem).closest('.scrollDiv').addClass('green');
+        }
+        else {
+            $(elem).closest('.scrollDiv').removeClass('green');
+            $(elem).closest('.scrollDiv').addClass('red');
+        }
+    }
+}
+
 function Recalculate() {
     if (DB.GetTestType() == MocaTestTypes["Fluency"]) {
         if ($('#wordsCounter').val() >= 11)
@@ -221,11 +236,11 @@ function Recalculate() {
             }
 
             if ((currValue + 7) != prevValue) {
-                $(this).closest('.scrollDiv').removeClass('gray');
+                ChangeBorderColorCalculation(false, $(this));
                 $("#hdnVO_" + k).val(0);
             }
             else {
-                $(this).closest('.scrollDiv').addClass('gray');
+                ChangeBorderColorCalculation(true, $(this));
                 $("#hdnVO_" + k).val(1);
                 rightCount++;
             }
@@ -306,40 +321,14 @@ function SaveTest() {
     }
     else if (DB.GetTestType() == MocaTestTypes["Calculation"])//100,93...
     {
-
         $('.hdnVO').each(function () {
             var cbIndex = $(this).attr("id").split("_")[1];
             var val = {};
-            
-            val = { valueResult: $(this).val(), valueOptional: cbIndex + "|" + $("#ddlCalc_" + cbIndex).val() };
 
-            //var valRes = $(this).is(':checked') ? 1 : 0;
-            //if ($(this).is(':checked') && $(this).is(':disabled')) {
-            //    valRes = 0;
-            //}
-            //val = { valueResult: valRes, valueOptional: cbIndex };
+            val = { valueResult: $(this).val(), valueOptional: cbIndex + "|" + $("#ddlCalc_" + cbIndex).val() };
 
             ResultValues.push(val);
         });
-        //var index = 1;
-        //$('.numeric').each(function () {
-        //    var inputIndex = $(this).attr('id').replace("cbx", "");
-        //    var compareValues = 93;
-        //    if (inputIndex != 93) {
-        //        var prevIndex = parseInt(inputIndex) + 7;
-        //        compareValues = parseInt($("#cbx" + prevIndex).val()) - 7;
-        //    }
-
-        //    if ($(this).val() == compareValues) {
-        //        var val = { valueResult: 1, valueOptional: index + "|" + $(this).val() };
-        //        ResultValues.push(val);
-        //    }
-        //    else {
-        //        var val = { valueResult: 0, valueOptional: index + "|" + $(this).val() };
-        //        ResultValues.push(val);
-        //    }
-        //    index++;
-        //});
 
     }
     else {
@@ -444,6 +433,7 @@ $(function () {
     $(".ddlCalc").on("change", function () {
         console.log("CHANGE!!!");
 
+        $("#isChangeColor").val(1);
         var val_change = $(this).val();
         var currIndex = parseInt($(this).attr('id').split('_')[1]);
 

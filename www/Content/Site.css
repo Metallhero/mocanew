@@ -4682,40 +4682,46 @@ blockquote {
 .tableDR tr td {
     padding: 6px !important;
 }
- /*ScoreTime*/
- .scoreTimeBlock
- {
-     float:right;
- }
- .scoreTimeBlock .col-md-1
- {
-     float:left;
-     margin-right:20px;
- }
+/*ScoreTime*/
+.scoreTimeBlock {
+    float: right;
+}
 
- .vertical .scoreTimeBlock {margin-top:10px;}
+    .scoreTimeBlock .col-md-1 {
+        float: left;
+        margin-right: 20px;
+    }
+
+.vertical .scoreTimeBlock {
+    margin-top: 10px;
+}
 
 .DRText blockquote {
     font-size: 16px;
     padding: 2px 20px !important;
 }
 
- .up_eg, .down_eg
- {
-     padding-left:12px;
- }
- .up_eg i, .down_eg i
- {
-    
-    text-decoration: none;
-     font-size:20px;
- }
- 
+.up_eg, .down_eg {
+    padding-left: 12px;
+}
+
+    .up_eg i, .down_eg i {
+        text-decoration: none;
+        font-size: 20px;
+    }
+
 
 .scrollDiv {
-    display:inline-block;
-    border: 4px solid red; border-radius: 10px !important;margin: 10px;
+    display: inline-block;
+    border-radius: 10px !important;
+    margin: 10px;
+    border: 4px solid #b0b0b0;
 }
-.scrollDiv.gray{
-    border: 4px solid #b0b0b0; 
+
+.scrollDiv.red {
+    border: 4px solid red;
+}
+
+.scrollDiv.green {
+    border: 4px solid green;
 }
