@@ -236,11 +236,11 @@ function Recalculate() {
             }
 
             if ((currValue + 7) != prevValue) {
-                ChangeBorderColorCalculation(false, $(this));
+                //ChangeBorderColorCalculation(false, $(this));
                 $("#hdnVO_" + k).val(0);
             }
             else {
-                ChangeBorderColorCalculation(true, $(this));
+                //ChangeBorderColorCalculation(true, $(this));
                 $("#hdnVO_" + k).val(1);
                 rightCount++;
             }
@@ -434,8 +434,12 @@ $(function () {
         console.log("CHANGE!!!");
 
         $("#isChangeColor").val(1);
-        var val_change = $(this).val();
+        var val_change = parseInt($(this).val());
         var currIndex = parseInt($(this).attr('id').split('_')[1]);
+        var prevValue = 100;
+        if (currIndex > 0)
+            prevValue = $("#ddlCalc_" + (currIndex - 1)).val();
+        ChangeBorderColorCalculation((val_change + 7) == prevValue, $(this));
 
         $('.ddlCalc').each(function (k, v) {
 
