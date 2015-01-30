@@ -4727,4 +4727,5 @@ blockquote {
 }
 [id^="uipv_bar_ddlCalc"] {
     z-index: 50 !important;
+    cursor: pointer !important;
 }

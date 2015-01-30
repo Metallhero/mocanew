@@ -66,7 +66,7 @@ var ITEM_OFFSET = parseInt(37);
 
                 var contentId = 'uipv_content_' + targetId;
                 var topHeight = m.round(selectedIndex * ITEM_OFFSET)
-                $('#'+contentId).scrollTo(topHeight)
+                $('#' + contentId).scrollTo(topHeight)
             }
         }
     })
@@ -112,46 +112,47 @@ var ITEM_OFFSET = parseInt(37);
             }
         },
 
-        stripSizePostFix: function(size) {
+        stripSizePostFix: function (size) {
             if (size.length > 2 && size.substring(size.length - 2) == 'px')
                 size = size.substring(0, size.length - 2);
             return parseInt(size);
         },
 
         addNiftyControl: function (data) {
-            
+
             var targetId = data.target[0].id;
-            var targetObj = $('#'+targetId);
+            var targetObj = $('#' + targetId);
             var mainId = 'uipv_main_' + targetId;
             var contentId = 'uipv_content_' + targetId;
-            var ulId = 'uipv_ul_'+ targetId;
+            var ulId = 'uipv_ul_' + targetId;
 
-            $('<div/>', {id: mainId}).insertAfter(targetObj);
-            $('<div/>', {id: contentId}).appendTo('#'+mainId);
-            $('<div/>', {id: 'uipv_left_'+targetId}).appendTo('#'+mainId);
-            $('<div/>', {id: 'uipv_top_'+targetId}).appendTo('#'+mainId);
-            $('<div/>', {id: 'uipv_right_'+targetId}).appendTo('#'+mainId);
-            $('<div/>', {id: 'uipv_bottom_'+targetId}).appendTo('#'+mainId);
-            $('<div/>', {id: 'uipv_bar_'+targetId}).appendTo('#'+mainId);
+            $('<div/>', { id: mainId }).insertAfter(targetObj);
+            $('<div/>', { id: contentId }).appendTo('#' + mainId);
+            $('<div/>', { id: 'uipv_left_' + targetId }).appendTo('#' + mainId);
+            $('<div/>', { id: 'uipv_top_' + targetId }).appendTo('#' + mainId);
+            $('<div/>', { id: 'uipv_right_' + targetId }).appendTo('#' + mainId);
+            $('<div/>', { id: 'uipv_bottom_' + targetId }).appendTo('#' + mainId);
+            $('<div/>', { id: 'uipv_bar_' + targetId }).appendTo('#' + mainId);
 
-            var controlWidth = (data.options.width == '') 
-                ? o.stripSizePostFix($('#'+targetId).css('width')) + 12 // Apparently 12 is substracted from the original width. Don't know why?!
+            var controlWidth = (data.options.width == '')
+                ? o.stripSizePostFix($('#' + targetId).css('width')) + 12 // Apparently 12 is substracted from the original width. Don't know why?!
                 : o.stripSizePostFix(data.options.width);
             if (!(controlWidth >= 20 && controlWidth <= 2000)) {
                 controlWidth = 80; // Default value
-            } 
-            var classAttr = $('#'+targetId).attr('class');
-            if (classAttr && classAttr != '') {
-                $('#'+mainId).attr('class', classAttr);
             }
-            $('#'+mainId).css({
+            var classAttr = $('#' + targetId + "_").attr('class');//added
+            if (classAttr && classAttr != '') {
+                $('#' + mainId).attr('class', classAttr);
+            }
+            $('#' + mainId).css({
                 'width': controlWidth + 'px',
                 'height': '160px',
                 'position': 'relative',
-                'float': 'left'
+                'float': 'left'//,
+                //'margin': '3px' //added
             });
-            $('#'+contentId).css({
-                'width': controlWidth-8 + 'px',
+            $('#' + contentId).css({
+                'width': controlWidth - 8 + 'px',
                 'height': '152px',
                 'font-family': 'Arial',
                 'font-weight': 'bold',
@@ -168,7 +169,7 @@ var ITEM_OFFSET = parseInt(37);
                 'user-select': 'none'
             });
 
-            $('#uipv_left_'+targetId).css({
+            $('#uipv_left_' + targetId).css({
                 'width': '4px',
                 'height': '160px',
                 'background': 'transparent url(' + data.options.imgRoot + 'uipv_left_bg.png) no-repeat top',
@@ -177,8 +178,8 @@ var ITEM_OFFSET = parseInt(37);
                 'margin': '0px',
                 'z-index': '12'
             });
-            $('#uipv_top_'+targetId).css({
-                'width': controlWidth-8 + 'px',
+            $('#uipv_top_' + targetId).css({
+                'width': controlWidth - 8 + 'px',
                 'height': '80px',
                 'background': 'transparent url(' + data.options.imgRoot + 'uipv_top_bg.png) repeat-x top',
                 'float': 'left',
@@ -186,8 +187,8 @@ var ITEM_OFFSET = parseInt(37);
                 'margin-left': '4px',
                 'z-index': '12'
             });
-            $('#uipv_bottom_'+targetId).css({
-                'width': controlWidth-8 + 'px',
+            $('#uipv_bottom_' + targetId).css({
+                'width': controlWidth - 8 + 'px',
                 'height': '80px',
                 'background': 'transparent url(' + data.options.imgRoot + 'uipv_bottom_bg.png) repeat-x top',
                 'float': 'left',
@@ -196,17 +197,17 @@ var ITEM_OFFSET = parseInt(37);
                 'margin-left': '4px',
                 'z-index': '12'
             });
-            $('#uipv_right_'+targetId).css({
+            $('#uipv_right_' + targetId).css({
                 'width': '4px',
                 'height': '160px',
-                'background': 'transparent url(' + data.options.imgRoot + 'uipv_right_bg.png) no-repeat top', 
+                'background': 'transparent url(' + data.options.imgRoot + 'uipv_right_bg.png) no-repeat top',
                 'float': 'right',
                 'position': 'absolute',
-                'margin-left': controlWidth-4 + 'px',
+                'margin-left': controlWidth - 4 + 'px',
                 'z-index': '12'
             });
-            $('#uipv_bar_'+targetId).css({
-                'width': controlWidth-8 + 'px',
+            $('#uipv_bar_' + targetId).css({
+                'width': controlWidth - 8 + 'px',
                 'height': '45px',
                 'background': 'transparent url(' + data.options.imgRoot + 'uipv_bar_bg.png) repeat-x top',
                 'float': 'left',
@@ -217,32 +218,32 @@ var ITEM_OFFSET = parseInt(37);
             });
 
             // Add div to content for space (margin or padding give errors in Chrome)
-            $('<div/>', {id: 'uipv_contenthead_'+targetId}).appendTo('#'+contentId);
-            $('#uipv_contenthead_'+targetId).css({
+            $('<div/>', { id: 'uipv_contenthead_' + targetId }).appendTo('#' + contentId);
+            $('#uipv_contenthead_' + targetId).css({
                 'height': '61px',
-                'width': controlWidth-8 + 'px'
+                'width': controlWidth - 8 + 'px'
             });
             // <ul> is actual content wrapper
-            $('<ul/>', {id: ulId}).appendTo('#'+contentId);
-            $('#'+ulId).css({
+            $('<ul/>', { id: ulId }).appendTo('#' + contentId);
+            $('#' + ulId).css({
                 'margin': '0px',
                 'padding': '0px'
             });
             // Add div to content for space (margin or padding give errors in Chrome)
-            $('<div/>', {id: 'uipv_contentfoot_'+targetId}).appendTo('#'+contentId);
-            $('#uipv_contentfoot_'+targetId).css({
+            $('<div/>', { id: 'uipv_contentfoot_' + targetId }).appendTo('#' + contentId);
+            $('#uipv_contentfoot_' + targetId).css({
                 'height': '54px',
-                'width': controlWidth-8 + 'px'
+                'width': controlWidth - 8 + 'px'
             });
 
             // Deny selecting text in options
-            o.selectable($('#'+contentId)[0], false);
+            o.selectable($('#' + contentId)[0], false);
 
             if (data.target[0].options.length > 0) {
-                for(var i=0;i<data.target[0].options.length;i++) {
+                for (var i = 0; i < data.target[0].options.length; i++) {
                     var option = data.target[0].options[i];
-                    $('<li/>', {id: ulId+'_'+option.value, value: option.value, text: option.text}).appendTo('#'+ulId);
-                    $('#'+ulId+'_'+option.value).css({
+                    $('<li/>', { id: ulId + '_' + option.value, value: option.value, text: option.text }).appendTo('#' + ulId);
+                    $('#' + ulId + '_' + option.value).css({
                         'height': '37px',
                         'line-height': '37px',
                         'text-align': 'center',
@@ -252,15 +253,16 @@ var ITEM_OFFSET = parseInt(37);
                     });
                 }
 
-                $('#'+contentId).iPhonePickerOverscroll({
-                    selectedIndex: data.target[0].options.selectedIndex, 
-                    parentId: targetId, 
-                    itemCount: data.target[0].options.length});
+                $('#' + contentId).iPhonePickerOverscroll({
+                    selectedIndex: data.target[0].options.selectedIndex,
+                    parentId: targetId,
+                    itemCount: data.target[0].options.length
+                });
             }
         },
 
-        setStyle: function(element, property, value) {
-            property = property.replace(/-(\w)/g, function(match, letter) {
+        setStyle: function (element, property, value) {
+            property = property.replace(/-(\w)/g, function (match, letter) {
                 return letter.toUpperCase();
             });
             if (element.style[property]) {
@@ -268,15 +270,15 @@ var ITEM_OFFSET = parseInt(37);
             }
         },
 
-        selectable: function(element, bool) {
+        selectable: function (element, bool) {
             // most browsers:
             o.setStyle(element, 'user-select', bool ? '' : 'none');
             o.setStyle(element, '-moz-user-select', bool ? '' : 'none');
             o.setStyle(element, '-khtml-user-select', bool ? '' : 'none');
-        
+
             // IE:
-            element.onselectstart = bool ? null : function() { return false; };
-        
+            element.onselectstart = bool ? null : function () { return false; };
+
             // IE and Opera:
             element.setAttribute('unselectable', bool ? '' : 'on', 0);
         }
@@ -286,7 +288,7 @@ var ITEM_OFFSET = parseInt(37);
 
 
 (function (w, m, $, o) {
-    
+
     // adds overscroll from a jQuery object
     o = $.fn.iPhonePickerOverscroll = function (options) {
         options = options || {};
@@ -460,14 +462,14 @@ var ITEM_OFFSET = parseInt(37);
                     if (eventData.thumbs.horizontal) {
                         eventData.thumbs.horizontal.fadeTo("fast", 0);
                     }
-                
+
                     var index = o.selectedIndex(eventData.target[0]);
                     o.scrollToIndex(eventData, index);
                 }
             }
         },
 
-        scrollToIndex: function(eventData, index, isInit) {
+        scrollToIndex: function (eventData, index, isInit) {
             if (index == 'undefined' || index == null) {
                 index = eventData.options.selectedIndex;
             }
@@ -478,30 +480,32 @@ var ITEM_OFFSET = parseInt(37);
             }
         },
 
-        setValue: function(data) {
+        setValue: function (data) {
             if (data == null)
                 data = o.data;
             // Get selected item index
             var index = (data.options.reset) ? data.options.selectedIndex : o.selectedIndex(data.target[0]);
             // Set selected item in targeted object
-            jQuery("select#"+data.options.parentId+" option[selected]").removeAttr("selected");
-            jQuery("select#"+data.options.parentId+" option[index=" + index + "]").attr("selected", "selected");
-            
+            console.log("select#" + data.options.parentId + " option");
+            jQuery("select#" + data.options.parentId).find('option').removeAttr("selected");
+            jQuery("select#" + data.options.parentId + " option:eq(" + index + ")").prop('selected', true);
+
             if (!data.options.reset) {
+                console.log('change');
                 // Trigger onchange event manually
-                $('#'+data.options.parentId).trigger(jQuery.Event('change'));
+                $('#' + data.options.parentId).trigger(jQuery.Event('change'));
             }
         },
 
-        selectedIndex: function(target) {
-            var index = Math.round(target.scrollTop/ITEM_OFFSET);
+        selectedIndex: function (target) {
+            var index = Math.round(target.scrollTop / ITEM_OFFSET);
             return index;
         },
 
         // sets a position object
         setPosition: function (event, position, index) {
-            position.x = event.pageX;
-            position.y = event.pageY;
+            position.x = event.originalEvent.pageX;
+            position.y = event.originalEvent.pageY;
             position.time = o.time();
             position.index = index;
             return position;
@@ -512,12 +516,12 @@ var ITEM_OFFSET = parseInt(37);
 
             o.clearInterval(event.data.target);
 
-            if (event.wheelDelta) {
-                delta = event.wheelDelta / (w.opera ? - 120 : 120);
+            if (event.originalEvent.wheelDelta) {
+                delta = event.originalEvent.wheelDelta / (w.opera ? -120 : 120);
             }
 
-            if (event.detail) {
-                delta = -event.detail / 3;
+            if (event.originalEvent.detail) {
+                delta = -event.originalEvent.detail / 3;
             }
 
             if (!event.data.wheelCapture) {
@@ -548,11 +552,11 @@ var ITEM_OFFSET = parseInt(37);
                 event.data.target.data('dragging', false);
             }, o.constants.timeout);
 
-            if(!event){ event = window.event; } /* IE7, IE8, Chrome, Safari */
-            if(event.preventDefault) { event.preventDefault(); } /* Chrome, Safari, Firefox */
+            if (!event) { event = window.event; } /* IE7, IE8, Chrome, Safari */
+            if (event.preventDefault) { event.preventDefault(); } /* Chrome, Safari, Firefox */
             event.returnValue = false; /* IE7, IE8 */
 
-            o.setValue(event.data); 
+            o.setValue(event.data);
         },
 
         // handles a scroll event
@@ -579,10 +583,12 @@ var ITEM_OFFSET = parseInt(37);
 
         // click on the control to scroll up or down
         click: function (event, obj) {
-
+        
             o.clearInterval(event.data.target);
 
-            var yPos = event.pageY - $(obj).offset().top;
+            var yPos = event.originalEvent.pageY - $(obj).offset().top;
+
+
 
             if (yPos < 60 || yPos > 105) {
 
@@ -594,11 +600,13 @@ var ITEM_OFFSET = parseInt(37);
 
                     // List has item to scroll to
                     var newIndex = (upClick) ? selIndex - 1 : selIndex + 1;
-
+                    
                     // Simulate drift location
                     event.data.position = o.setPosition(event, {});
                     event.data.capture = o.setPosition(event, {}, 2);
-                    event.data.capture.y += (upClick) ? -6 : 8;
+                    event.data.capture.y += (upClick) ? -4 : 4;
+
+                    
 
                     o.drift(obj, event, function (data) {
                         data.target.data('dragging', false);
@@ -615,7 +623,7 @@ var ITEM_OFFSET = parseInt(37);
             o.clearInterval(event.data.target);
 
             event.data.startTarget = $(event.target);
-            
+
             if (!event.data.startTarget.is(event.data.options.cancelOn)) {
                 o.normalizeEvent(event);
                 event.data.target.bind(o.events.drag, event.data, o.drag).stop(true, true).data('dragging', false).data('dragged', false);
@@ -632,18 +640,19 @@ var ITEM_OFFSET = parseInt(37);
             o.normalizeEvent(event);
 
             event.data.target.data('dragged', true);
-            
+
             if (!event.data.target.data('dragging')) {
                 o.toggleThumbs(event.data, true);
             }
 
             if (event.data.options.direction !== 'vertical') {
-                this.scrollLeft -= (event.pageX - event.data.position.x);
+                this.scrollLeft -= (event.originalEvent.pageX - event.data.position.x);
             }
+
             if (event.data.options.direction !== 'horizontal') {
-                this.scrollTop -= (event.pageY - event.data.position.y);
+                this.scrollTop -= (event.originalEvent.pageY - event.data.position.y);
             }
-                
+
             o.moveThumbs(event, this.scrollLeft, this.scrollTop);
 
             o.setPosition(event, event.data.position);
@@ -654,7 +663,8 @@ var ITEM_OFFSET = parseInt(37);
             }
 
         },
-        isTouchDevice: function(){
+
+        isTouchDevice: function () {
             return true == ("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch);
         },
         normalizeEvent: function (event) {
@@ -685,6 +695,7 @@ var ITEM_OFFSET = parseInt(37);
 
         // ends the drag operation and unbinds the mouse move handler
         stop: function (event, dx, dy, d) {
+
             if (event.data.position) {
 
                 event.data.target.unbind(o.events.drag, o.drag);
@@ -696,7 +707,6 @@ var ITEM_OFFSET = parseInt(37);
                         data.target.data('dragging', false);
                         o.toggleThumbs(data, false);
                         var index = o.selectedIndex(event.data.target[0]);
-                        
                         o.scrollToIndex(event.data, index);
                     });
                 } else if (event.data.target.data('dragged')) {
@@ -712,7 +722,7 @@ var ITEM_OFFSET = parseInt(37);
                     event.data.target.data('dragged', false);
                     o.deferClick(event.data.startTarget);
                     event.data.startTarget = null;
-                } 
+                }
 
                 event.data.capture = event.data.position = undefined;
             }
@@ -738,19 +748,20 @@ var ITEM_OFFSET = parseInt(37);
 
             // only drift on intended drifts
             if ((o.time() - event.data.capture.time) > o.constants.driftTimeout) {
+                
                 return callback.call(null, event.data);
             }
-
+            
             o.normalizeEvent(event);
 
-            var dx = event.data.options.scrollDelta * (event.pageX - event.data.capture.x),
-                dy = event.data.options.scrollDelta * (event.pageY - event.data.capture.y),
+            var dx = event.data.options.scrollDelta * (event.originalEvent.pageX - event.data.capture.x),
+                dy = event.data.options.scrollDelta * (event.originalEvent.pageY - event.data.capture.y),
                 scrollLeft = target.scrollLeft,
                 scrollTop = target.scrollTop,
                 xMod = dx / o.constants.driftSequences,
                 yMod = dy / o.constants.driftSequences,
                 decay = o.constants.driftDecay;
-
+            
             if (event.data.options.direction !== 'vertical') {
                 scrollLeft -= dx;
             }
@@ -766,7 +777,7 @@ var ITEM_OFFSET = parseInt(37);
                 var done = true,
                     min = 1,
                     max = -1;
-
+                
                 if (yMod > min && target.scrollTop > scrollTop || yMod < max && target.scrollTop < scrollTop) {
                     done = false;
                     target.scrollTop -= yMod;
@@ -780,7 +791,7 @@ var ITEM_OFFSET = parseInt(37);
                 }
 
                 o.moveThumbs(event, target.scrollLeft, target.scrollTop);
-
+                
                 if (done) {
                     o.clearInterval(target);
                     o.triggerEvent('driftend', event.data);
@@ -955,7 +966,7 @@ var ITEM_OFFSET = parseInt(37);
         settings.queue = settings.queue && settings.axis.length > 1;
 
         if (settings.queue)
-        // Let's keep the overall duration
+            // Let's keep the overall duration
             duration /= 2;
         settings.offset = both(settings.offset);
         settings.over = both(settings.over);
@@ -980,7 +991,7 @@ var ITEM_OFFSET = parseInt(37);
                 case 'object':
                     // DOMElement / jQuery
                     if (targ.is || targ.style)
-                    // Get the real position of the target 
+                        // Get the real position of the target 
                         toff = (targ = $(targ)).offset();
             }
             $.each(settings.axis.split(''), function (i, axis) {
@@ -1002,7 +1013,7 @@ var ITEM_OFFSET = parseInt(37);
                     attr[key] += settings.offset[pos] || 0;
 
                     if (settings.over[pos])
-                    // Scroll to a fraction of its width/height
+                        // Scroll to a fraction of its width/height
                         attr[key] += targ[axis == 'x' ? 'width' : 'height']() * settings.over[pos];
                 } else {
                     var val = targ[pos];
@@ -1014,14 +1025,14 @@ var ITEM_OFFSET = parseInt(37);
 
                 // Number or 'number'
                 if (/^\d+$/.test(attr[key]))
-                // Check the limits
+                    // Check the limits
                     attr[key] = attr[key] <= 0 ? 0 : Math.min(attr[key], max);
 
                 // Queueing axes
                 if (!i && settings.queue) {
                     // Don't waste time animating, if there's no need.
                     if (old != attr[key])
-                    // Intermediate animation
+                        // Intermediate animation
                         animate(settings.onAfterFirst);
                     // Don't animate this axis again in the next iteration.
                     delete attr[key];
