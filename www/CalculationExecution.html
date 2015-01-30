@@ -96,7 +96,7 @@
                                 <div class="tools">
                                 </div>
                             </div>
-                            <div class="portlet-body form">
+                            <div class="portlet-body form" style="min-height: 350px !important;">
                                 <div id="errorText"></div>
                                 <!-- BEGIN FORM-->
                                 <div class="form-horizontal ">
@@ -205,6 +205,10 @@
     <script src="Scripts/jquery.iphonepicker/jquery.iphonepicker2.js"></script>
 
     <script type="text/javascript">
+        $(document).bind('touchmove',function (e) {
+                e.preventDefault();
+            }
+        );
         $(".up_eg,.down_eg").click(function () {
             var elem = $(this).closest('tr').find('.egSp');
             var egValue = parseInt($(elem).text());
