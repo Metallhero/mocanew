@@ -238,7 +238,7 @@ function Recalculate() {
                 //ChangeBorderColorCalculation(false, $(this));
                 $("#hdnVO_" + k).val(0);
             }
-            else {
+           else if ($(this).closest(".scrollDiv").hasClass("green")) {
                 //ChangeBorderColorCalculation(true, $(this));
                 $("#hdnVO_" + k).val(1);
                 rightCount++;
@@ -428,10 +428,10 @@ function SaveComments(testId, testType) {
 
 
 $(function () {
-    $(".scrollDiv").on("click", function () {
+     $('body').on("click", "[id^=uipv_bar_ddlCalc]", function () {
         console.log('click');
 
-        var elem = $(this).find(".ddlCalc");
+        var elem = $(this).closest('.scrollDiv').find(".ddlCalc");
         var val_change = parseInt($(elem).val());
         var currIndex = parseInt($(elem).attr('id').split('_')[1]);
 

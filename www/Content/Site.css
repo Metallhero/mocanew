@@ -4725,3 +4725,6 @@ blockquote {
 .scrollDiv.green {
     border: 4px solid green;
 }
+[id^="uipv_bar_ddlCalc"] {
+    z-index: 50 !important;
+}
