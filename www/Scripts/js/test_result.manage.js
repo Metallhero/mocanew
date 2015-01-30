@@ -89,7 +89,7 @@ function LoadPreviousResult(data) {
         $("#wordsCounter").val(mocaResultValues[0].valueOptional);
     }
     else if (mocaResult.testTypeID == MocaTestTypes["Calculation"]) {//100,93,86 test
-        $("#isChangeColor").val(1);
+      
         $.each(mocaResultValues, function (index, value) {
 
             console.log(value.valueOptional); console.log(value.valueResult);
@@ -183,8 +183,7 @@ function LoadImage() {
 }
 
 function ChangeBorderColorCalculation(isRightValue, elem) {
-    var isNeedToChange = parseInt($("#isChangeColor").val());
-    if (isNeedToChange) {
+   
         if (isRightValue) {
             $(elem).closest('.scrollDiv').removeClass('red');
             $(elem).closest('.scrollDiv').addClass('green');
@@ -193,7 +192,7 @@ function ChangeBorderColorCalculation(isRightValue, elem) {
             $(elem).closest('.scrollDiv').removeClass('green');
             $(elem).closest('.scrollDiv').addClass('red');
         }
-    }
+     
 }
 
 function Recalculate() {
@@ -429,11 +428,43 @@ function SaveComments(testId, testType) {
 
 
 $(function () {
+    $(".scrollDiv").on("click", function () {
+        console.log('click');
 
+        var elem = $(this).find(".ddlCalc");
+        var val_change = parseInt($(elem).val());
+        var currIndex = parseInt($(elem).attr('id').split('_')[1]);
+
+        var prevValue = 100;
+        if (currIndex > 0)
+            prevValue = $("#ddlCalc_" + (currIndex - 1)).val();
+        ChangeBorderColorCalculation((val_change + 7) == prevValue, $(elem));
+
+        $('.ddlCalc').each(function (k, v) {
+
+            if (k > currIndex) {
+                //    console.log(k);
+                $("#ddlCalc_" + k).find('option:selected').removeAttr("selected");
+                var searchedVal = val_change - 7;
+
+                if (val_change <= 7)
+                    searchedVal = 1;
+                $("#ddlCalc_" + k + " option[value='" + searchedVal + "']").prop('selected', true);
+                val_change -= 7;
+
+                $(this).closest('.scrollDiv').removeClass('red');
+                $(this).closest('.scrollDiv').removeClass('green');
+            }
+        });
+
+        //calculateScore();
+        $('.ddlCalc').iPhonePickerRefresh();
+        Recalculate();
+    });
     $(".ddlCalc").on("change", function () {
         console.log("CHANGE!!!");
 
-        $("#isChangeColor").val(1);
+        
         var val_change = parseInt($(this).val());
         var currIndex = parseInt($(this).attr('id').split('_')[1]);
         var prevValue = 100;
@@ -452,6 +483,9 @@ $(function () {
                     searchedVal = 1;
                 $("#ddlCalc_" + k + " option[value='" + searchedVal + "']").prop('selected', true);
                 val_change -= 7;
+
+                $(this).closest('.scrollDiv').removeClass('red');
+                $(this).closest('.scrollDiv').removeClass('green');
             }
         });
 
