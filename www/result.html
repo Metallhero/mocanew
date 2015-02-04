@@ -33,19 +33,19 @@
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function () {
             $('.footer,.header').remove();
-            if($(window).width() < 900){
-                $('#Wrap').addClass('scale_content')
-                $('body').css({'overflow-x':'hidden'});
-            }
+            //if($(window).width() < 900){
+            //    $('#Wrap').addClass('scale_content')
+            //    $('body').css({'overflow-x':'hidden'});
+            //}
         });
-        $(window).on("orientationchange",function(event){
-          if($(window).width() < 900){
-                $('#Wrap').addClass('scale_content')
-                $('body').css({'overflow-x':'hidden'});
-          }else {
-              $('#Wrap').removeClass('scale_content');
-          }
-        });
+        //$(window).on("orientationchange",function(event){
+        //  if($(window).width() < 900){
+        //        $('#Wrap').addClass('scale_content')
+        //        $('body').css({'overflow-x':'hidden'});
+        //  }else {
+        //      $('#Wrap').removeClass('scale_content');
+        //  }
+        //});
     </script>
     <style type="text/css" media="screen">
         .scale_content {
