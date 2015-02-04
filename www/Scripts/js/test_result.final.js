@@ -234,6 +234,7 @@ $(document).ready(function () {
                         }
                         else if (testType == 4 || testType == 9) {
                             valOpt = resultValue.valueOptional.split("|")[0];
+                            valOpt++;
                             $("#testVal_" + testType + "_" + valOpt).text(resultValue.valueOptional.split("|")[1]);
                         }
                         else if (testType == 7) {//11 words
