@@ -33,19 +33,19 @@
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function () {
             $('.footer,.header').remove();
-            //if($(window).width() < 900){
-            //    $('#Wrap').addClass('scale_content')
-            //    $('body').css({'overflow-x':'hidden'});
-            //}
+            if($(window).width() < 900){
+                $('#Wrap').addClass('scale_content')
+                $('body').css({'overflow-x':'hidden'});
+            }
         });
-        //$(window).on("orientationchange",function(event){
-        //  if($(window).width() < 900){
-        //        $('#Wrap').addClass('scale_content')
-        //        $('body').css({'overflow-x':'hidden'});
-        //  }else {
-        //      $('#Wrap').removeClass('scale_content');
-        //  }
-        //});
+        $(window).on("orientationchange",function(event){
+          if($(window).width() < 900){
+                $('#Wrap').addClass('scale_content')
+                $('body').css({'overflow-x':'hidden'});
+          }else {
+              $('#Wrap').removeClass('scale_content');
+          }
+        });
     </script>
     <style type="text/css" media="screen">
         .scale_content {
@@ -86,7 +86,7 @@
     </div>
     <div class="content">
         <div class="Wrap" id="Wrap">
-            <table id="moca-table" style="border-spacing: 0;border: none;font-size: 11px;width: 850px;margin: 0 auto;background: #fff; ">
+            <table id="moca-table" style="border-spacing: 0;border: none;font-size: 11px;width: 780px;margin: 0 auto;background: #fff; ">
                 <thead>
                     <tr style="border: none;padding: 0.1rem 0.2rem;">
                         <th colspan="1" style="border: none;padding: 0.2em;font-weight: normal;vertical-align: middle;text-align: left;"></th>
