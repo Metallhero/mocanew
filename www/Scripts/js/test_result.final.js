@@ -35,7 +35,7 @@ $(document).ready(function () {
     var testId = getURLParameters(window.location.href).id;
     var isComments = true; //getURLParameters(window.location.href).comments;
 
- 
+
     function getCommentTitle(testTypeID) {
         switch (testTypeID) {
             case 13:
@@ -234,7 +234,9 @@ $(document).ready(function () {
                         }
                         else if (testType == 4 || testType == 9) {
                             valOpt = resultValue.valueOptional.split("|")[0];
-                            valOpt++;
+                            if (testType == 4) {
+                                valOpt++;
+                            }
                             $("#testVal_" + testType + "_" + valOpt).text(resultValue.valueOptional.split("|")[1]);
                         }
                         else if (testType == 7) {//11 words
